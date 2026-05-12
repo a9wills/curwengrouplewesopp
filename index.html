@@ -64,7 +64,7 @@
             
             <!-- Desktop Menu -->
             <div class="hidden lg:flex items-center space-x-8">
-                <button onclick="scrollToSection('hero')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Hero</button>
+                <button onclick="scrollToSection('hero')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Home</button>
                 <button onclick="scrollToSection('summary')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Summary</button>
                 <button onclick="scrollToSection('location')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Location</button>
                 <button onclick="scrollToSection('design')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Design</button>
@@ -83,7 +83,7 @@
 
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu" class="hidden fixed inset-0 z-[90] bg-[#0A1D37] text-white p-12 flex flex-col justify-center space-y-8">
-            <button onclick="scrollToSection('hero')" class="text-2xl font-light tracking-widest text-left">Hero</button>
+            <button onclick="scrollToSection('home')" class="text-2xl font-light tracking-widest text-left">Home</button>
             <button onclick="scrollToSection('summary')" class="text-2xl font-light tracking-widest text-left">Summary</button>
             <button onclick="scrollToSection('location')" class="text-2xl font-light tracking-widest text-left">Location</button>
             <button onclick="scrollToSection('design')" class="text-2xl font-light tracking-widest text-left">Design</button>
@@ -331,13 +331,33 @@
                     </div>
                 </div>
 
-                <div class="reveal mt-20 bg-neutral-900 p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 rounded-sm">
-                    <div class="max-w-xl">
-                        <h3 class="text-2xl font-light mb-4">Masterplan Optimization</h3>
-                        <p class="text-white/40 text-sm font-light">Proposed total GIA: 37,136 Sq Ft across a bespoke site masterplan comprising 12 family houses (1,550 sqft avg) and 28 apartments (657 sqft avg).</p>
-                    </div>
-                    <img src="https://cdn.anthology.to/static/retailers/alt/st_pancras_plan_option_7.png" class="h-40 w-auto brightness-90 contrast-125" alt="Floorplan" />
-                </div>
+                <div class="reveal mt-24 bg-neutral-900 p-8 md:p-14 lg:p-16 text-white rounded-sm shadow-2xl">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div class="lg:col-span-4">
+            <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-5">
+                Site Masterplan
+            </p>
+
+            <h3 class="text-3xl md:text-4xl font-light mb-6 leading-tight">
+                Masterplan Optimisation
+            </h3>
+
+            <p class="text-white/50 text-base md:text-lg font-light leading-relaxed">
+                Proposed total GIA: 37,136 Sq Ft across a bespoke site masterplan comprising 12 family houses (1,550 sqft avg) and 28 apartments (657 sqft avg).
+            </p>
+        </div>
+
+        <div class="lg:col-span-8">
+            <div class="bg-white/5 border border-white/10 p-4 md:p-6 rounded-sm">
+                <img 
+                    src="https://cdn.anthology.to/static/retailers/alt/st_pancras_plan_option_7.png" 
+                    class="w-full h-auto max-h-[620px] object-contain brightness-95 contrast-125" 
+                    alt="Floorplan" 
+                />
+            </div>
+        </div>
+    </div>
+</div>
             </section>
 
             <!-- SECTION: Financials -->
