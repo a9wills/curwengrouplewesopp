@@ -1,0 +1,12 @@
+{
+  "name": "curwen-group-property-pages",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "pdf": "node scripts/export-pdf.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.52.0"
+  }
+}
