@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wilmington House - East Grinstead Nursery Opportunity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .reveal {
+            opacity: 0;
+            transform: translateY(3rem);
+            transition: all 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        ::selection { background-color: #B08D57; color: white; }
+        details summary::-webkit-details-marker { display: none; }
+        .hero-gradient { background: linear-gradient(180deg, rgba(10,29,55,0.24) 0%, rgba(10,29,55,0.18) 38%, rgba(10,29,55,0.96) 100%); }
+    </style>
+</head>
+<body class="bg-[#FAF9F6] text-slate-900">
+
+    <!-- Authentication Screen -->
+    <div id="auth-screen" class="min-h-screen flex items-center justify-center bg-[#E5E5E1] p-4 fixed inset-0 z-[200]">
+        <div class="w-full max-w-md bg-white shadow-2xl rounded-sm p-8 md:p-12">
+            <div class="flex justify-center mb-10">
+                <img src="https://cdn.anthology.to/static/retailers/alt/curwen_group.png" alt="Curwen Group" class="h-14 w-auto" />
+            </div>
+            <h2 class="text-center text-sm tracking-[0.3em] uppercase font-light mb-2 text-slate-900">Investment Memorandum</h2>
+            <p class="text-center text-[10px] tracking-[0.25em] uppercase font-bold mb-8 text-[#B08D57]">Wilmington House</p>
+            <form id="login-form" class="space-y-4">
+                <input
+                    id="password-input"
+                    type="password"
+                    placeholder="Enter Access Code"
+                    class="w-full px-4 py-4 bg-neutral-50 border border-neutral-200 rounded-sm text-base tracking-widest focus:outline-none focus:border-[#B08D57] transition-colors"
+                />
+                <p id="error-message" class="hidden text-[10px] text-red-600 uppercase tracking-widest text-center font-bold">Invalid password.</p>
+                <button type="submit" class="w-full py-4 bg-[#0A1D37] text-white text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-slate-800 transition-all rounded-sm">
+                    Unlock Document
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="hidden min-h-screen">
+
+        <!-- Navigation -->
+        <nav class="fixed top-0 left-0 right-0 z-[100] bg-white/80 backdrop-blur-md border-b border-neutral-100 px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="https://cdn.anthology.to/static/retailers/alt/curwen_group.png" class="h-8 md:h-10 w-auto" alt="Curwen Group" />
+                <div class="hidden md:block h-6 w-[1px] bg-neutral-200"></div>
+                <span class="hidden md:block text-[10px] tracking-[0.3em] uppercase font-bold text-slate-900">Wilmington House</span>
+            </div>
+
+            <div class="hidden lg:flex items-center space-x-7">
+                <button onclick="scrollToSection('hero')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Home</button>
+                <button onclick="scrollToSection('summary')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Summary</button>
+                <button onclick="scrollToSection('location')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Location</button>
+                <button onclick="scrollToSection('concept')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Concept</button>
+                <button onclick="scrollToSection('playspace')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Playspace</button>
+                <button onclick="scrollToSection('classrooms')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Classrooms</button>
+                <button onclick="scrollToSection('accommodation')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Accommodation</button>
+
+                <button onclick="handleContact()" class="ml-2 px-5 py-2.5 bg-[#0A1D37] text-white text-[9px] uppercase tracking-[0.2em] font-bold hover:bg-[#B08D57] transition-all rounded-sm flex items-center space-x-2">
+                    <i data-lucide="mail" class="w-3 h-3"></i>
+                    <span>Contact Us</span>
+                </button>
+            </div>
+
+            <button class="lg:hidden" onclick="toggleMenu()" aria-label="Open menu">
+                <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden fixed inset-0 z-[90] bg-[#0A1D37] text-white p-12 flex flex-col justify-center space-y-8">
+            <button onclick="scrollToSection('hero')" class="text-2xl font-light tracking-widest text-left">Home</button>
+            <button onclick="scrollToSection('summary')" class="text-2xl font-light tracking-widest text-left">Summary</button>
+            <button onclick="scrollToSection('location')" class="text-2xl font-light tracking-widest text-left">Location</button>
+            <button onclick="scrollToSection('concept')" class="text-2xl font-light tracking-widest text-left">Concept</button>
+            <button onclick="scrollToSection('playspace')" class="text-2xl font-light tracking-widest text-left">Playspace</button>
+            <button onclick="scrollToSection('classrooms')" class="text-2xl font-light tracking-widest text-left">Classrooms</button>
+            <button onclick="scrollToSection('accommodation')" class="text-2xl font-light tracking-widest text-left">Accommodation</button>
+            <button onclick="handleContact()" class="text-2xl font-bold tracking-widest text-left text-[#B08D57]">Contact Us</button>
+        </div>
+
+        <main class="pt-20">
+
+            <!-- SECTION: Hero -->
+            <section id="hero" class="relative h-[92vh] w-full overflow-hidden">
+                <img src="../images/wilmington/withington_house%20birdseyeview.jpeg" class="w-full h-full object-cover scale-105" alt="Bird's-eye view of Wilmington House nursery concept with rear parking and outdoor play area" />
+                <div class="absolute inset-0 hero-gradient"></div>
+
+                <div class="absolute top-10 left-6 md:left-20 z-10 reveal">
+                    <div class="bg-[#B08D57] p-6 md:p-8 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/20 max-w-sm">
+                        <p class="text-white text-[12px] md:text-[14px] tracking-[0.4em] font-black uppercase mb-1.5">Investment Opportunity</p>
+                        <p class="text-white text-[10px] md:text-[11px] tracking-[0.2em] font-bold uppercase mb-4">Freehold or Leasehold</p>
+                        <div class="w-full h-[1.5px] bg-white/30 mb-4"></div>
+                        <p class="text-white text-[10px] md:text-[11px] tracking-[0.15em] font-semibold uppercase leading-relaxed">
+                            Prime Class E opportunity<br/>Potential 70–80 place children’s day nursery
+                        </p>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-20 left-6 md:left-20 max-w-5xl">
+                    <div class="reveal">
+                        <p class="inline-block bg-[#0A1D37]/85 border border-white/20 text-[#B08D57] text-[12px] md:text-sm tracking-[0.45em] uppercase font-bold mb-4 px-4 py-2 rounded-sm shadow-lg backdrop-blur-sm">High Street, East Grinstead RH19 3AU</p>
+                        <h1 class="text-4xl md:text-7xl xl:text-8xl font-extralight text-white leading-none tracking-tighter uppercase mb-6">
+                            Wilmington<br/>House
+                        </h1>
+                        <p class="text-white/65 text-sm md:text-lg font-light max-w-2xl mb-8">
+                            A substantial and highly characterful property in the centre of East Grinstead with strong potential for conversion into a premium children’s day nursery.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mb-8">
+                            <div class="bg-[#0A1D37]/80 border border-white/10 backdrop-blur-md rounded-sm px-6 py-5">
+                                <p class="text-2xl font-bold text-white">Class E</p>
+                                <p class="text-[9px] uppercase tracking-[0.25em] text-white/45 font-bold mt-1">Use Class</p>
+                            </div>
+                            <div class="bg-[#0A1D37]/80 border border-white/10 backdrop-blur-md rounded-sm px-6 py-5">
+                                <p class="text-2xl font-bold text-white">70–80</p>
+                                <p class="text-[9px] uppercase tracking-[0.25em] text-white/45 font-bold mt-1">Nursery Places</p>
+                            </div>
+                            <div class="bg-[#0A1D37]/80 border border-white/10 backdrop-blur-md rounded-sm px-6 py-5">
+                                <p class="text-2xl font-bold text-white">5,710 SQ FT</p>
+                                <p class="text-[9px] uppercase tracking-[0.25em] text-white/45 font-bold mt-1">Incl. Basement / Cellar</p>
+                            </div>
+                        </div>
+
+                        <button onclick="handleContact()" class="px-8 py-4 bg-[#B08D57] text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm flex items-center space-x-3">
+                            <span>Request Further Information</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Executive Summary -->
+            <section id="summary" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                    <div class="lg:col-span-7">
+                        <div class="reveal">
+                            <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">01 — Executive Summary</h2>
+                            <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-8">
+                                Prime Class E Freehold / Leasehold Opportunity.
+                            </h3>
+                            <div class="space-y-6 text-slate-600 font-light leading-relaxed text-lg">
+                                <p>
+                                    Wilmington House represents a rare opportunity to acquire or lease a substantial and highly characterful property in the centre of East Grinstead with strong potential for conversion into a premium children’s day nursery.
+                                </p>
+                                <p>
+                                    The property benefits from a prominent High Street position, substantial internal accommodation, rear parking potential and the opportunity to create attractive outdoor play environments.
+                                </p>
+                                <p>
+                                    The brochure identifies Wilmington House as a Prime Class E Freehold / Leasehold Opportunity with potential for a 70–80 place children’s day nursery.
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                                    <div class="flex items-center space-x-3 text-sm font-medium text-slate-800"><i data-lucide="check" class="text-[#B08D57] w-4.5 h-4.5"></i><span>Rare opportunity to acquire or lease</span></div>
+                                    <div class="flex items-center space-x-3 text-sm font-medium text-slate-800"><i data-lucide="check" class="text-[#B08D57] w-4.5 h-4.5"></i><span>Substantial, characterful property</span></div>
+                                    <div class="flex items-center space-x-3 text-sm font-medium text-slate-800"><i data-lucide="check" class="text-[#B08D57] w-4.5 h-4.5"></i><span>Prominent High Street position</span></div>
+                                    <div class="flex items-center space-x-3 text-sm font-medium text-slate-800"><i data-lucide="check" class="text-[#B08D57] w-4.5 h-4.5"></i><span>Premium nursery conversion potential</span></div>
+                                    <div class="flex items-center space-x-3 text-sm font-medium text-slate-800"><i data-lucide="check" class="text-[#B08D57] w-4.5 h-4.5"></i><span>Rear parking potential</span></div>
+                                    <div class="flex items-center space-x-3 text-sm font-medium text-slate-800"><i data-lucide="check" class="text-[#B08D57] w-4.5 h-4.5"></i><span>Outdoor play environment potential</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5">
+                        <div class="reveal delay-200">
+                            <div class="bg-white p-10 border border-neutral-100 shadow-xl">
+                                <h4 class="text-[10px] tracking-[0.2em] uppercase font-bold mb-10 text-center text-slate-400">Accommodation Summary</h4>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-sm text-left border-collapse">
+                                        <thead>
+                                            <tr class="border-b border-neutral-100">
+                                                <th class="pb-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Category</th>
+                                                <th class="pb-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Details</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-slate-800">
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Use Class</td><td class="py-4 text-sm font-bold text-slate-900">Class E</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Potential Capacity</td><td class="py-4 text-sm font-bold text-slate-900">70–80 Place Day Nursery</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Tenure</td><td class="py-4 text-sm font-bold text-slate-900">Freehold or Leasehold</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Gross Internal Area</td><td class="py-4 text-sm font-bold text-slate-900">Approx. 4,871 sq ft</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Total Area</td><td class="py-4 text-sm font-bold text-slate-900">Approx. 5,710 sq ft including basement/cellar</td></tr>
+                                            <tr><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Location</td><td class="py-4 text-sm font-bold text-slate-900">High Street, East Grinstead RH19 3AU</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Prime East Grinstead Location -->
+            <section id="location" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="reveal">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">02 — Prime East Grinstead Location</h2>
+                        <h3 class="text-3xl md:text-5xl font-light mb-10 leading-tight">A prominent and accessible town centre position.</h3>
+                        <p class="text-white/60 font-light leading-relaxed text-lg mb-12">
+                            Wilmington House occupies a highly prominent and accessible position within the heart of East Grinstead town centre.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                            <div class="border-l border-[#B08D57] pl-6 py-2">
+                                <p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2 flex items-center space-x-2">
+                                    <i data-lucide="home" class="w-4 h-4"></i>
+                                    <span>Catchment</span>
+                                </p>
+                                <p class="text-xl font-light">Strong surrounding residential catchments</p>
+                            </div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2">
+                                <p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2 flex items-center space-x-2">
+                                    <i data-lucide="briefcase-business" class="w-4 h-4"></i>
+                                    <span>Demographic</span>
+                                </p>
+                                <p class="text-xl font-light">Affluent commuter demographics</p>
+                            </div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2">
+                                <p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2 flex items-center space-x-2">
+                                    <i data-lucide="eye" class="w-4 h-4"></i>
+                                    <span>Visibility</span>
+                                </p>
+                                <p class="text-xl font-light">Excellent visibility and accessibility</p>
+                            </div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2">
+                                <p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2 flex items-center space-x-2">
+                                    <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                                    <span>Amenities</span>
+                                </p>
+                                <p class="text-xl font-light">Town centre amenities</p>
+                            </div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2 sm:col-span-2">
+                                <p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2 flex items-center space-x-2">
+                                    <i data-lucide="users" class="w-4 h-4"></i>
+                                    <span>Family Market</span>
+                                </p>
+                                <p class="text-xl font-light">Established family population</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal">
+                        <img src="../images/wilmington/Busy%20Bees%20East%20Playspace%20Aerial.jpg" class="w-full h-auto max-h-[680px] object-cover rounded-sm border border-white/10 bg-white" alt="Aerial context image around Moat Road and East Grinstead showing a nearby Busy Bees reference point" />
+                        <p class="mt-4 text-[10px] uppercase tracking-widest text-white/35 font-bold">Image: supplied aerial context image. The original PDF location map is not in the current image folder.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Site Context / Bird’s-Eye Overview -->
+            <section id="site-context" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="reveal text-center mb-16">
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">03 — Site Context / Bird’s-Eye Overview</h2>
+                    <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Rear parking, external play potential and enclosed town-centre context.</h3>
+                    <p class="text-slate-500 font-light text-lg max-w-3xl mx-auto">
+                        The supplied bird’s-eye visual shows the potential relationship between the rear courtyard, parking layout, external play provision, neighbouring buildings and operational circulation.
+                    </p>
+                </div>
+
+                <figure class="reveal bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+                    <img src="../images/wilmington/withington_house%20birdseyeview.jpeg" class="w-full h-auto object-cover" alt="Bird’s-eye view showing nursery play concept, rear parking, surrounding buildings and access context" />
+                    <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Image: supplied bird’s-eye visual showing site context, rear parking and outdoor nursery play concept.</figcaption>
+                </figure>
+
+                <div class="reveal mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm">
+                        <p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Rear Parking</p>
+                        <p class="text-sm font-light text-slate-600">Existing / potential rear parking zone shown in relation to the nursery concept.</p>
+                    </div>
+                    <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm">
+                        <p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Secure Play</p>
+                        <p class="text-sm font-light text-slate-600">External play concept shown within an enclosed courtyard-style setting.</p>
+                    </div>
+                    <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm">
+                        <p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Town-Centre Context</p>
+                        <p class="text-sm font-light text-slate-600">Surrounded by established East Grinstead buildings and urban grain.</p>
+                    </div>
+                    <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm">
+                        <p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Operational Flow</p>
+                        <p class="text-sm font-light text-slate-600">Visual separation between vehicles, circulation and play areas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Potential Nursery Concept & External Areas -->
+            <section id="concept" class="bg-white py-24 px-6 md:px-20">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">04 — Potential Nursery Concept &amp; External Areas</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Outdoor play, drop-off and landscaped learning environments.</h3>
+                        <p class="text-slate-500 font-light text-lg max-w-3xl mx-auto">
+                            Illustrative concept imagery demonstrates the site’s potential to accommodate secure outdoor play provision, dedicated parent drop-off arrangements, separate play and circulation areas, landscaped learning environments and covered outdoor activity zones.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="reveal">
+                            <img src="../images/wilmington/withington_house%20birdseyeview.jpeg" class="w-full h-auto rounded-sm border border-neutral-100 shadow-xl object-cover" alt="Illustrative nursery concept showing outdoor play, parking and circulation areas" />
+                        </div>
+                        <div class="reveal delay-200">
+                            <div class="space-y-5 text-slate-600 font-light leading-relaxed text-lg">
+                                <p><strong class="font-semibold text-slate-900">Secure outdoor play provision:</strong> The concept imagery shows the ability to create a defined external play environment.</p>
+                                <p><strong class="font-semibold text-slate-900">Dedicated parent drop-off arrangements:</strong> The rear area supports a clearer operational arrival and collection strategy.</p>
+                                <p><strong class="font-semibold text-slate-900">Separate play and circulation areas:</strong> The concept allows vehicle and play functions to be separated.</p>
+                                <p><strong class="font-semibold text-slate-900">Landscaped learning environments:</strong> The rear space can be configured as a softer, warmer nursery setting.</p>
+                                <p><strong class="font-semibold text-slate-900">Covered outdoor activity zones:</strong> A canopy-style covered activity area is shown within the supplied concept visual.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Playspace Benchmark / Area Comparison -->
+            <section id="playspace" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">05 — Playspace Benchmark / Area Comparison</h2>
+                        <h3 class="text-3xl md:text-5xl font-light leading-tight mb-4">Indicative playspace comparison.</h3>
+                        <p class="text-white/55 font-light text-lg max-w-3xl mx-auto">
+                            The supplied plan imagery includes indicative playspace measurements for a nearby Busy Bees East Grinstead benchmark and a Wilmington House minimum playspace area.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <article class="reveal bg-white/5 border border-white/10 shadow-2xl rounded-sm overflow-hidden">
+                            <img src="../images/wilmington/Busy%20Bees%20East%20Grinstead%20Playspace%20.jpg" class="w-full h-auto object-contain bg-white" alt="Busy Bees East Grinstead playspace area plan showing 115.71 square metres and 1245.491 square feet" />
+                            <div class="p-8 md:p-10">
+                                <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-5">Benchmark</p>
+                                <h4 class="text-2xl md:text-3xl font-light mb-4">Busy Bees East Grinstead</h4>
+                                <p class="text-white/60 font-light leading-relaxed">
+                                    Playspace Area: <strong class="font-semibold text-white">115.71 m²</strong> / <strong class="font-semibold text-white">1,245.491 ft²</strong>.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="reveal delay-200 bg-white/5 border border-white/10 shadow-2xl rounded-sm overflow-hidden">
+                            <img src="../images/wilmington/Wilmington%20House%20Minimum%20Playspace%20.jpg" class="w-full h-auto object-contain bg-white" alt="Wilmington House minimum playspace plan showing 137.41 square metres and 1479.067 square feet" />
+                            <div class="p-8 md:p-10">
+                                <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-5">Wilmington House</p>
+                                <h4 class="text-2xl md:text-3xl font-light mb-4">Minimum Playspace</h4>
+                                <p class="text-white/60 font-light leading-relaxed">
+                                    Playspace Area: <strong class="font-semibold text-white">137.41 m²</strong> / <strong class="font-semibold text-white">1,479.067 ft²</strong>.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="reveal mt-14 bg-white/5 border border-white/10 rounded-sm p-8">
+                        <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-4">Important note</p>
+                        <p class="text-sm font-light text-white/55 leading-relaxed">
+                            Indicative playspace comparison based on supplied plan imagery. Areas and boundaries should be verified by measured survey and professional nursery design review.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Rear Play Space & Parking Potential -->
+            <section id="rear-play" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                    <div class="lg:col-span-7 reveal">
+                        <img src="../images/wilmington/withington_house%20birdseyeview.jpeg" class="w-full h-auto rounded-sm border border-neutral-100 shadow-xl object-cover" alt="Rear play space and parking concept showing secure external play and parking arrangement" />
+                    </div>
+                    <div class="lg:col-span-5 reveal delay-200">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">06 — Rear Play Space &amp; Parking Potential</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-8">A rear environment with nursery operational potential.</h3>
+                        <div class="space-y-5 text-slate-600 font-light leading-relaxed text-lg">
+                            <p>The rear play and parking concept demonstrates the potential to combine external nursery play provision with practical arrival, drop-off and parking arrangements.</p>
+                            <p>The rear area has potential for outdoor nursery play space, parent parking, dedicated drop-off, secure boundary treatment, separation between vehicles and children’s play areas, operationally efficient rear access and a strong nursery arrival / drop-off arrangement.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Rear Elevation & Operational Access -->
+            <section id="rear-access" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="reveal">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">07 — Rear Elevation &amp; Operational Access</h2>
+                        <h3 class="text-3xl md:text-5xl font-light mb-10 leading-tight">Strong operational flexibility to the rear.</h3>
+                        <p class="text-white/60 font-light leading-relaxed text-lg mb-12">
+                            The rear of the property provides strong operational flexibility including potential parent parking, dedicated drop-off arrangements, outdoor play integration, secure access opportunities and staff and servicing access.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Parent Parking</p><p class="text-xl font-light">Potential parent parking</p></div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Drop-Off</p><p class="text-xl font-light">Dedicated drop-off arrangements</p></div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Outdoor Play</p><p class="text-xl font-light">Outdoor play integration</p></div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Access</p><p class="text-xl font-light">Secure access opportunities</p></div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2 sm:col-span-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Operations</p><p class="text-xl font-light">Staff and servicing access</p></div>
+                        </div>
+                    </div>
+
+                    <div class="reveal delay-200">
+                        <img src="../images/wilmington/withington_house%20birdseyeview.jpeg" class="w-full h-auto rounded-sm border border-white/10 bg-white object-cover" alt="Supplied bird's-eye visual showing rear access, parking and play area arrangement" />
+                        <p class="mt-4 text-[10px] uppercase tracking-widest text-white/35 font-bold">Image: supplied bird’s-eye visual used in place of the original rear access photograph, which is not in the current image folder.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Indicative Nursery Classroom Environments -->
+            <section id="classrooms" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="reveal text-center mb-16">
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">08 — Indicative Nursery Classroom Environments</h2>
+                    <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Warm, premium nursery environments.</h3>
+                    <p class="text-slate-500 font-light text-lg max-w-3xl mx-auto">
+                        The internal accommodation naturally lends itself to warm, premium nursery environments with excellent natural light, flexible room layouts, character architectural detailing, a calm and welcoming atmosphere and high-quality fit-out potential.
+                    </p>
+                </div>
+
+                <figure class="reveal bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+                    <img src="../images/wilmington/draft_nursery_design.png" class="w-full h-auto object-cover" alt="Indicative nursery classroom environments showing warm interiors, natural timber furniture, reading spaces and play areas" />
+                    <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Image: supplied classroom visual used for indicative nursery classroom environments.</figcaption>
+                </figure>
+
+                <div class="reveal mt-12 grid grid-cols-1 md:grid-cols-5 gap-4">
+                    <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Natural Light</p><p class="text-sm font-light text-slate-600">Excellent natural light.</p></div>
+                    <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Layouts</p><p class="text-sm font-light text-slate-600">Flexible room layouts.</p></div>
+                    <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Character</p><p class="text-sm font-light text-slate-600">Character architectural detailing.</p></div>
+                    <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Atmosphere</p><p class="text-sm font-light text-slate-600">Calm and welcoming atmosphere.</p></div>
+                    <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Fit-Out</p><p class="text-sm font-light text-slate-600">High-quality fit-out potential.</p></div>
+                </div>
+            </section>
+
+            <!-- SECTION: Accommodation Summary -->
+            <section id="accommodation" class="bg-white py-24 px-6 md:px-20">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">09 — Accommodation Summary</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Core property schedule.</h3>
+                        <p class="text-slate-500 font-light text-lg max-w-3xl mx-auto">
+                            The accommodation summary below recreates the table from the brochure in HTML for readability.
+                        </p>
+                    </div>
+
+                    <div class="reveal overflow-x-auto bg-white border border-neutral-100 shadow-sm rounded-sm max-w-5xl mx-auto">
+                        <table class="w-full text-sm text-left border-collapse">
+                            <thead>
+                                <tr class="bg-[#0A1D37] text-white border-b border-neutral-100">
+                                    <th class="p-6 uppercase tracking-widest text-[9px] font-bold">Category</th>
+                                    <th class="p-6 uppercase tracking-widest text-[9px] font-bold">Details</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-slate-800">
+                                <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">Use Class</td><td class="p-6">Class E</td></tr>
+                                <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">Potential Capacity</td><td class="p-6">70–80 Place Day Nursery</td></tr>
+                                <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">Tenure</td><td class="p-6">Freehold or Leasehold</td></tr>
+                                <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">Gross Internal Area</td><td class="p-6">Approx. 4,871 sq ft</td></tr>
+                                <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">Total Area Including Basement/Cellar</td><td class="p-6">Approx. 5,710 sq ft</td></tr>
+                                <tr class="hover:bg-neutral-50"><td class="p-6 font-bold">Location</td><td class="p-6">High Street, East Grinstead RH19 3AU</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Contact -->
+            <section id="contact" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="reveal">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">10 — Contact &amp; Enquiries</h2>
+                        <h3 class="text-3xl md:text-5xl font-light leading-tight mb-8">Acquisition, leasehold and nursery conversion enquiries.</h3>
+                        <div class="space-y-5 text-white/60 font-light leading-relaxed text-lg">
+                            <p>For further information regarding acquisition, leasehold opportunities or nursery conversion potential, please enquire directly.</p>
+                            <p><strong class="font-semibold text-white">Opportunity:</strong> Prime Class E Freehold / Leasehold Opportunity.</p>
+                            <p><strong class="font-semibold text-white">Potential Use:</strong> 70–80 Place Children’s Day Nursery.</p>
+                            <p><strong class="font-semibold text-white">Location:</strong> High Street, East Grinstead RH19 3AU.</p>
+                            <p class="text-white/40 text-sm">The brochure does not include named agents, phone numbers or email addresses. Replace the enquiry details below if needed.</p>
+                        </div>
+                        <button onclick="handleContact()" class="mt-10 px-8 py-4 bg-[#B08D57] text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm flex items-center space-x-3">
+                            <span>Discuss The Opportunity</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <div class="reveal delay-200 bg-white/5 border border-white/10 rounded-sm p-8 md:p-10">
+                        <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-8">Enquiry Details</p>
+                        <div class="space-y-6">
+                            <div class="border-b border-white/10 pb-5">
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Contact Name</p>
+                                <p class="text-white font-light">Steve Curwen</p>
+                            </div>
+                            <div class="border-b border-white/10 pb-5">
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Email</p>
+                                <p class="text-white font-light">steve@curwengroup.co.uk</p>
+                            </div>
+                            <div>
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">CTA</p>
+                                <p class="text-white font-light">Request further information, discuss acquisition, leasehold opportunity or nursery conversion potential.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Legal Notice / Disclaimer -->
+            <section id="legal" class="bg-neutral-950 py-24 px-6 md:px-20 text-white">
+                <div class="max-w-5xl mx-auto">
+                    <div class="reveal">
+                        <div class="flex items-center space-x-4 mb-10">
+                            <div class="w-12 h-[1px] bg-[#B08D57]"></div>
+                            <h3 class="text-[10px] tracking-[0.5em] uppercase font-bold text-[#B08D57]">Legal Notice / Disclaimer</h3>
+                        </div>
+                        <div class="space-y-6 text-sm font-light text-white/50 leading-relaxed">
+                            <p class="text-white/80 font-medium">No formal legal notice, confidentiality wording or investment disclaimer is included in the current Wilmington House brochure extract.</p>
+                            <p>This document is provided for information purposes only. All areas, capacities, use class references, planning assumptions, nursery conversion potential, parking assumptions and external area proposals should be verified by interested parties through their own professional due diligence.</p>
+                            <p>No warranty is given as to the accuracy or completeness of the information provided. Any final published investment memorandum should include agent-approved legal wording, accuracy disclaimers, planning caveats, measured survey confirmation and due diligence requirements.</p>
+                            <p>Indicative playspace comparison is based on supplied plan imagery. Areas and boundaries should be verified by measured survey and professional nursery design review.</p>
+                            <p class="pt-8 border-t border-white/5 italic">Placeholder wording only — replace with approved legal and agency wording before circulation.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <button onclick="scrollToSection('hero')" class="fixed bottom-8 right-8 z-[100] p-4 bg-white shadow-2xl border border-neutral-100 hover:bg-[#B08D57] hover:text-white transition-all group" aria-label="Back to top">
+            <i data-lucide="arrow-right" class="-rotate-90 group-hover:translate-y-[-2px] transition-transform w-5 h-5"></i>
+        </button>
+    </div>
+
+    <script>
+        const REQUIRED_PASSWORD = 'wilmington_rh19';
+        const CONTACT_EMAIL = 'steve@curwengroup.co.uk';
+        const EMAIL_SUBJECT = 'Wilmington House - East Grinstead Nursery Opportunity';
+
+        const loginForm = document.getElementById('login-form');
+        const passwordInput = document.getElementById('password-input');
+        const errorMessage = document.getElementById('error-message');
+        const authScreen = document.getElementById('auth-screen');
+        const mainContent = document.getElementById('main-content');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (passwordInput.value === REQUIRED_PASSWORD) {
+                authScreen.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+                initLucide();
+                initScrollReveal();
+            } else {
+                errorMessage.classList.remove('hidden');
+                passwordInput.classList.add('border-red-500');
+            }
+        });
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) element.scrollIntoView({ behavior: 'smooth' });
+            if (isMenuOpen) toggleMenu();
+        }
+
+        function handleContact() {
+            window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
+        }
+
+        function initScrollReveal() {
+            const observerOptions = { threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, observerOptions);
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        function initLucide() { lucide.createIcons(); }
+        window.onload = () => { initLucide(); };
+    </script>
+</body>
+</html>
