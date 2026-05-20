@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mulberry House - Newbury Opportunity Brochure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .display-serif { font-family: 'Playfair Display', serif; }
+        .reveal {
+            opacity: 0;
+            transform: translateY(3rem);
+            transition: all 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        ::selection { background-color: #B08D57; color: white; }
+        details summary::-webkit-details-marker { display: none; }
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(10,29,55,0.22) 0%, rgba(10,29,55,0.18) 35%, rgba(10,29,55,0.96) 100%);
+        }
+        .glass-card {
+            background: rgba(10, 18, 34, 0.78);
+            border: 1px solid rgba(255,255,255,0.12);
+            box-shadow: 0 24px 70px rgba(0,0,0,0.35);
+            backdrop-filter: blur(18px);
+        }
+        .soft-glass {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-[#FAF9F6] text-slate-900">
+
+    <!-- Authentication Screen -->
+    <div id="auth-screen" class="min-h-screen flex items-center justify-center bg-[#E5E5E1] p-4 fixed inset-0 z-[200]">
+        <div class="w-full max-w-md bg-white shadow-2xl rounded-sm p-8 md:p-12">
+            <div class="flex justify-center mb-10">
+                <img src="https://cdn.anthology.to/static/retailers/alt/curwen_group.png" alt="Curwen Group" class="h-14 w-auto" />
+            </div>
+            <h2 class="text-center text-sm tracking-[0.3em] uppercase font-light mb-2 text-slate-900">Confidential Prospectus</h2>
+            <p class="text-center text-[10px] tracking-[0.25em] uppercase font-bold mb-8 text-[#B08D57]">Mulberry House</p>
+            <form id="login-form" class="space-y-4">
+                <input
+                    id="password-input"
+                    type="password"
+                    placeholder="Enter Access Code"
+                    class="w-full px-4 py-4 bg-neutral-50 border border-neutral-200 rounded-sm text-base tracking-widest focus:outline-none focus:border-[#B08D57] transition-colors"
+                />
+                <p id="error-message" class="hidden text-[10px] text-red-600 uppercase tracking-widest text-center font-bold">Invalid password.</p>
+                <button type="submit" class="w-full py-4 bg-[#0A1D37] text-white text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-slate-800 transition-all rounded-sm">
+                    Unlock Document
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="hidden min-h-screen">
+
+        <!-- Navigation -->
+        <nav class="fixed top-0 left-0 right-0 z-[100] bg-white/80 backdrop-blur-md border-b border-neutral-100 px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="https://cdn.anthology.to/static/retailers/alt/curwen_group.png" class="h-8 md:h-10 w-auto" alt="Curwen Group" />
+                <div class="hidden md:block h-6 w-[1px] bg-neutral-200"></div>
+                <span class="hidden md:block text-[10px] tracking-[0.3em] uppercase font-bold text-slate-900">Mulberry House</span>
+            </div>
+
+            <div class="hidden lg:flex items-center space-x-7">
+                <button onclick="scrollToSection('hero')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Home</button>
+                <button onclick="scrollToSection('summary')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Summary</button>
+                <button onclick="scrollToSection('asset')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Asset</button>
+                <button onclick="scrollToSection('internal')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Internal</button>
+                <button onclick="scrollToSection('demand')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Demand</button>
+                <button onclick="scrollToSection('advantage')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Advantage</button>
+                <button onclick="scrollToSection('contact')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Contact</button>
+
+                <button onclick="handleContact()" class="ml-2 px-5 py-2.5 bg-[#0A1D37] text-white text-[9px] uppercase tracking-[0.2em] font-bold hover:bg-[#B08D57] transition-all rounded-sm flex items-center space-x-2">
+                    <i data-lucide="mail" class="w-3 h-3"></i>
+                    <span>Contact Us</span>
+                </button>
+            </div>
+
+            <button class="lg:hidden" onclick="toggleMenu()" aria-label="Open menu">
+                <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden fixed inset-0 z-[90] bg-[#0A1D37] text-white p-12 flex flex-col justify-center space-y-8">
+            <button onclick="scrollToSection('hero')" class="text-2xl font-light tracking-widest text-left">Home</button>
+            <button onclick="scrollToSection('summary')" class="text-2xl font-light tracking-widest text-left">Summary</button>
+            <button onclick="scrollToSection('asset')" class="text-2xl font-light tracking-widest text-left">Asset</button>
+            <button onclick="scrollToSection('internal')" class="text-2xl font-light tracking-widest text-left">Internal</button>
+            <button onclick="scrollToSection('demand')" class="text-2xl font-light tracking-widest text-left">Demand</button>
+            <button onclick="scrollToSection('advantage')" class="text-2xl font-light tracking-widest text-left">Advantage</button>
+            <button onclick="handleContact()" class="text-2xl font-bold tracking-widest text-left text-[#B08D57]">Contact Us</button>
+        </div>
+
+        <main class="pt-20">
+
+            <!-- SECTION: Hero -->
+            <!-- IMAGE: images/mulberry/mulberry_house_exterior_wide.png -->
+            <section id="hero" class="relative h-[92vh] w-full overflow-hidden">
+                <img src="images/mulberry/mulberry_house_exterior_wide.png" class="w-full h-full object-cover scale-105" alt="Mulberry House exterior with landscaped nursery garden, children, carers and outdoor play equipment" />
+                <div class="absolute inset-0 hero-gradient"></div>
+
+                <div class="absolute top-10 left-6 md:left-20 z-10 reveal">
+                    <div class="bg-[#B08D57] p-6 md:p-8 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/20 max-w-sm">
+                        <p class="text-white text-[12px] md:text-[14px] tracking-[0.4em] font-black uppercase mb-1.5">Mulberry House</p>
+                        <p class="text-white text-[10px] md:text-[11px] tracking-[0.2em] font-bold uppercase mb-4">Confidential Prospectus</p>
+                        <div class="w-full h-[1.5px] bg-white/30 mb-4"></div>
+                        <p class="text-white text-[10px] md:text-[11px] tracking-[0.15em] font-semibold uppercase leading-relaxed">
+                            Old Bath Road • Newbury<br/>RG14 1QN
+                        </p>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-20 left-6 md:left-20 max-w-5xl">
+                    <div class="reveal">
+                        <p class="inline-block bg-[#0A1D37]/85 border border-white/20 text-[#B08D57] text-[12px] md:text-sm tracking-[0.45em] uppercase font-bold mb-4 px-4 py-2 rounded-sm shadow-lg backdrop-blur-sm">Established South East Market</p>
+                        <h1 class="display-serif italic text-5xl md:text-7xl xl:text-8xl font-semibold text-white leading-none tracking-tight mb-6">
+                            A rare opportunity<br/>in a proven market.
+                        </h1>
+                        <p class="text-white/65 text-sm md:text-lg font-light max-w-2xl mb-8">
+                            A high-quality, large-format nursery opportunity in Newbury, combining a landmark 10,000 sq ft asset, outdoor provision and strong childcare demand fundamentals.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mb-8">
+                            <div class="glass-card rounded-sm px-6 py-5">
+                                <p class="text-3xl font-bold text-white">10,000</p>
+                                <p class="text-[9px] uppercase tracking-[0.25em] text-white/45 font-bold mt-1">Square Feet</p>
+                            </div>
+                            <div class="glass-card rounded-sm px-6 py-5">
+                                <p class="text-3xl font-bold text-white">110–140</p>
+                                <p class="text-[9px] uppercase tracking-[0.25em] text-white/45 font-bold mt-1">Child Capacity</p>
+                            </div>
+                            <div class="glass-card rounded-sm px-6 py-5">
+                                <p class="text-3xl font-bold text-white">RG14 1QN</p>
+                                <p class="text-[9px] uppercase tracking-[0.25em] text-white/45 font-bold mt-1">Prime Location</p>
+                            </div>
+                        </div>
+
+                        <button onclick="handleContact()" class="px-8 py-4 bg-[#B08D57] text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm flex items-center space-x-3">
+                            <span>Request Further Information</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Executive Summary / Key Highlights -->
+            <section id="summary" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                    <div class="lg:col-span-7">
+                        <div class="reveal">
+                            <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">01 — Executive Summary</h2>
+                            <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-8">
+                                A large-format nursery opportunity in an established Newbury market.
+                            </h3>
+                            <div class="space-y-6 text-slate-600 font-light leading-relaxed text-lg">
+                                <p>
+                                    Mulberry House is positioned as a rare opportunity in a proven South East childcare market. The asset combines architectural presence, a substantial building footprint and a prime Newbury location.
+                                </p>
+                                <p>
+                                    The brochure identifies Mulberry House as a 10,000 sq ft landmark asset with potential capacity for 110–140 nursery places, supported by a 70,000+ catchment population and an affluent dual-income demographic.
+                                </p>
+                                <p>
+                                    The opportunity is located at Old Bath Road, Newbury, RG14 1QN, with strategic access to the A4 and A34, making it suitable for a drive-to early years nursery proposition serving local families and commuter flows.
+                                </p>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                                    <div class="flex items-center space-x-3 text-sm font-medium text-slate-800"><i data-lucide="check" class="text-[#B08D57] w-4.5 h-4.5"></i><span>10,000 sq ft landmark asset</span></div>
+                                    <div class="flex items-center space-x-3 text-sm font-medium text-slate-800"><i data-lucide="check" class="text-[#B08D57] w-4.5 h-4.5"></i><span>110–140 nursery places</span></div>
+                                    <div class="flex items-center space-x-3 text-sm font-medium text-slate-800"><i data-lucide="check" class="text-[#B08D57] w-4.5 h-4.5"></i><span>70,000+ catchment population</span></div>
+                                    <div class="flex items-center space-x-3 text-sm font-medium text-slate-800"><i data-lucide="check" class="text-[#B08D57] w-4.5 h-4.5"></i><span>A4 / A34 strategic access</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5">
+                        <div class="reveal delay-200">
+                            <div class="bg-white p-10 border border-neutral-100 shadow-xl">
+                                <h4 class="text-[10px] tracking-[0.2em] uppercase font-bold mb-10 text-center text-slate-400">Key Opportunity Metrics</h4>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-sm text-left border-collapse">
+                                        <thead>
+                                            <tr class="border-b border-neutral-100">
+                                                <th class="pb-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Metric</th>
+                                                <th class="pb-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Detail</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-slate-800">
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Property</td><td class="py-4 text-sm font-bold text-slate-900">Mulberry House</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Address</td><td class="py-4 text-sm font-bold text-slate-900">Old Bath Road, Newbury</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Postcode</td><td class="py-4 text-sm font-bold text-slate-900">RG14 1QN</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Building Size</td><td class="py-4 text-sm font-bold text-slate-900">10,000 sq ft</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Capacity</td><td class="py-4 text-sm font-bold text-slate-900">110–140 nursery places</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Catchment</td><td class="py-4 text-sm font-bold text-slate-900">70,000+ population</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Demographic</td><td class="py-4 text-sm font-bold text-slate-900">Dual-income, affluent</td></tr>
+                                            <tr><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Access</td><td class="py-4 text-sm font-bold text-slate-900">A4 / A34 strategic access</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                    <div class="bg-[#0A1D37] border border-white/10 shadow-xl p-7 rounded-sm text-white">
+                        <i data-lucide="building-2" class="text-[#B08D57] w-6 h-6 mb-5"></i>
+                        <p class="text-2xl font-bold">10k SQ FT</p>
+                        <p class="text-[9px] uppercase tracking-[0.25em] text-white/35 font-bold mt-2">Landmark Asset</p>
+                    </div>
+                    <div class="bg-[#0A1D37] border border-white/10 shadow-xl p-7 rounded-sm text-white">
+                        <i data-lucide="users" class="text-[#B08D57] w-6 h-6 mb-5"></i>
+                        <p class="text-2xl font-bold">110–140</p>
+                        <p class="text-[9px] uppercase tracking-[0.25em] text-white/35 font-bold mt-2">Nursery Places</p>
+                    </div>
+                    <div class="bg-[#0A1D37] border border-white/10 shadow-xl p-7 rounded-sm text-white">
+                        <i data-lucide="globe-2" class="text-[#B08D57] w-6 h-6 mb-5"></i>
+                        <p class="text-2xl font-bold">70,000+</p>
+                        <p class="text-[9px] uppercase tracking-[0.25em] text-white/35 font-bold mt-2">Catchment Population</p>
+                    </div>
+                    <div class="bg-[#0A1D37] border border-white/10 shadow-xl p-7 rounded-sm text-white">
+                        <i data-lucide="shield-check" class="text-[#B08D57] w-6 h-6 mb-5"></i>
+                        <p class="text-2xl font-bold">Dual-Income</p>
+                        <p class="text-[9px] uppercase tracking-[0.25em] text-white/35 font-bold mt-2">Affluent Demographic</p>
+                    </div>
+                    <div class="bg-[#0A1D37] border border-white/10 shadow-xl p-7 rounded-sm text-white">
+                        <i data-lucide="map" class="text-[#B08D57] w-6 h-6 mb-5"></i>
+                        <p class="text-2xl font-bold">A4 / A34</p>
+                        <p class="text-[9px] uppercase tracking-[0.25em] text-white/35 font-bold mt-2">Strategic Access</p>
+                    </div>
+                </div>
+
+                <!-- IMAGE: images/mulberry/mulberry_house_exterior_crop.png -->
+                <figure class="reveal mt-16 bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden">
+                    <img src="images/mulberry/mulberry_house_exterior_crop.png" class="w-full max-h-[560px] object-cover object-center" alt="Mulberry House exterior frontage with landscaped nursery garden and play area" />
+                    <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Image: Mulberry House frontage and landscaped garden environment.</figcaption>
+                </figure>
+            </section>
+
+            <!-- SECTION: Asset Overview -->
+            <section id="asset" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="reveal">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">02 — Asset Overview</h2>
+                        <h3 class="text-3xl md:text-5xl font-light mb-10 leading-tight">A 10,000 sq ft landmark asset configured for scale.</h3>
+                        <div class="space-y-6 text-white/60 font-light leading-relaxed text-lg">
+                            <p>
+                                The building offers the scale required for a substantial early years operation, with the potential to support dedicated age rooms, sensory suites, breakout and learning spaces and operationally efficient layouts.
+                            </p>
+                            <p>
+                                The attached ground-floor plan identifies <strong class="font-semibold text-white">GF GIA = 506.1 sqm</strong>. This should be read alongside the headline 10,000 sq ft total building opportunity, indicating that the 10,000 sq ft figure is likely across more than one floor.
+                            </p>
+                            <p>
+                                The building’s scale, character and location support a large-format early years nursery proposition designed around premium childcare provision.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12">
+                            <div class="border-l border-[#B08D57] pl-6 py-2">
+                                <p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Ground Floor Plan</p>
+                                <p class="text-xl font-light">GF GIA = 506.1 sqm</p>
+                            </div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2">
+                                <p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Total Opportunity</p>
+                                <p class="text-xl font-light">10,000 sq ft</p>
+                            </div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2">
+                                <p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Use Case</p>
+                                <p class="text-xl font-light">Large-format early years nursery</p>
+                            </div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2">
+                                <p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Positioning</p>
+                                <p class="text-xl font-light">Architectural presence</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal delay-200">
+                        <!-- IMAGE: images/mulberry/mul_ground.png -->
+                        <figure class="bg-white/5 border border-white/10 p-4 md:p-6 rounded-sm shadow-2xl">
+                            <img src="images/mulberry/mul_ground.png" class="w-full h-auto object-contain bg-white rounded-sm" alt="Mulberry House ground floor plan showing GF GIA equals 506.1 sqm" />
+                            <figcaption class="px-2 pt-4 text-[10px] uppercase tracking-widest text-white/35 font-bold">Ground Floor Plan — GF GIA = 506.1 sqm</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Internal Configuration -->
+            <section id="internal" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="reveal text-center mb-16">
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">03 — Internal Configuration</h2>
+                    <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Built for dedicated early years environments.</h3>
+                    <p class="text-slate-500 font-light text-lg max-w-3xl mx-auto">
+                        The internal accommodation can support age-specific learning rooms, nursery activity zones and a premium early years environment.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <article class="reveal bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+                        <!-- IMAGE: images/mulberry/mulberry_house_internal.png -->
+                        <img src="images/mulberry/mulberry_house_internal.png" class="w-full h-96 object-cover" alt="Structured nursery play and learning room inside Mulberry House" />
+                        <div class="p-8 md:p-10">
+                            <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-5">Structured Learning Rooms</p>
+                            <h4 class="text-2xl md:text-3xl font-light mb-6">Flexible internal accommodation for play and learning.</h4>
+                            <div class="space-y-4 text-slate-600 font-light leading-relaxed">
+                                <p>Large internal rooms can be adapted into structured play and learning environments.</p>
+                                <p>The illustrated fit-out shows early years furniture, reading areas, play zones, learning walls, activity tables and practical storage.</p>
+                                <p>The accommodation supports dedicated age rooms, breakout spaces, sensory provision and operationally efficient nursery layouts.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="reveal delay-200 bg-[#0A1D37] text-white border border-[#0A1D37] shadow-2xl rounded-sm overflow-hidden">
+                        <!-- IMAGE: images/mulberry/mulberry_house_internal_stairs.png -->
+                        <img src="images/mulberry/mulberry_house_internal_stairs.png" class="w-full h-96 object-cover" alt="Character staircase and landing at Mulberry House with nursery wall decoration" />
+                        <div class="p-8 md:p-10">
+                            <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-5">Arrival, Circulation &amp; Character</p>
+                            <h4 class="text-2xl md:text-3xl font-light mb-6">A premium nursery feel within a characterful building.</h4>
+                            <div class="space-y-4 text-white/65 font-light leading-relaxed">
+                                <p>The staircase and landing create a strong internal arrival experience.</p>
+                                <p>The character of the building supports a warmer, higher-quality nursery setting than a standard institutional fit-out.</p>
+                                <p>The illustrated decoration shows how circulation areas can be made child-friendly while retaining the building’s original sense of scale and quality.</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="reveal mt-14 bg-neutral-900 p-8 md:p-12 text-white rounded-sm shadow-2xl">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div>
+                            <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-3">Scale &amp; Rooms</p>
+                            <p class="text-white/50 font-light leading-relaxed">Large internal footprint supporting dedicated age rooms and efficient nursery operations.</p>
+                        </div>
+                        <div>
+                            <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-3">Specialist Provision</p>
+                            <p class="text-white/50 font-light leading-relaxed">Potential for sensory suites, breakout rooms, flexible learning spaces and structured play areas.</p>
+                        </div>
+                        <div>
+                            <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-3">Operational Fit</p>
+                            <p class="text-white/50 font-light leading-relaxed">Suitable for premium Under-3s provision and flexible funded-hours integration.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Outdoor Provision -->
+            <section id="outdoor" class="bg-white py-24 px-6 md:px-20">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                    <div class="lg:col-span-6 reveal">
+                        <!-- IMAGE: images/mulberry/mulberry_house_exterior_crop.png -->
+                        <img src="images/mulberry/mulberry_house_exterior_crop.png" class="w-full h-auto rounded-sm border border-neutral-100 shadow-xl object-cover" alt="Mulberry House landscaped outdoor nursery garden with children and carers" />
+                    </div>
+                    <div class="lg:col-span-6 reveal delay-200">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">04 — Outdoor Provision</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-8">Outdoor space for younger years provision.</h3>
+                        <div class="space-y-5 text-slate-600 font-light leading-relaxed text-lg">
+                            <p>The landscaped setting helps position Mulberry House as a premium early years environment, with external space capable of supporting supervised outdoor play for children aged 1–5.</p>
+                            <p>The exterior imagery shows a garden setting with play equipment, soft landscaping, planting and supervised activity areas.</p>
+                            <p>The outdoor environment strengthens the parent-facing first impression and supports the site’s positioning as a high-quality nursery opportunity.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
+                            <div class="bg-[#FAF9F6] border border-neutral-100 p-6 rounded-sm">
+                                <i data-lucide="trees" class="text-[#B08D57] w-6 h-6 mb-4"></i>
+                                <p class="text-sm font-bold text-slate-900 mb-2">Landscaped Setting</p>
+                                <p class="text-sm font-light text-slate-500 leading-relaxed">Natural garden environment with mature greenery and a softer nursery feel.</p>
+                            </div>
+                            <div class="bg-[#FAF9F6] border border-neutral-100 p-6 rounded-sm">
+                                <i data-lucide="activity" class="text-[#B08D57] w-6 h-6 mb-4"></i>
+                                <p class="text-sm font-bold text-slate-900 mb-2">Age-Appropriate Play</p>
+                                <p class="text-sm font-light text-slate-500 leading-relaxed">Outdoor provision suitable for younger years play, movement and supervised activity.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Demand Insight -->
+            <section id="demand" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">05 — Demand Insight</h2>
+                        <h3 class="display-serif italic text-4xl md:text-6xl font-semibold leading-tight mb-6">Evidence-Based Market Vitality.</h3>
+                        <p class="text-white/55 font-light text-lg max-w-3xl">
+                            The brochure identifies strong childcare demand indicators across employment, early years population, working mothers and the local housing pipeline.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                        <article class="reveal soft-glass rounded-sm p-8 md:p-10">
+                            <p class="text-5xl display-serif italic font-semibold text-white mb-4">84%</p>
+                            <p class="text-[10px] uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-5">Female Activity Rate</p>
+                            <p class="text-white/55 font-light leading-relaxed">Substantially above UK average, driving full-day childcare utilisation.</p>
+                        </article>
+
+                        <article class="reveal delay-100 soft-glass rounded-sm p-8 md:p-10">
+                            <p class="text-5xl display-serif italic font-semibold text-white mb-4">9,800</p>
+                            <p class="text-[10px] uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-5">Early Years Population</p>
+                            <p class="text-white/55 font-light leading-relaxed">Depth of demand across the 0–5 cohort in West Berkshire.</p>
+                        </article>
+
+                        <article class="reveal delay-200 soft-glass rounded-sm p-8 md:p-10">
+                            <p class="text-5xl display-serif italic font-semibold text-white mb-4">2,000</p>
+                            <p class="text-[10px] uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-5">Working Mothers</p>
+                            <p class="text-white/55 font-light leading-relaxed">Concentrated core-commute demand within the primary reach.</p>
+                        </article>
+
+                        <article class="reveal delay-300 soft-glass rounded-sm p-8 md:p-10">
+                            <p class="text-5xl display-serif italic font-semibold text-white mb-4">1,500</p>
+                            <p class="text-[10px] uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-5">Housing Pipeline</p>
+                            <p class="text-white/55 font-light leading-relaxed">Sandleford development underpinning long-term growth.</p>
+                        </article>
+                    </div>
+
+                    <!-- Local Economic Intensity Chart -->
+                    <div id="economic-intensity" class="reveal soft-glass rounded-sm p-8 md:p-12">
+                        <div class="text-center mb-12">
+                            <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-white mb-3">Local Economic Intensity</p>
+                            <p class="text-sm text-white/40 font-light">Indicative visual comparison recreated from the brochure chart. Exact bar values were not labelled in the PDF.</p>
+                        </div>
+
+                        <div class="max-w-3xl mx-auto">
+                            <div class="h-72 border-l border-b border-white/10 relative flex items-end justify-center gap-24 px-8">
+                                <div class="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-[10px] text-white/20 -translate-x-8">
+                                    <span>100</span><span>80</span><span>60</span><span>40</span><span>20</span><span>0</span>
+                                </div>
+
+                                <div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                                    <div class="border-t border-white/5"></div>
+                                    <div class="border-t border-white/5"></div>
+                                    <div class="border-t border-white/5"></div>
+                                    <div class="border-t border-white/5"></div>
+                                    <div class="border-t border-white/5"></div>
+                                    <div class="border-t border-white/5"></div>
+                                </div>
+
+                                <div class="relative z-10 flex flex-col items-center">
+                                    <div class="w-16 md:w-20 bg-[#B08D57] rounded-t-sm" style="height: 238px;"></div>
+                                    <p class="mt-4 text-xs text-white font-bold">West Berkshire</p>
+                                </div>
+
+                                <div class="relative z-10 flex flex-col items-center">
+                                    <div class="w-16 md:w-20 bg-white/10 rounded-t-sm" style="height: 210px;"></div>
+                                    <p class="mt-4 text-xs text-white/65 font-bold">UK Average</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="text-center display-serif italic text-xl text-white/65 mt-12">
+                            High dual-income households drive consistent reliance on full-day premium provision.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Destination Advantage -->
+            <section id="advantage" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="reveal mb-16">
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">06 — Why This Site Works</h2>
+                    <h3 class="display-serif italic text-4xl md:text-6xl font-semibold text-slate-900 leading-tight mb-6">The Destination Advantage.</h3>
+                    <p class="text-slate-500 font-light text-lg max-w-3xl">
+                        The brochure positions Mulberry House as a destination-led nursery opportunity, supported by scale, commuter accessibility and market alignment.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                    <article class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm p-8 md:p-10">
+                        <div class="w-12 h-12 rounded-sm bg-[#0A1D37] text-white flex items-center justify-center text-sm font-bold mb-8">1</div>
+                        <h4 class="text-2xl font-light text-slate-900 mb-4">Scale &amp; Flexibility</h4>
+                        <p class="text-slate-500 font-light leading-relaxed">Large internal footprint supporting dedicated age rooms, sensory suites, and operational efficiency.</p>
+                    </article>
+
+                    <article class="reveal delay-100 bg-white border border-neutral-100 shadow-sm rounded-sm p-8 md:p-10">
+                        <div class="w-12 h-12 rounded-sm bg-[#0A1D37] text-white flex items-center justify-center text-sm font-bold mb-8">2</div>
+                        <h4 class="text-2xl font-light text-slate-900 mb-4">Commuter Capture</h4>
+                        <p class="text-slate-500 font-light leading-relaxed">Drive-to location aligned with daily travel flows between Thatcham, Wash Common, and the A34 hub.</p>
+                    </article>
+
+                    <article class="reveal delay-200 bg-white border border-neutral-100 shadow-sm rounded-sm p-8 md:p-10">
+                        <div class="w-12 h-12 rounded-sm bg-[#0A1D37] text-white flex items-center justify-center text-sm font-bold mb-8">3</div>
+                        <h4 class="text-2xl font-light text-slate-900 mb-4">Segment Alignment</h4>
+                        <p class="text-slate-500 font-light leading-relaxed">Designed for premium Under-3s provision and flexible funded-hours integration.</p>
+                    </article>
+                </div>
+
+                <div class="reveal bg-[#0A1D37] text-white rounded-sm shadow-2xl p-8 md:p-12">
+                    <p class="text-center text-[10px] uppercase tracking-[0.45em] font-bold text-white mb-10">Summary Checklist</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                        <div class="flex items-center space-x-4">
+                            <i data-lucide="check" class="text-[#B08D57] w-5 h-5"></i>
+                            <span class="text-sm md:text-base font-bold">Scalable 10,000 SQ FT Building</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <i data-lucide="check" class="text-[#B08D57] w-5 h-5"></i>
+                            <span class="text-sm md:text-base font-bold">Proven High-Demand Catchment</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <i data-lucide="check" class="text-[#B08D57] w-5 h-5"></i>
+                            <span class="text-sm md:text-base font-bold">Demand Underpinned by High Employment</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <i data-lucide="check" class="text-[#B08D57] w-5 h-5"></i>
+                            <span class="text-sm md:text-base font-bold">Long-Term Strategic Growth Support</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Closing Statement -->
+            <section id="closing" class="relative bg-neutral-950 py-28 px-6 md:px-20 text-white overflow-hidden">
+                <div class="absolute inset-0 opacity-25">
+                    <img src="images/mulberry/mulberry_house_exterior_wide.png" class="w-full h-full object-cover" alt="Mulberry House exterior background" />
+                </div>
+                <div class="absolute inset-0 bg-[#050B16]/85"></div>
+
+                <div class="relative z-10 max-w-6xl mx-auto text-center">
+                    <div class="reveal">
+                        <p class="text-[#B08D57] text-[10px] tracking-[0.45em] uppercase font-bold mb-8">Final Positioning</p>
+                        <h2 class="display-serif italic text-4xl md:text-7xl font-semibold leading-tight mb-10">
+                            A high-quality, large-format asset in a proven South East market.
+                        </h2>
+                        <p class="text-white/45 text-sm uppercase tracking-[0.35em] font-bold">
+                            Ref: MH-RG14-001 | Confidential Prospectus
+                        </p>
+                        <p class="text-white/25 text-[10px] uppercase tracking-[0.45em] font-bold mt-6">
+                            Mulberry House • Old Bath Road • Newbury • RG14 1QN
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
+                            <button onclick="handleContact()" class="px-8 py-4 bg-[#B08D57] text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm flex items-center space-x-3">
+                                <span>Request Further Information</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                            <button onclick="handleContact()" class="px-8 py-4 border border-white/20 text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:border-[#B08D57] hover:text-[#B08D57] transition-all rounded-sm flex items-center space-x-3">
+                                <span>Arrange A Viewing</span>
+                                <i data-lucide="calendar-days" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Contact -->
+            <section id="contact" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="reveal">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">07 — Contact &amp; Enquiries</h2>
+                        <h3 class="text-3xl md:text-5xl font-light leading-tight mb-8">Discuss the Mulberry House opportunity.</h3>
+                        <div class="space-y-5 text-white/60 font-light leading-relaxed text-lg">
+                            <p><strong class="font-semibold text-white">Opportunity:</strong> Large-format nursery opportunity in Newbury.</p>
+                            <p><strong class="font-semibold text-white">Location:</strong> Mulberry House, Old Bath Road, Newbury, RG14 1QN.</p>
+                            <p><strong class="font-semibold text-white">Reference:</strong> MH-RG14-001 | Confidential Prospectus.</p>
+                            <p class="text-white/40 text-sm">The PDF does not include named agents, phone numbers or email addresses. Replace the contact email in the script below with the preferred enquiry address before publishing.</p>
+                        </div>
+                        <button onclick="handleContact()" class="mt-10 px-8 py-4 bg-[#B08D57] text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm flex items-center space-x-3">
+                            <span>Make An Enquiry</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <div class="reveal delay-200 bg-white/5 border border-white/10 rounded-sm p-8 md:p-10">
+                        <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-8">Enquiry Details</p>
+                        <div class="space-y-6">
+                            <div class="border-b border-white/10 pb-5">
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Contact Name</p>
+                                <p class="text-white font-light">To be confirmed</p>
+                            </div>
+                            <div class="border-b border-white/10 pb-5">
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Email</p>
+                                <p class="text-white font-light">To be confirmed</p>
+                            </div>
+                            <div class="border-b border-white/10 pb-5">
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Phone</p>
+                                <p class="text-white font-light">To be confirmed</p>
+                            </div>
+                            <div>
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">CTA</p>
+                                <p class="text-white font-light">Request further information, arrange a viewing, or discuss the nursery opportunity.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Legal Notice / Disclaimer -->
+            <section id="legal" class="bg-neutral-950 py-24 px-6 md:px-20 text-white">
+                <div class="max-w-5xl mx-auto">
+                    <div class="reveal">
+                        <div class="flex items-center space-x-4 mb-10">
+                            <div class="w-12 h-[1px] bg-[#B08D57]"></div>
+                            <h3 class="text-[10px] tracking-[0.5em] uppercase font-bold text-[#B08D57]">Legal Notice / Disclaimer</h3>
+                        </div>
+                        <div class="space-y-6 text-sm font-light text-white/50 leading-relaxed">
+                            <p class="text-white/80 font-medium">The source brochure is marked as a Confidential Prospectus and carries the reference MH-RG14-001.</p>
+                            <p>This document is provided for information purposes only. All areas, capacities, market statistics, planning assumptions, operational assumptions and nursery capacity estimates should be verified by interested parties through their own due diligence.</p>
+                            <p>No warranty is given as to the accuracy or completeness of the information provided. Any final published investment memorandum should include agent-approved legal wording, accuracy disclaimers, planning caveats, measured survey confirmation and due diligence requirements.</p>
+                            <p>The ground floor plan identifies GF GIA = 506.1 sqm, while the brochure headline references a 10,000 sq ft building opportunity. This page preserves both figures and should be checked against the full measured accommodation schedule before external circulation.</p>
+                            <p class="pt-8 border-t border-white/5 italic">Placeholder wording only — replace with approved legal and agency wording before circulation.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <button onclick="scrollToSection('hero')" class="fixed bottom-8 right-8 z-[100] p-4 bg-white shadow-2xl border border-neutral-100 hover:bg-[#B08D57] hover:text-white transition-all group" aria-label="Back to top">
+            <i data-lucide="arrow-right" class="-rotate-90 group-hover:translate-y-[-2px] transition-transform w-5 h-5"></i>
+        </button>
+    </div>
+
+    <script>
+        const REQUIRED_PASSWORD = 'mulberry_rg14';
+        const CONTACT_EMAIL = 'steve@curwengroup.co.uk';
+        const EMAIL_SUBJECT = 'Mulberry House - Newbury Nursery Opportunity';
+
+        const loginForm = document.getElementById('login-form');
+        const passwordInput = document.getElementById('password-input');
+        const errorMessage = document.getElementById('error-message');
+        const authScreen = document.getElementById('auth-screen');
+        const mainContent = document.getElementById('main-content');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (passwordInput.value === REQUIRED_PASSWORD) {
+                authScreen.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+                initLucide();
+                initScrollReveal();
+            } else {
+                errorMessage.classList.remove('hidden');
+                passwordInput.classList.add('border-red-500');
+            }
+        });
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) element.scrollIntoView({ behavior: 'smooth' });
+            if (isMenuOpen) toggleMenu();
+        }
+
+        function handleContact() {
+            window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
+        }
+
+        function initScrollReveal() {
+            const observerOptions = { threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, observerOptions);
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        function initLucide() {
+            lucide.createIcons();
+        }
+
+        window.onload = () => {
+            initLucide();
+        };
+    </script>
+</body>
+</html>
