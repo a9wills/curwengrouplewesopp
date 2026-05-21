@@ -112,12 +112,29 @@ try {
           overflow: visible !important;
         }
 
-        #hero {
-          min-height: 260mm !important;
+        main > section:not(#hero) {
+          padding-top: 12mm !important;
+          padding-bottom: 12mm !important;
         }
 
-        article,
+        #hero {
+          min-height: 260mm !important;
+          break-after: page;
+          page-break-after: always;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        summary {
+          break-after: avoid;
+          page-break-after: avoid;
+        }
+
         figure,
+        table,
+        thead,
         tr,
         img {
           break-inside: avoid;
