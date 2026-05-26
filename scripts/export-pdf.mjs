@@ -24,7 +24,9 @@ const browser = await chromium.launch();
 
 try {
   const page = await browser.newPage({
-    viewport: { width: 1440, height: 1800 },
+    viewport: isPoster
+      ? { width: 1600, height: 1131 }
+      : { width: 1440, height: 1800 },
     deviceScaleFactor: 1,
   });
 
@@ -74,8 +76,9 @@ try {
     );
   });
 
-  await page.addStyleTag({
-    content: `
+  if (!isPoster) {
+    await page.addStyleTag({
+      content: `
       @media print {
         html,
         body {
@@ -153,7 +156,8 @@ try {
         }
       }
     `,
-  });
+    });
+  }
 
   await page.pdf({
     path: outputPath,
