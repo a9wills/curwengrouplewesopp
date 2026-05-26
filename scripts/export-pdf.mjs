@@ -13,6 +13,7 @@ if (!inputArg) {
 
 const inputPath = path.resolve(rootDir, inputArg);
 const inputName = path.basename(inputPath, path.extname(inputPath));
+const isPoster = path.relative(rootDir, inputPath).split(path.sep).includes('posters');
 const outputPath = outputArg
   ? path.resolve(rootDir, outputArg)
   : path.resolve(rootDir, 'dist/pdf', `${inputName}.pdf`);
@@ -156,15 +157,17 @@ try {
 
   await page.pdf({
     path: outputPath,
-    format: 'A4',
+    ...(isPoster ? {} : { format: 'A4' }),
     printBackground: true,
-    preferCSSPageSize: false,
-    margin: {
-      top: '12mm',
-      right: '10mm',
-      bottom: '12mm',
-      left: '10mm',
-    },
+    preferCSSPageSize: isPoster,
+    margin: isPoster
+      ? { top: '0', right: '0', bottom: '0', left: '0' }
+      : {
+          top: '12mm',
+          right: '10mm',
+          bottom: '12mm',
+          left: '10mm',
+        },
     timeout: 120_000,
   });
 
