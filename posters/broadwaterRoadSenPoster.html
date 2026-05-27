@@ -196,6 +196,7 @@
       font-size: 17px;
       line-height: 1.25;
       font-weight: 900;
+      overflow: hidden;
     }
 
     .image-window img {
@@ -203,6 +204,10 @@
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+
+    .image-window.future img {
+      transform: scale(1.16);
     }
 
     .image-window.contain {
@@ -508,7 +513,7 @@
         </article>
 
         <article class="image-card">
-          <div class="image-window">
+          <div class="image-window future">
             <img src="../images/broadwater/broadwaterRoadPlan.png" alt="Broadwater Road masterplan CGI view" />
           </div>
           <div class="image-caption">
