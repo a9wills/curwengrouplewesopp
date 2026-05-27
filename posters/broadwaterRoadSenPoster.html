@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Broadwater Road - SEN School Poster</title>
+  <title>Broadwater Road - SEN School A4 Poster</title>
   <link rel="icon" type="image/png" href="../favicon/curwenfavicon.png" />
   <style>
     :root {
       --navy: #071827;
-      --navy-2: #0f2a40;
+      --navy-2: #102b42;
       --gold: #c9a35b;
       --paper: #fffdf8;
       --ink: #18222e;
-      --muted: #667280;
-      --line: #d9d2c5;
-      --radius: 18px;
+      --muted: #647280;
+      --line: #ddd4c4;
+      --soft: #f1eadf;
+      --radius-lg: 22px;
+      --radius-md: 16px;
     }
 
     * { box-sizing: border-box; }
@@ -30,7 +32,7 @@
     body { padding: 24px; }
 
     .screen-actions {
-      width: min(100%, 1600px);
+      width: min(100%, 210mm);
       margin: 0 auto 14px;
       display: flex;
       justify-content: space-between;
@@ -67,352 +69,400 @@
       color: #21180a;
     }
 
-    .poster {
-      width: 1600px;
-      height: 1131px;
+    .poster-page {
+      width: 210mm;
+      min-height: 297mm;
       margin: 0 auto;
       background: var(--paper);
-      border-radius: 28px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.24);
       overflow: hidden;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.28);
       display: grid;
-      grid-template-rows: 210px 1fr 112px;
+      grid-template-rows: auto auto 1fr auto;
     }
 
-    .header {
+    .top-bar {
       background:
-        linear-gradient(135deg, rgba(7,24,39,0.96), rgba(15,42,64,0.96)),
-        radial-gradient(circle at 85% 18%, rgba(201,163,91,0.35), transparent 26%);
+        radial-gradient(circle at 92% 8%, rgba(201,163,91,0.42), transparent 24%),
+        linear-gradient(135deg, var(--navy), var(--navy-2));
       color: white;
-      padding: 38px 52px 34px;
-      display: grid;
-      grid-template-columns: 1fr 330px;
-      gap: 36px;
-      align-items: end;
-      position: relative;
+      padding: 24px 28px 22px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-size: 17px;
-      font-weight: 800;
-      letter-spacing: 0.14em;
+      margin-bottom: 12px;
+      color: #f3d99c;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #f2d89b;
-      margin-bottom: 14px;
     }
 
     .eyebrow::before {
       content: "";
-      width: 42px;
-      height: 3px;
-      background: var(--gold);
+      width: 34px;
+      height: 2px;
       border-radius: 999px;
+      background: var(--gold);
     }
 
     h1 {
       margin: 0;
-      font-size: 58px;
-      line-height: 0.96;
-      letter-spacing: -0.045em;
-      max-width: 920px;
+      max-width: 680px;
+      font-size: 38px;
+      line-height: 0.98;
+      letter-spacing: -0.055em;
     }
 
-    .address-card {
-      background: rgba(255,255,255,0.11);
-      border: 1px solid rgba(255,255,255,0.22);
-      border-radius: var(--radius);
-      padding: 22px 24px;
+    .subhead {
+      margin: 12px 0 0;
+      max-width: 650px;
+      color: rgba(255,255,255,0.78);
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 650;
     }
 
-    .address-label {
-      font-size: 13px;
+    .address-strip {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      background: #f0e7d8;
+      border-bottom: 1px solid var(--line);
+      padding: 15px 28px;
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: rgba(255,255,255,0.68);
-      font-weight: 800;
-      margin-bottom: 10px;
     }
 
     .address {
-      font-size: 25px;
-      line-height: 1.2;
-      font-weight: 800;
+      font-size: 16px;
+      line-height: 1.22;
+      font-weight: 900;
+      color: var(--navy);
     }
 
-    .main {
-      padding: 34px 52px 32px;
-      display: grid;
-      grid-template-columns: 1.08fr 1fr;
-      gap: 34px;
-      background:
-        linear-gradient(90deg, rgba(7,24,39,0.035), transparent 35%),
-        var(--paper);
+    .status-pill {
+      justify-self: end;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: var(--navy);
+      color: #f3d99c;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
-    .image-grid {
+    .content {
+      padding: 22px 28px 20px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
       gap: 18px;
-      height: 100%;
+    }
+
+    .image-stack {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
     }
 
     .image-card {
-      border-radius: 24px;
-      overflow: hidden;
       border: 1px solid var(--line);
-      background: #eee7db;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: #eee6d9;
+    }
+
+    .image-window {
+      height: 168px;
       display: grid;
-      grid-template-rows: 1fr 72px;
-      min-height: 0;
-      position: relative;
+      place-items: center;
+      text-align: center;
+      padding: 0;
+      background: #eee6d9;
+      color: rgba(24,34,46,0.62);
+      font-size: 17px;
+      line-height: 1.25;
+      font-weight: 900;
     }
 
-    .image-frame {
-      min-height: 0;
-      background: #eee7db;
-    }
-
-    .image-frame img {
+    .image-window img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .image-frame.contain {
-      display: grid;
-      place-items: center;
-      padding: 18px;
+    .image-window.contain {
+      padding: 12px;
       background: #f3efe7;
     }
 
-    .image-frame.contain img {
+    .image-window.contain img {
       object-fit: contain;
     }
 
     .image-caption {
-      background: var(--navy);
-      color: white;
-      padding: 16px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
+      gap: 10px;
+      min-height: 45px;
+      padding: 10px 14px;
+      background: var(--navy);
+      color: white;
     }
 
     .image-caption strong {
-      font-size: 20px;
+      font-size: 14px;
       letter-spacing: -0.02em;
     }
 
     .tag {
-      background: rgba(201,163,91,0.2);
-      color: #ffe1a6;
-      border: 1px solid rgba(201,163,91,0.5);
+      padding: 5px 8px;
       border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 12px;
-      font-weight: 800;
+      border: 1px solid rgba(201,163,91,0.5);
+      background: rgba(201,163,91,0.18);
+      color: #ffe1a6;
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
       white-space: nowrap;
     }
 
-    .info-panel {
+    .facts-grid {
       display: grid;
-      grid-template-rows: auto 1fr auto;
-      gap: 22px;
-      min-width: 0;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
 
-    .intro {
-      padding: 26px 28px;
-      border-radius: 24px;
-      background: #f4eee3;
-      border: 1px solid var(--line);
+    .fact {
+      min-height: 72px;
+      padding: 13px 14px;
+      border-radius: var(--radius-md);
+      background: var(--navy);
+      color: white;
     }
 
-    .intro h2 {
-      margin: 0 0 10px;
-      font-size: 34px;
-      letter-spacing: -0.04em;
+    .fact span {
+      display: block;
+      margin-bottom: 7px;
+      color: rgba(255,255,255,0.58);
+      font-size: 8px;
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .fact strong {
+      display: block;
+      font-size: 17px;
       line-height: 1.05;
-      color: var(--navy);
+      letter-spacing: -0.035em;
     }
 
-    .intro p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.45;
-      font-weight: 600;
+    .opportunity-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: white;
+      padding: 17px 18px;
+    }
+
+    .section-title {
+      margin: 0 0 13px;
+      color: var(--navy);
+      font-size: 21px;
+      line-height: 1.05;
+      letter-spacing: -0.045em;
     }
 
     .bullets {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 24px 28px;
       display: grid;
-      gap: 16px;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
     }
 
-    .bullet {
+    .bullets li {
       display: grid;
-      grid-template-columns: 42px 1fr;
-      gap: 14px;
+      grid-template-columns: 30px 1fr;
+      gap: 10px;
       align-items: start;
-      padding-bottom: 16px;
+      padding-bottom: 10px;
       border-bottom: 1px solid #eee7db;
     }
 
-    .bullet:last-child {
-      border-bottom: 0;
+    .bullets li:last-child {
       padding-bottom: 0;
+      border-bottom: 0;
     }
 
     .tick {
-      width: 42px;
-      height: 42px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
-      background: var(--navy);
-      color: #f5d895;
       display: grid;
       place-items: center;
-      font-size: 23px;
+      background: var(--navy);
+      color: #f3d99c;
+      font-size: 17px;
       font-weight: 900;
+      line-height: 1;
     }
 
-    .bullet h3 {
-      margin: 0 0 4px;
-      font-size: 25px;
-      line-height: 1.08;
-      letter-spacing: -0.03em;
+    .bullet-title {
+      margin: 0 0 2px;
       color: var(--navy);
+      font-size: 15px;
+      line-height: 1.12;
+      font-weight: 900;
+      letter-spacing: -0.025em;
     }
 
-    .bullet p {
+    .bullet-copy {
       margin: 0;
       color: var(--muted);
-      font-size: 15px;
-      line-height: 1.35;
-      font-weight: 600;
+      font-size: 11px;
+      line-height: 1.34;
+      font-weight: 650;
     }
 
-    .mini-facts {
+    .bottom-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
     }
 
-    .mini-fact {
+    .note-card {
+      min-height: 96px;
+      padding: 14px 15px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      background: var(--soft);
+    }
+
+    .note-card.dark {
       background: var(--navy);
       color: white;
-      border-radius: 18px;
-      padding: 18px;
-      min-height: 92px;
+      border-color: var(--navy);
     }
 
-    .mini-fact span {
-      display: block;
-      font-size: 12px;
-      color: rgba(255,255,255,0.6);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-weight: 800;
-      margin-bottom: 8px;
+    .note-card p {
+      margin: 0;
+      color: #3e4a55;
+      font-size: 11px;
+      line-height: 1.38;
+      font-weight: 650;
     }
 
-    .mini-fact strong {
-      font-size: 23px;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
+    .note-card.dark p {
+      color: rgba(255,255,255,0.74);
+    }
+
+    .note-card.dark .label {
+      color: rgba(255,255,255,0.56);
     }
 
     .footer {
-      background: #f0e8da;
-      border-top: 1px solid var(--line);
-      padding: 22px 52px;
       display: grid;
-      grid-template-columns: 1.2fr 1fr 290px;
-      gap: 28px;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
       align-items: center;
+      padding: 16px 28px 20px;
+      border-top: 1px solid var(--line);
+      background: #f0e7d8;
     }
 
-    .small-heading {
-      margin: 0 0 6px;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-      font-weight: 900;
-    }
-
-    .footer-text {
+    .disclaimer {
       margin: 0;
-      font-size: 16px;
+      color: var(--muted);
+      font-size: 9.5px;
       line-height: 1.35;
       font-weight: 650;
-      color: #3d4852;
     }
 
     .cta {
-      justify-self: end;
-      width: 100%;
+      min-width: 238px;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
       background: var(--navy);
       color: white;
-      border-radius: 18px;
-      padding: 16px 18px;
       text-align: center;
     }
 
     .cta strong {
       display: block;
-      font-size: 20px;
       margin-bottom: 4px;
+      font-size: 15px;
+      letter-spacing: -0.02em;
     }
 
     .cta span {
       display: block;
-      font-size: 14px;
       color: rgba(255,255,255,0.72);
+      font-size: 10.5px;
+      line-height: 1.25;
+      font-weight: 650;
     }
 
     @media print {
-      @page { size: A3 landscape; margin: 0; }
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+
       html, body {
+        width: 210mm;
+        min-height: 297mm;
         background: white;
         padding: 0;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
+
       .screen-actions { display: none !important; }
-      .poster {
-        width: 420mm;
-        height: 297mm;
-        border-radius: 0;
+
+      .poster-page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0;
         box-shadow: none;
       }
     }
 
-    @media (max-width: 1100px) {
+    @media screen and (max-width: 860px) {
       body { padding: 0; background: var(--paper); }
-      .screen-actions { border-radius: 0; margin: 0; width: 100%; }
-      .poster {
+      .screen-actions {
         width: 100%;
-        height: auto;
-        min-height: 100vh;
+        margin: 0;
         border-radius: 0;
-        grid-template-rows: auto auto auto;
       }
-      .header, .main, .footer { grid-template-columns: 1fr; padding: 28px; }
-      h1 { font-size: 42px; }
-      .image-grid, .mini-facts { grid-template-columns: 1fr; }
-      .image-card { min-height: 460px; }
-      .footer { gap: 18px; }
+      .poster-page {
+        width: 100%;
+        min-height: auto;
+        box-shadow: none;
+      }
+      h1 { font-size: 32px; }
+      .address-strip, .footer, .bottom-grid, .facts-grid {
+        grid-template-columns: 1fr;
+      }
+      .status-pill { justify-self: start; }
+      .cta { width: 100%; min-width: 0; }
+      .image-window { height: 220px; }
     }
   </style>
 </head>
@@ -420,28 +470,32 @@
   <div class="screen-actions">
     <a href="../index.html#properties">Portfolio</a>
     <div>
-      <a class="primary" href="../pdf/broadwaterRoadSenPoster.pdf" download>Download PDF</a>
+      <a class="primary" href="../pdf/broadwaterRoadSenPoster.pdf?v=20260527-a4" download>Download PDF</a>
       <button type="button" onclick="window.print()">Print</button>
     </div>
   </div>
 
-  <main class="poster">
-    <header class="header">
-      <div>
-        <div class="eyebrow">SEN School Opportunity</div>
-        <h1>Property suitable for specialist education use</h1>
-      </div>
-
-      <aside class="address-card">
-        <div class="address-label">Address</div>
-        <div class="address">Broadwater Road<br />Worthing<br />West Sussex</div>
-      </aside>
+  <main class="poster-page">
+    <header class="top-bar">
+      <div class="eyebrow">SEN School Opportunity</div>
+      <h1>Specialist education property opportunity</h1>
+      <p class="subhead">
+        A concise opportunity flyer for SEN school operators, investors and property partners considering Broadwater Road as a specialist education setting.
+      </p>
     </header>
 
-    <section class="main">
-      <div class="image-grid">
+    <section class="address-strip" aria-label="Property address">
+      <div>
+        <span class="label">Address</span>
+        <div class="address">Broadwater Road, Worthing, West Sussex</div>
+      </div>
+      <div class="status-pill">Available for discussion</div>
+    </section>
+
+    <section class="content">
+      <section class="image-stack" aria-label="Existing and proposed images">
         <article class="image-card">
-          <div class="image-frame">
+          <div class="image-window">
             <img src="../images/broadwater/broadwaterFront.jpeg" alt="Existing Broadwater Road campus frontage" />
           </div>
           <div class="image-caption">
@@ -451,7 +505,7 @@
         </article>
 
         <article class="image-card">
-          <div class="image-frame contain">
+          <div class="image-window contain">
             <img src="../images/broadwater/wider-masterplan-3d.jpg" alt="Broadwater Road masterplan CGI view" />
           </div>
           <div class="image-caption">
@@ -459,90 +513,89 @@
             <span class="tag">CGI View</span>
           </div>
         </article>
-      </div>
+      </section>
 
-      <aside class="info-panel">
-        <section class="intro">
-          <h2>Concise opportunity summary for operators and investors</h2>
+      <section class="facts-grid" aria-label="Headline property facts">
+        <div class="fact">
+          <span>Use Class</span>
+          <strong>Class F1 education</strong>
+        </div>
+        <div class="fact">
+          <span>Building Size</span>
+          <strong>Up to ~70,000 sq ft</strong>
+        </div>
+        <div class="fact">
+          <span>Tenure</span>
+          <strong>Leasehold / Freehold</strong>
+        </div>
+      </section>
+
+      <section class="opportunity-card" aria-label="Key opportunity points">
+        <h2 class="section-title">Key opportunity points</h2>
+        <ul class="bullets">
+          <li>
+            <div class="tick">✓</div>
+            <div>
+              <p class="bullet-title">Existing Class F1 education use property</p>
+              <p class="bullet-copy">Established education accommodation, vacant and ready for repurposing, with planning use referenced as F1 education in the brochure.</p>
+            </div>
+          </li>
+
+          <li>
+            <div class="tick">✓</div>
+            <div>
+              <p class="bullet-title">School accommodation up to ~70,000 sq ft</p>
+              <p class="bullet-copy">Floor and layout plans are available, with the final area and configuration to be shaped around occupier requirements.</p>
+            </div>
+          </li>
+
+          <li>
+            <div class="tick">✓</div>
+            <div>
+              <p class="bullet-title">Identified high regional need for new SEN settings</p>
+              <p class="bullet-copy">Approximately 61% of pupils requiring SEMH provision have been placed outside the county due to a shortage of suitable local settings.</p>
+            </div>
+          </li>
+
+          <li>
+            <div class="tick">✓</div>
+            <div>
+              <p class="bullet-title">Secure parking and outside space</p>
+              <p class="bullet-copy">Dedicated parking can be agreed to suit requirements, with a refined option showing approximately 40 spaces, a secure entrance and external courtyard space.</p>
+            </div>
+          </li>
+
+          <li>
+            <div class="tick">✓</div>
+            <div>
+              <p class="bullet-title">Leasehold or freehold considered</p>
+              <p class="bullet-copy">Flexible route depending on operator and investor requirements, with all enquiries invited.</p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="bottom-grid" aria-label="Evidence and notes">
+        <article class="note-card">
+          <span class="label">Evidence line</span>
           <p>
-            A vacant education campus on a gateway A24 site in Worthing, with existing Class F1 education use, regional SEN demand evidence and flexible leasehold or freehold routes considered.
+            SEN demand statement supported by the Broadwater Road commissioning case and WSCC published material referenced in the brochure.
           </p>
-        </section>
+        </article>
 
-        <section class="bullets" aria-label="Key opportunity points">
-          <div class="bullet">
-            <div class="tick">✓</div>
-            <div>
-              <h3>Existing Class F1 education use property</h3>
-              <p>Established education accommodation, vacant and ready for repurposing, with planning use referenced as F1 education in the brochure.</p>
-            </div>
-          </div>
-
-          <div class="bullet">
-            <div class="tick">✓</div>
-            <div>
-              <h3>School accommodation up to ~70,000 sq ft</h3>
-              <p>Floor and layout plans are available, with the final area and configuration to be shaped around occupier requirements.</p>
-            </div>
-          </div>
-
-          <div class="bullet">
-            <div class="tick">✓</div>
-            <div>
-              <h3>Identified high regional need for new SEN settings</h3>
-              <p>Approximately 61% of pupils requiring SEMH provision have been placed outside the county due to a shortage of suitable local settings.</p>
-            </div>
-          </div>
-
-          <div class="bullet">
-            <div class="tick">✓</div>
-            <div>
-              <h3>Secure parking and outside space</h3>
-              <p>Dedicated parking can be agreed to suit requirements, with a refined option showing approximately 40 spaces, a secure entrance and external courtyard space.</p>
-            </div>
-          </div>
-
-          <div class="bullet">
-            <div class="tick">✓</div>
-            <div>
-              <h3>Leasehold or freehold considered</h3>
-              <p>Flexible disposal route depending on operator and investor requirements, with all enquiries invited.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="mini-facts" aria-label="Headline facts">
-          <div class="mini-fact">
-            <span>Use Class</span>
-            <strong>Class F1 education</strong>
-          </div>
-          <div class="mini-fact">
-            <span>Size</span>
-            <strong>Up to ~70,000 sq ft</strong>
-          </div>
-          <div class="mini-fact">
-            <span>Tenure</span>
-            <strong>Leasehold / Freehold</strong>
-          </div>
-        </section>
-      </aside>
+        <article class="note-card dark">
+          <span class="label">Next step</span>
+          <p>
+            Share floor plans, confirm planning position and arrange operator or investor review.
+          </p>
+        </article>
+      </section>
     </section>
 
     <footer class="footer">
-      <div>
-        <p class="small-heading">Important note</p>
-        <p class="footer-text">
-          Subject to planning, operator due diligence, survey, title, layout verification and confirmation of all stated property details.
-        </p>
-      </div>
-
-      <div>
-        <p class="small-heading">Evidence line</p>
-        <p class="footer-text">
-          SEN demand statement supported by the Broadwater Road commissioning case and WSCC published material referenced in the brochure.
-        </p>
-      </div>
-
+      <p class="disclaimer">
+        Subject to planning, operator due diligence, survey, title, layout verification and confirmation of all stated property details. CGI is illustrative only and does not represent a planning approval or final scheme.
+      </p>
       <div class="cta">
         <strong>Register interest</strong>
         <span>Steve Curwen · steve@curwengroup.co.uk</span>
