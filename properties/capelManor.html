@@ -21,6 +21,13 @@
         .hero-gradient {
             background: linear-gradient(180deg, rgba(10,29,55,0.08) 0%, rgba(10,29,55,0.06) 38%, rgba(10,29,55,0.72) 100%);
         }
+        @media (max-width: 767px) {
+            .capel-hero-image {
+                object-fit: contain !important;
+                transform: none !important;
+                background-color: #0A1D37;
+            }
+        }
     </style>
 </head>
 <body class="bg-[#FAF9F6] text-slate-900">
@@ -95,7 +102,7 @@
 
             <!-- SECTION: Hero -->
             <section id="hero" class="relative min-h-[calc(100svh-5rem)] md:h-[92vh] md:min-h-0 w-full overflow-hidden">
-                <img src="../images/caplemanor/CapelCGI.png" class="absolute inset-0 w-full h-full object-cover scale-105" alt="Capel Manor College proposed SEN school CGI or campus hero image" />
+                <img src="../images/caplemanor/CapelCGI.png" class="capel-hero-image absolute inset-0 w-full h-full object-cover scale-105" alt="Capel Manor College proposed SEN school CGI or campus hero image" />
                 <div class="absolute inset-0 hero-gradient"></div>
 
                 <div class="relative md:absolute md:top-10 md:left-20 z-10 reveal px-6 pt-8 md:px-0 md:pt-0">
