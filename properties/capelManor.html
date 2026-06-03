@@ -22,10 +22,32 @@
             background: linear-gradient(180deg, rgba(10,29,55,0.08) 0%, rgba(10,29,55,0.06) 38%, rgba(10,29,55,0.72) 100%);
         }
         @media (max-width: 767px) {
+            #hero {
+                display: flex;
+                flex-direction: column;
+                min-height: 0;
+                background-color: #0A1D37;
+                overflow: visible;
+            }
             .capel-hero-image {
+                position: relative !important;
+                inset: auto !important;
+                order: 2;
+                height: auto !important;
                 object-fit: contain !important;
                 transform: none !important;
                 background-color: #0A1D37;
+            }
+            .hero-gradient {
+                display: none;
+            }
+            .capel-hero-callout {
+                order: 1;
+            }
+            .capel-hero-copy {
+                order: 3;
+                max-width: none;
+                background: linear-gradient(180deg, #0A1D37 0%, #102844 100%);
             }
         }
     </style>
@@ -105,7 +127,7 @@
                 <img src="../images/caplemanor/CapelCGI.png" class="capel-hero-image absolute inset-0 w-full h-full object-cover scale-105" alt="Capel Manor College proposed SEN school CGI or campus hero image" />
                 <div class="absolute inset-0 hero-gradient"></div>
 
-                <div class="relative md:absolute md:top-10 md:left-20 z-10 reveal px-6 pt-8 md:px-0 md:pt-0">
+                <div class="capel-hero-callout relative md:absolute md:top-10 md:left-20 z-10 reveal px-6 pt-8 md:px-0 md:pt-0">
                     <div class="bg-[#B08D57] p-4 sm:p-6 md:p-8 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/20 max-w-sm">
                         <p class="text-white text-[12px] md:text-[14px] tracking-[0.4em] font-black uppercase mb-1.5">Proposed SEN School Opportunity</p>
                         <p class="text-white text-[10px] md:text-[11px] tracking-[0.2em] font-bold uppercase mb-4">Secure 1.83 Acre Campus</p>
@@ -116,7 +138,7 @@
                     </div>
                 </div>
 
-                <div class="relative md:absolute md:bottom-20 md:left-20 max-w-5xl px-6 pt-10 pb-10 md:px-0 md:pt-0 md:pb-0">
+                <div class="capel-hero-copy relative md:absolute md:bottom-20 md:left-20 max-w-5xl px-6 pt-10 pb-10 md:px-0 md:pt-0 md:pb-0">
                     <div class="reveal">
                         <p class="inline-block bg-[#0A1D37]/85 border border-white/20 text-[#B08D57] text-[10px] sm:text-[12px] md:text-sm tracking-[0.24em] sm:tracking-[0.45em] uppercase font-bold mb-4 px-4 py-2 rounded-sm shadow-lg backdrop-blur-sm">Enfield, North London</p>
                         <h1 class="text-4xl md:text-7xl xl:text-8xl font-extralight text-white leading-none tracking-tighter uppercase mb-5 md:mb-6">
