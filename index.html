@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curwen Group - Property Portfolio</title>
+    <title>Curwen Group</title>
     <link rel="icon" type="image/png" href="/favicon/curwenfavicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -33,12 +33,11 @@
             <a href="#home" class="flex items-center space-x-4" aria-label="Curwen Group home">
                 <img src="https://cdn.anthology.to/static/retailers/alt/curwen_group.png" class="h-8 md:h-10 w-auto" alt="Curwen Group" />
                 <div class="hidden md:block h-6 w-[1px] bg-neutral-200"></div>
-                <span class="hidden md:block text-[10px] tracking-[0.3em] uppercase font-bold text-slate-900">Property Portfolio</span>
+                <span class="hidden md:block text-[10px] tracking-[0.3em] uppercase font-bold text-slate-900">Curwen Group</span>
             </a>
 
             <div class="hidden md:flex items-center space-x-8">
                 <button onclick="scrollToSection('home')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Home</button>
-                <button onclick="scrollToSection('properties')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Properties</button>
                 <button onclick="handleContact()" class="px-5 py-2.5 bg-[#0A1D37] text-white text-[9px] uppercase tracking-[0.2em] font-bold hover:bg-[#B08D57] transition-all rounded-sm inline-flex items-center space-x-2">
                     <i data-lucide="mail" class="w-3 h-3"></i>
                     <span>Contact</span>
@@ -53,148 +52,23 @@
 
     <div id="mobile-menu" class="hidden fixed inset-0 z-[90] bg-[#0A1D37] text-white p-12 flex flex-col justify-center space-y-8">
         <button onclick="scrollToSection('home')" class="text-2xl font-light tracking-widest text-left">Home</button>
-        <button onclick="scrollToSection('properties')" class="text-2xl font-light tracking-widest text-left">Properties</button>
         <button onclick="handleContact()" class="text-2xl font-bold tracking-widest text-left text-[#B08D57]">Contact</button>
     </div>
 
     <main id="home" class="pt-20">
         <section class="relative min-h-[78vh] overflow-hidden">
-            <img src="./images/st_pancras_terrace_flat_combination.png" class="absolute inset-0 h-full w-full object-cover" alt="Curwen Group property development" />
+            <img src="./images/st_pancras_terrace_flat_combination.png" class="absolute inset-0 h-full w-full object-cover" alt="Curwen Group development" />
             <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/85"></div>
 
             <div class="relative min-h-[78vh] max-w-7xl mx-auto px-6 md:px-20 flex items-end pb-16 md:pb-24">
                 <div class="reveal max-w-4xl">
                     <p class="inline-block bg-[#0A1D37]/85 border border-white/20 text-[#B08D57] text-[11px] md:text-sm tracking-[0.4em] uppercase font-bold mb-5 px-4 py-2 rounded-sm shadow-lg backdrop-blur-sm">Curwen Group</p>
                     <h1 class="text-4xl md:text-7xl font-extralight text-white leading-none uppercase mb-6">
-                        Property <br class="hidden sm:block" />Portfolio
+                        Curwen <br class="hidden sm:block" />Group
                     </h1>
                     <p class="text-white/70 text-base md:text-xl font-light max-w-2xl mb-10 leading-relaxed">
-                        A private collection of current property opportunities and investment memorandums.
+                        Private development and investment enquiries.
                     </p>
-                    <button onclick="scrollToSection('properties')" class="inline-flex items-center space-x-3 px-8 py-4 bg-[#B08D57] text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm">
-                        <span>View Properties</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <section id="properties" class="py-24 px-6 md:px-20">
-            <div class="max-w-7xl mx-auto">
-                <div class="reveal max-w-3xl mb-14">
-                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-8">Properties</h2>
-                    <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-6">Access the latest property documents.</h3>
-                    <p class="text-slate-500 font-light text-lg leading-relaxed">
-                        Select a property below to open its dedicated HTML memorandum page.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-                    <a href="./properties/stPancras.html" class="reveal group bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden focus:outline-none focus:ring-2 focus:ring-[#B08D57] focus:ring-offset-4 focus:ring-offset-[#FAF9F6]">
-                        <div class="aspect-[16/10] overflow-hidden bg-neutral-200">
-                            <img src="./images/st_pancras_terrace_flat_combination.png" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" alt="De Montfort Terrace" />
-                        </div>
-                        <div class="p-8 md:p-10">
-                            <div class="flex items-center justify-between gap-6 mb-6">
-                                <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57]">Lewes, East Sussex</p>
-                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-slate-300 group-hover:text-[#B08D57] transition-colors"></i>
-                            </div>
-                            <h4 class="text-2xl md:text-3xl font-light text-slate-900 mb-4">De Montfort Terrace</h4>
-                            <p class="text-slate-500 font-light leading-relaxed mb-8">
-                                Residential redevelopment opportunity for the former St Pancras site.
-                            </p>
-                            <span class="inline-flex items-center space-x-3 text-[10px] uppercase tracking-[0.3em] font-bold text-[#0A1D37] group-hover:text-[#B08D57] transition-colors">
-                                <span>Open Memorandum</span>
-                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                    </a>
-
-                    <article class="reveal group bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
-                        <div class="aspect-[16/10] overflow-hidden bg-neutral-100">
-                            <img src="./images/broadwater/broadwaterFront.jpeg" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Broadwater Road" />
-                        </div>
-                        <div class="p-8 md:p-10">
-                            <div class="flex items-center justify-between gap-6 mb-6">
-                                <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57]">Broadwater Road</p>
-                                <i data-lucide="school" class="w-5 h-5 text-slate-300 group-hover:text-[#B08D57] transition-colors"></i>
-                            </div>
-                            <h4 class="text-2xl md:text-3xl font-light text-slate-900 mb-4">Broadwater Road</h4>
-                            <p class="text-slate-500 font-light leading-relaxed mb-8">
-                                SEN school opportunity within an existing education campus in Worthing.
-                            </p>
-                            <div class="flex flex-col gap-3">
-                                <a href="./posters/broadwaterRoadSenPoster.html?v=20260527-a4" class="inline-flex items-center justify-center space-x-3 bg-[#B08D57] px-5 py-3 text-[10px] uppercase tracking-[0.25em] font-bold text-white hover:bg-[#0A1D37] transition-colors rounded-sm focus:outline-none focus:ring-2 focus:ring-[#B08D57] focus:ring-offset-4 focus:ring-offset-white">
-                                    <span>Open Poster</span>
-                                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                                </a>
-                                <a href="./properties/broadwaterRoad.html" class="inline-flex items-center justify-center space-x-3 border border-neutral-200 px-5 py-3 text-[10px] uppercase tracking-[0.25em] font-bold text-[#0A1D37] hover:border-[#B08D57] hover:text-[#B08D57] transition-colors rounded-sm focus:outline-none focus:ring-2 focus:ring-[#B08D57] focus:ring-offset-4 focus:ring-offset-white">
-                                    <span>Open Memorandum</span>
-                                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <a href="./properties/mulberryHouse.html" class="reveal group bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden focus:outline-none focus:ring-2 focus:ring-[#B08D57] focus:ring-offset-4 focus:ring-offset-[#FAF9F6]">
-                        <div class="aspect-[16/10] overflow-hidden bg-neutral-100">
-                            <img src="./images/mulberry/mulberry_house_exterior_wide.png" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Mulberry House" />
-                        </div>
-                        <div class="p-8 md:p-10">
-                            <div class="flex items-center justify-between gap-6 mb-6">
-                                <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57]">Newbury</p>
-                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-slate-300 group-hover:text-[#B08D57] transition-colors"></i>
-                            </div>
-                            <h4 class="text-2xl md:text-3xl font-light text-slate-900 mb-4">Mulberry House</h4>
-                            <p class="text-slate-500 font-light leading-relaxed mb-8">
-                                A high-quality, large-format nursery opportunity in Newbury.
-                            </p>
-                            <span class="inline-flex items-center space-x-3 text-[10px] uppercase tracking-[0.3em] font-bold text-[#0A1D37] group-hover:text-[#B08D57] transition-colors">
-                                <span>Open Prospectus</span>
-                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                    </a>
-
-                    <a href="./properties/wilmingtonHouse.html" class="reveal group bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden focus:outline-none focus:ring-2 focus:ring-[#B08D57] focus:ring-offset-4 focus:ring-offset-[#FAF9F6]">
-                        <div class="aspect-[16/10] overflow-hidden bg-neutral-100">
-                            <img src="./images/wilmington/wilmington_house_birdeyeview.png" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Wilmington House" />
-                        </div>
-                        <div class="p-8 md:p-10">
-                            <div class="flex items-center justify-between gap-6 mb-6">
-                                <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57]">East Grinstead</p>
-                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-slate-300 group-hover:text-[#B08D57] transition-colors"></i>
-                            </div>
-                            <h4 class="text-2xl md:text-3xl font-light text-slate-900 mb-4">Wilmington House</h4>
-                            <p class="text-slate-500 font-light leading-relaxed mb-8">
-                                Prime Class E Freehold / Leasehold Opportunity.
-                            </p>
-                            <span class="inline-flex items-center space-x-3 text-[10px] uppercase tracking-[0.3em] font-bold text-[#0A1D37] group-hover:text-[#B08D57] transition-colors">
-                                <span>Open Memorandum</span>
-                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                    </a>
-
-                    <a href="./properties/capelManor.html" class="reveal group bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden focus:outline-none focus:ring-2 focus:ring-[#B08D57] focus:ring-offset-4 focus:ring-offset-[#FAF9F6]">
-                        <div class="aspect-[16/10] overflow-hidden bg-neutral-100">
-                            <img src="./images/caplemanor/CapelManorCGI.png" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Capel Manor College SEN school proposal" />
-                        </div>
-                        <div class="p-8 md:p-10">
-                            <div class="flex items-center justify-between gap-6 mb-6">
-                                <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57]">Enfield</p>
-                                <i data-lucide="arrow-up-right" class="w-5 h-5 text-slate-300 group-hover:text-[#B08D57] transition-colors"></i>
-                            </div>
-                            <h4 class="text-2xl md:text-3xl font-light text-slate-900 mb-4">Capel Manor College</h4>
-                            <p class="text-slate-500 font-light leading-relaxed mb-8">
-                                Proposed specialist SEN school opportunity within Capel Manor College.
-                            </p>
-                            <span class="inline-flex items-center space-x-3 text-[10px] uppercase tracking-[0.3em] font-bold text-[#0A1D37] group-hover:text-[#B08D57] transition-colors">
-                                <span>Open Memorandum</span>
-                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </span>
-                        </div>
-                    </a>
                 </div>
             </div>
         </section>
@@ -216,13 +90,13 @@
     <footer class="bg-neutral-950 text-white/35 px-6 md:px-20 py-8">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
             <p class="text-[10px] uppercase tracking-widest">© 2026 Curwen Group Ltd. All Rights Reserved.</p>
-            <p class="text-[10px] uppercase tracking-widest">Private Property Portfolio</p>
+            <p class="text-[10px] uppercase tracking-widest">Private Enquiries</p>
         </div>
     </footer>
 
     <script>
         const CONTACT_EMAIL = "steve@curwengroup.co.uk";
-        const EMAIL_SUBJECT = "Curwen Group Property Portfolio";
+        const EMAIL_SUBJECT = "Curwen Group Enquiry";
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
         let isMenuOpen = false;
