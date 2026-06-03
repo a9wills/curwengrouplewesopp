@@ -62,7 +62,7 @@
                 <button onclick="scrollToSection('location')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Location</button>
                 <button onclick="scrollToSection('parcel')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Parcel 1</button>
                 <button onclick="scrollToSection('design')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Design</button>
-                <button onclick="scrollToSection('masterplan')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Masterplan</button>
+                <button onclick="scrollToSection('floor-plans')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Plans</button>
                 <button onclick="scrollToSection('options')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Space</button>
 
                 <button onclick="handleContact()" class="ml-2 px-5 py-2.5 bg-[#0A1D37] text-white text-[9px] uppercase tracking-[0.2em] font-bold hover:bg-[#B08D57] transition-all rounded-sm flex items-center space-x-2">
@@ -83,7 +83,7 @@
             <button onclick="scrollToSection('location')" class="text-2xl font-light tracking-widest text-left">Location</button>
             <button onclick="scrollToSection('parcel')" class="text-2xl font-light tracking-widest text-left">Parcel 1</button>
             <button onclick="scrollToSection('design')" class="text-2xl font-light tracking-widest text-left">Design</button>
-            <button onclick="scrollToSection('masterplan')" class="text-2xl font-light tracking-widest text-left">Masterplan</button>
+            <button onclick="scrollToSection('floor-plans')" class="text-2xl font-light tracking-widest text-left">Plans</button>
             <button onclick="scrollToSection('options')" class="text-2xl font-light tracking-widest text-left">Space</button>
             <button onclick="handleContact()" class="text-2xl font-bold tracking-widest text-left text-[#B08D57]">Contact Us</button>
         </div>
@@ -412,190 +412,35 @@
                 </div>
             </section>
 
-            <!-- SECTION: Masterplan -->
-            <section id="masterplan" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
+            <!-- SECTION: Existing Areas and Floor Plans -->
+            <section id="floor-plans" class="bg-[#FAF9F6] py-24 px-6 md:px-20 border-y border-neutral-100">
                 <div class="max-w-7xl mx-auto">
                     <div class="reveal text-center mb-16">
-                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">07 — The Wider Masterplan</h2>
-                        <h3 class="text-3xl md:text-5xl font-light leading-tight mb-4">A dynamic mixed-use destination.</h3>
-                        <p class="text-white/55 font-light text-lg max-w-3xl mx-auto">Parcel 1 is the first phase of a comprehensive mixed-use regeneration strategy.</p>
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">07 — Existing Areas &amp; Floor Plans</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Current building areas and floor-by-floor layouts.</h3>
+                        <p class="text-slate-500 font-light text-lg max-w-3xl mx-auto">The plans show the existing GIA position, retained and assumed demolition areas, and the current ground, first and second floor arrangements.</p>
                     </div>
 
-                    <!-- IMAGE: Use images/broadwater/wider-masterplan-3d.jpg, the full 3D masterplan and callout visual from brochure page 9. -->
-                    <figure class="reveal bg-white/5 border border-white/10 p-4 md:p-6 rounded-sm shadow-2xl mb-16">
-                        <img src="../images/broadwater/wider-masterplan-3d.jpg" class="w-full h-auto object-contain rounded-sm" alt="3D masterplan showing Parcel 1, supermarket, senior living, care home, school, parking, PV canopy and landscaped amenity" />
-                        <figcaption class="px-2 pt-4 text-[10px] uppercase tracking-widest text-white/35 font-bold">Image: full 3D masterplan from the brochure, retained because its callouts are important.</figcaption>
+                    <figure class="reveal bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden mb-12">
+                        <img src="../images/broadwater/7421-%20SK%2005B%20Existing%20Areas_page-0001.jpg" class="w-full h-auto object-contain bg-white" alt="Existing areas plan showing Block A, Block B, Block R, refectory and assumed demolition areas" />
+                        <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Existing Areas / GIA Summary</figcaption>
                     </figure>
 
-                    <div class="reveal overflow-x-auto bg-white/5 border border-white/10 rounded-sm">
-                        <table class="w-full text-sm text-left border-collapse">
-                            <thead>
-                                <tr class="border-b border-white/10">
-                                    <th class="p-5 uppercase tracking-widest text-[9px] text-[#B08D57] font-bold">Masterplan Element</th>
-                                    <th class="p-5 uppercase tracking-widest text-[9px] text-[#B08D57] font-bold">Detail</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-white/65 font-light">
-                                <tr class="border-b border-white/5"><td class="p-5">Parcel 1 Role</td><td class="p-5">First phase of a comprehensive mixed-use regeneration strategy.</td></tr>
-                                <tr class="border-b border-white/5"><td class="p-5">Existing / Retained Campus Works</td><td class="p-5">Retrofit Block A and part retention of Block R.</td></tr>
-                                <tr class="border-b border-white/5"><td class="p-5">Student Amenity</td><td class="p-5">Re-landscaped student external amenity.</td></tr>
-                                <tr class="border-b border-white/5"><td class="p-5">Demolition / Parking Strategy</td><td class="p-5">Part demolition of Block R and Block B to provide allocated school staff parking and student drop off.</td></tr>
-                                <tr class="border-b border-white/5"><td class="p-5">PV / Parking Canopy</td><td class="p-5">Potential canopy to provide PV energy generation over parking for circa 38–40 spaces.</td></tr>
-                                <tr class="border-b border-white/5"><td class="p-5">Supermarket</td><td class="p-5">2 storey, height approx. 9.5m. The brochure callout appears to spell “storey” as “stoey”.</td></tr>
-                                <tr class="border-b border-white/5"><td class="p-5">Senior Living</td><td class="p-5">3–4 storey, height approx. 12m.</td></tr>
-                                <tr class="border-b border-white/5"><td class="p-5">Bohunt School</td><td class="p-5">3 storey, height approx. 11.6m.</td></tr>
-                                <tr class="border-b border-white/5"><td class="p-5">Care Home</td><td class="p-5">3 storey, height approx. 9.5m.</td></tr>
-                                <tr><td class="p-5">Other Height Marker</td><td class="p-5">Height approx. 11.3m.</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
+                    <div class="space-y-12">
+                        <figure class="reveal bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+                            <img src="../images/broadwater/SK%2006%20-%20Existing%20Ground%20Floor%20Plan_page-0001.jpg" class="w-full h-auto object-contain bg-white" alt="Existing ground floor plan showing Block A, Block B, Block R, refectory, street and assumed demolition areas" />
+                            <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Existing Ground Floor Plan</figcaption>
+                        </figure>
 
-            <!-- SECTION: Adjacent Amenities -->
-            <section id="amenities" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
-                <div class="reveal text-center mb-16">
-                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">08 — Adjacent Amenities</h2>
-                    <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Retail &amp; Healthcare.</h3>
-                    <p class="text-slate-500 font-light text-lg max-w-3xl mx-auto">The masterplan includes complementary retail and healthcare uses that support Parcel 1 and the wider neighbourhood hub.</p>
-                </div>
+                        <figure class="reveal bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+                            <img src="../images/broadwater/SK%2007%20-%20Existing%20First%20Floor%20Plan_page-0001.jpg" class="w-full h-auto object-contain bg-white" alt="Existing first floor plan showing Block A, Block B and Block R layouts and areas" />
+                            <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Existing First Floor Plan</figcaption>
+                        </figure>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <article class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden">
-                        <!-- IMAGE: Use images/broadwater/parcel-3-retail-plan.jpg, Parcel 3 Retail plan from brochure page 10. -->
-                        <img src="../images/broadwater/parcel-3-retail-plan.jpg" class="w-full h-72 object-cover" alt="Parcel 3 Retail plan showing supermarket, parking and site boundary" />
-                        <div class="p-8 md:p-10">
-                            <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-5">Parcel 3 — Retail</p>
-                            <h4 class="text-2xl font-light mb-6">New supermarket proposal.</h4>
-                            <ul class="space-y-4 text-slate-600 font-light leading-relaxed">
-                                <li>New Supermarket of approximately 1,650–1,900 sqm.</li>
-                                <li>Includes 105+ parking spaces and EV charging.</li>
-                                <li>Acts as a catalyst for local investment.</li>
-                            </ul>
-                        </div>
-                    </article>
-
-                    <article class="reveal delay-200 bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden">
-                        <!-- IMAGE: Use images/broadwater/parcel-2-healthcare-plan.jpg, Parcel 2 Healthcare plan from brochure page 10. -->
-                        <img src="../images/broadwater/parcel-2-healthcare-plan.jpg" class="w-full h-72 object-cover" alt="Parcel 2 Healthcare plan showing existing Block B refurbishment area and adjoining context" />
-                        <div class="p-8 md:p-10">
-                            <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-5">Parcel 2 — Healthcare</p>
-                            <h4 class="text-2xl font-light mb-6">Specialist healthcare use.</h4>
-                            <ul class="space-y-4 text-slate-600 font-light leading-relaxed">
-                                <li>Refurbishment of the existing Block B.</li>
-                                <li>Proposed Class E specialist healthcare use.</li>
-                                <li>Creates a complementary service hub.</li>
-                            </ul>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="reveal mt-14 bg-white border border-neutral-100 shadow-sm rounded-sm p-8">
-                    <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-4">Plan details to retain</p>
-                    <p class="text-sm font-light text-slate-600 leading-relaxed">The brochure page shows two plan extracts, one for Parcel 3 Retail and one for Parcel 2 Healthcare. Visible labels include 9.1m, Existing Access and Drop Off, plus parking layouts, red parcel boundaries, trees / landscaping and coloured building footprints. Some smaller labels around the parking and tree areas are blurred in the PDF render and should not be guessed.</p>
-                </div>
-            </section>
-
-            <!-- SECTION: Living and Care -->
-            <section id="living-care" class="bg-white py-24 px-6 md:px-20">
-                <div class="max-w-7xl mx-auto">
-                    <div class="reveal text-center mb-16">
-                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">09 — Balanced Neighbourhood</h2>
-                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Living &amp; Care.</h3>
-                        <p class="text-slate-500 font-light text-lg max-w-3xl mx-auto">Senior living and care provision reinforce the wider destination and help create a secure, quiet environment for educational or office use.</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                        <article class="reveal bg-[#FAF9F6] border border-neutral-100 shadow-sm rounded-sm overflow-hidden">
-                            <!-- IMAGE: Use images/broadwater/parcel-4-senior-living-plan.jpg, Parcel 4 Senior Living plan from brochure page 11. -->
-                            <img src="../images/broadwater/parcel-4-senior-living-plan.jpg" class="w-full h-72 object-cover" alt="Parcel 4 Senior Living plan showing retirement apartments site area" />
-                            <div class="p-8 md:p-10">
-                                <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-5">Parcel 4 — Senior Living</p>
-                                <h4 class="text-2xl font-light mb-6">Retirement apartments.</h4>
-                                <ul class="space-y-4 text-slate-600 font-light leading-relaxed">
-                                    <li>Proposed retirement apartments.</li>
-                                    <li>3–4 storey scale commensurate with Block A.</li>
-                                </ul>
-                            </div>
-                        </article>
-
-                        <article class="reveal delay-200 bg-[#FAF9F6] border border-neutral-100 shadow-sm rounded-sm overflow-hidden">
-                            <!-- IMAGE: Use images/broadwater/parcel-5-care-facility-plan.jpg, Parcel 5 Care Facility plan from brochure page 11. -->
-                            <img src="../images/broadwater/parcel-5-care-facility-plan.jpg" class="w-full h-72 object-cover" alt="Parcel 5 Care Facility plan showing C2 Care Home site area" />
-                            <div class="p-8 md:p-10">
-                                <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-5">Parcel 5 — Care Facility</p>
-                                <h4 class="text-2xl font-light mb-6">C2 Care Home.</h4>
-                                <ul class="space-y-4 text-slate-600 font-light leading-relaxed">
-                                    <li>C2 Care Home of approximately 72 beds.</li>
-                                    <li>Reinforces the location as a multi-generational destination.</li>
-                                    <li>Ensures a secure, quiet environment for educational or office use.</li>
-                                </ul>
-                            </div>
-                        </article>
-                    </div>
-
-                    <!-- IMAGE: Use images/broadwater/senior-living-care-full-page.jpg if the full two-plan page is preferred instead of the individual crops. -->
-                </div>
-            </section>
-
-            <!-- SECTION: Site Analysis -->
-            <section id="site-analysis" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-                    <div class="lg:col-span-6 reveal">
-                        <!-- IMAGE: Use images/broadwater/site-analysis-full-page.jpg for the full Site Opportunities & Constraints / Site Analysis page. -->
-                        <img src="../images/broadwater/site-analysis-full-page.jpg" class="w-full h-auto rounded-sm border border-neutral-100 shadow-xl bg-white" alt="Site analysis and environment diagram showing access, A24 noise sources, TPO Sycamores, trees and boundary constraints" />
-                    </div>
-                    <div class="lg:col-span-6 reveal delay-200">
-                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">10 — Site Opportunities &amp; Constraints</h2>
-                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-8">Site analysis &amp; environment.</h3>
-                        <div class="space-y-5 text-slate-600 font-light leading-relaxed text-lg">
-                            <p><strong class="font-semibold text-slate-900">Access:</strong> Primary vehicular entrance via Carnegie Road; pedestrian prominence on Broadwater Road.</p>
-                            <p><strong class="font-semibold text-slate-900">Acoustics:</strong> Buildings set back from the A24 with landscaped buffers.</p>
-                            <p><strong class="font-semibold text-slate-900">Landscape:</strong> Retention of established TPO trees, specifically Sycamores, to maintain character.</p>
-                            <p><strong class="font-semibold text-slate-900">Constraints:</strong> Design accounts for overlooking from Bohunt School and residential boundaries.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="reveal mt-14 bg-white border border-neutral-100 shadow-sm rounded-sm p-8">
-                    <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-4">Diagram labels and visual features</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-sm font-light text-slate-600 leading-relaxed">
-                        <p>Primary vehicular entrance via Carnegie Road</p><p>Pedestrian prominence on Broadwater Road</p><p>Trees</p><p>TPO Sycamores shown in two places</p><p>A24</p><p>Noise Sources shown twice to the east</p><p>Red site boundary</p><p>Blue surrounding residential / context areas</p><p>Movement / constraint arrows</p><p>Coloured proposed / retained building blocks</p><p>Red curved noise-source graphics</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECTION: Planning -->
-            <section id="planning" class="bg-[#FAF9F6] py-24 px-6 md:px-20 border-t border-neutral-100">
-                <div class="max-w-7xl mx-auto">
-                    <div class="reveal text-center mb-16">
-                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">11 — Planning Status &amp; Timeline</h2>
-                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Parcel 1 is the priority phase.</h3>
-                        <p class="text-slate-500 font-light text-lg max-w-3xl mx-auto">The brochure presents Parcel 1 as the immediate priority phase to be brought forward.</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div class="reveal overflow-x-auto bg-white border border-neutral-100 shadow-sm rounded-sm">
-                            <table class="w-full text-sm text-left border-collapse">
-                                <thead>
-                                    <tr class="bg-neutral-50 border-b border-neutral-100">
-                                        <th class="p-6 uppercase tracking-widest text-[9px] text-slate-400 font-bold">Date / Stage</th>
-                                        <th class="p-6 uppercase tracking-widest text-[9px] text-slate-400 font-bold">Detail</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-slate-800">
-                                    <tr class="border-b border-neutral-50 hover:bg-neutral-50"><td class="p-6 font-mono text-sm">Late 2025</td><td class="p-6">Positive Pre-Application meeting concluded with Local Planning Authority.</td></tr>
-                                    <tr class="border-b border-neutral-50 hover:bg-neutral-50"><td class="p-6 font-mono text-sm">Jan 2026</td><td class="p-6">Detailed feedback phase.</td></tr>
-                                    <tr class="border-b border-neutral-50 hover:bg-neutral-50"><td class="p-6 font-mono text-sm">2026 Target</td><td class="p-6">Masterplan consent anticipated.</td></tr>
-                                    <tr class="bg-slate-50/50 font-bold text-slate-900"><td class="p-6">Priority</td><td class="p-6">Parcel 1 is the priority phase to be brought forward immediately.</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="reveal delay-200">
-                            <!-- IMAGE: Use images/broadwater/planning-timeline-brochure-page.jpg, the timeline page from brochure page 13. -->
-                            <img src="../images/broadwater/planning-timeline-brochure-page.jpg" class="w-full h-auto rounded-sm border border-neutral-100 shadow-xl bg-white" alt="Planning status and timeline page showing late 2025, Jan 2026 and 2026 target milestones" />
-                        </div>
+                        <figure class="reveal bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+                            <img src="../images/broadwater/SK%2008%20-%20Existing%20Second%20Floor_page-0001.jpg" class="w-full h-auto object-contain bg-white" alt="Existing second floor plan showing Block A second floor accommodation" />
+                            <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Existing Second Floor Plan</figcaption>
+                        </figure>
                     </div>
                 </div>
             </section>
@@ -604,7 +449,7 @@
             <section id="options" class="bg-white py-24 px-6 md:px-20">
                 <div class="max-w-7xl mx-auto">
                     <div class="reveal text-center mb-16">
-                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">12 — Appraisal / Flexible Space Summary</h2>
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">08 — Appraisal / Flexible Space Summary</h2>
                         <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Flexible requirements up to 70,000 sq ft.</h3>
                         <p class="text-slate-500 font-light text-lg max-w-3xl mx-auto">The brochure does not provide a GDV, cost plan, profit calculation or detailed financial appraisal. The closest appraisal equivalent is the flexible space summary below.</p>
                     </div>
@@ -650,7 +495,7 @@
             <section id="asset-schedule" class="bg-[#FAF9F6] py-24 px-6 md:px-20 border-t border-neutral-100">
                 <div class="max-w-7xl mx-auto">
                     <div class="reveal text-center mb-16">
-                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">13 — Detailed Asset Schedule</h2>
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">09 — Detailed Asset Schedule</h2>
                         <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Consolidated building and parcel breakdown.</h3>
                         <p class="text-slate-500 font-light text-lg max-w-3xl mx-auto">A full schedule of the property, buildings, configuration areas and wider parcels referenced in the brochure.</p>
                     </div>
@@ -701,7 +546,7 @@
             <section id="contact" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white">
                 <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div class="reveal">
-                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">14 — Contact &amp; Enquiries</h2>
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">10 — Contact &amp; Enquiries</h2>
                         <h3 class="text-3xl md:text-5xl font-light leading-tight mb-8">Flexible solutions for modern occupiers.</h3>
                         <div class="space-y-5 text-white/60 font-light leading-relaxed text-lg">
                             <p><strong class="font-semibold text-white">All Enquiries Invited:</strong> Freehold or Leasehold.</p>
