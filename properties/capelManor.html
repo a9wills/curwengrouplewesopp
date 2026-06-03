@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capel Manor College, Enfield - Proposed SEN School Opportunity</title>
+    <link rel="icon" type="image/png" href="/favicon/curwenfavicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .reveal {
+            opacity: 0;
+            transform: translateY(3rem);
+            transition: all 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        ::selection { background-color: #B08D57; color: white; }
+        details summary::-webkit-details-marker { display: none; }
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(10,29,55,0.25) 0%, rgba(10,29,55,0.18) 38%, rgba(10,29,55,0.96) 100%);
+        }
+    </style>
+</head>
+<body class="bg-[#FAF9F6] text-slate-900">
+
+    <!-- Authentication Screen -->
+    <div id="auth-screen" class="min-h-screen flex items-center justify-center bg-[#E5E5E1] p-4 fixed inset-0 z-[200]">
+        <div class="w-full max-w-md bg-white shadow-2xl rounded-sm p-8 md:p-12">
+            <div class="flex justify-center mb-10">
+                <img src="https://cdn.anthology.to/static/retailers/alt/curwen_group.png" alt="Curwen Group" class="h-14 w-auto" />
+            </div>
+            <h2 class="text-center text-sm tracking-[0.3em] uppercase font-light mb-2 text-slate-900">Confidential Opportunity</h2>
+            <p class="text-center text-[10px] tracking-[0.25em] uppercase font-bold mb-8 text-[#B08D57]">Capel Manor College SEN School Proposal</p>
+            <form id="login-form" class="space-y-4">
+                <input
+                    id="password-input"
+                    type="password"
+                    placeholder="Enter Access Code"
+                    class="w-full px-4 py-4 bg-neutral-50 border border-neutral-200 rounded-sm text-base tracking-widest focus:outline-none focus:border-[#B08D57] transition-colors"
+                />
+                <p id="error-message" class="hidden text-[10px] text-red-600 uppercase tracking-widest text-center font-bold">Invalid password.</p>
+                <button type="submit" class="w-full py-4 bg-[#0A1D37] text-white text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-slate-800 transition-all rounded-sm">
+                    Unlock Document
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="hidden min-h-screen">
+
+        <!-- Navigation -->
+        <nav class="fixed top-0 left-0 right-0 z-[100] bg-white/80 backdrop-blur-md border-b border-neutral-100 px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="https://cdn.anthology.to/static/retailers/alt/curwen_group.png" class="h-8 md:h-10 w-auto" alt="Curwen Group" />
+                <div class="hidden md:block h-6 w-[1px] bg-neutral-200"></div>
+                <span class="hidden md:block text-[10px] tracking-[0.3em] uppercase font-bold text-slate-900">Capel Manor College, Enfield</span>
+            </div>
+
+            <div class="hidden lg:flex items-center space-x-7">
+                <button onclick="scrollToSection('hero')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Home</button>
+                <button onclick="scrollToSection('opportunity')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Opportunity</button>
+                <button onclick="scrollToSection('location')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Location</button>
+                <button onclick="scrollToSection('demand')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Demand</button>
+                <button onclick="scrollToSection('campus')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Campus</button>
+                <button onclick="scrollToSection('facilities')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Facilities</button>
+                <button onclick="scrollToSection('development')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Development</button>
+
+                <button onclick="handleContact()" class="ml-2 px-5 py-2.5 bg-[#0A1D37] text-white text-[9px] uppercase tracking-[0.2em] font-bold hover:bg-[#B08D57] transition-all rounded-sm flex items-center space-x-2">
+                    <i data-lucide="mail" class="w-3 h-3"></i>
+                    <span>Contact Us</span>
+                </button>
+            </div>
+
+            <button class="lg:hidden" onclick="toggleMenu()" aria-label="Open menu">
+                <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden fixed inset-0 z-[90] bg-[#0A1D37] text-white p-12 flex flex-col justify-center space-y-8">
+            <button onclick="scrollToSection('hero')" class="text-2xl font-light tracking-widest text-left">Home</button>
+            <button onclick="scrollToSection('opportunity')" class="text-2xl font-light tracking-widest text-left">Opportunity</button>
+            <button onclick="scrollToSection('location')" class="text-2xl font-light tracking-widest text-left">Location</button>
+            <button onclick="scrollToSection('demand')" class="text-2xl font-light tracking-widest text-left">Demand</button>
+            <button onclick="scrollToSection('campus')" class="text-2xl font-light tracking-widest text-left">Campus</button>
+            <button onclick="scrollToSection('facilities')" class="text-2xl font-light tracking-widest text-left">Facilities</button>
+            <button onclick="scrollToSection('development')" class="text-2xl font-light tracking-widest text-left">Development</button>
+            <button onclick="handleContact()" class="text-2xl font-bold tracking-widest text-left text-[#B08D57]">Contact Us</button>
+        </div>
+
+        <main class="pt-20">
+
+            <!-- SECTION: Hero -->
+            <section id="hero" class="relative h-[92vh] w-full overflow-hidden">
+                <img src="../images/caplemanor/Capel%20CGI%20.png" class="w-full h-full object-cover scale-105" alt="Capel Manor College proposed SEN school CGI or campus hero image" />
+                <div class="absolute inset-0 hero-gradient"></div>
+
+                <div class="absolute top-10 left-6 md:left-20 z-10 reveal">
+                    <div class="bg-[#B08D57] p-6 md:p-8 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/20 max-w-sm">
+                        <p class="text-white text-[12px] md:text-[14px] tracking-[0.4em] font-black uppercase mb-1.5">Proposed SEN School Opportunity</p>
+                        <p class="text-white text-[10px] md:text-[11px] tracking-[0.2em] font-bold uppercase mb-4">Secure 1.83 Acre Campus</p>
+                        <div class="w-full h-[1.5px] bg-white/30 mb-4"></div>
+                        <p class="text-white text-[10px] md:text-[11px] tracking-[0.15em] font-semibold uppercase leading-relaxed">
+                            12,000 Sq Ft school development<br/>within Capel Manor College, Enfield
+                        </p>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-20 left-6 md:left-20 max-w-5xl">
+                    <div class="reveal">
+                        <p class="inline-block bg-[#0A1D37]/85 border border-white/20 text-[#B08D57] text-[12px] md:text-sm tracking-[0.45em] uppercase font-bold mb-4 px-4 py-2 rounded-sm shadow-lg backdrop-blur-sm">Enfield, North London</p>
+                        <h1 class="text-4xl md:text-7xl xl:text-8xl font-extralight text-white leading-none tracking-tighter uppercase mb-6">
+                            Capel Manor<br/>College
+                        </h1>
+                        <p class="text-white/65 text-sm md:text-lg font-light max-w-2xl mb-8">
+                            Secure 12,000 sq ft specialist SEN school development within one of London’s most exceptional educational campuses.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mb-8">
+                            <div class="bg-[#0A1D37]/80 border border-white/10 backdrop-blur-md rounded-sm px-6 py-5">
+                                <p class="text-2xl font-bold text-white">12,000</p>
+                                <p class="text-[9px] uppercase tracking-[0.25em] text-white/45 font-bold mt-1">Sq Ft School Building</p>
+                            </div>
+                            <div class="bg-[#0A1D37]/80 border border-white/10 backdrop-blur-md rounded-sm px-6 py-5">
+                                <p class="text-2xl font-bold text-white">1.83 Acres</p>
+                                <p class="text-[9px] uppercase tracking-[0.25em] text-white/45 font-bold mt-1">Secure Campus</p>
+                            </div>
+                            <div class="bg-[#0A1D37]/80 border border-white/10 backdrop-blur-md rounded-sm px-6 py-5">
+                                <p class="text-2xl font-bold text-white">40 Spaces</p>
+                                <p class="text-[9px] uppercase tracking-[0.25em] text-white/45 font-bold mt-1">Car Park</p>
+                            </div>
+                        </div>
+
+                        <button onclick="handleContact()" class="px-8 py-4 bg-[#B08D57] text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm flex items-center space-x-3">
+                            <span>Express Interest</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Unique Opportunity -->
+            <section id="opportunity" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                    <div class="lg:col-span-7">
+                        <div class="reveal">
+                            <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">01 — A Unique Opportunity for SEN School Providers</h2>
+                            <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-8">
+                                A proposed specialist SEN school within a secure, self-contained campus.
+                            </h3>
+                            <div class="space-y-6 text-slate-600 font-light leading-relaxed text-lg">
+                                <p>
+                                    Situated within the grounds of Capel Manor College’s renowned Enfield Campus, this proposal offers a rare opportunity to establish a purpose-built specialist SEN school within a secure and self-contained setting whilst benefiting from access to an outstanding range of existing educational facilities.
+                                </p>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                                    <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm">
+                                        <p class="text-3xl font-light text-slate-900 mb-2">12,000</p>
+                                        <p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold">Sq Ft Specialist SEN School</p>
+                                    </div>
+                                    <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm">
+                                        <p class="text-3xl font-light text-slate-900 mb-2">1.83</p>
+                                        <p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold">Acre Secure Campus</p>
+                                    </div>
+                                    <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm">
+                                        <p class="text-3xl font-light text-slate-900 mb-2">Enfield</p>
+                                        <p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold">North London</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5">
+                        <div class="reveal delay-200">
+                            <div class="bg-white p-10 border border-neutral-100 shadow-xl">
+                                <h4 class="text-[10px] tracking-[0.2em] uppercase font-bold mb-10 text-center text-slate-400">Key Opportunity Metrics</h4>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-sm text-left border-collapse">
+                                        <thead>
+                                            <tr class="border-b border-neutral-100">
+                                                <th class="pb-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Metric</th>
+                                                <th class="pb-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Detail</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-slate-800">
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Proposal</td><td class="py-4 text-sm font-bold text-slate-900">Specialist SEN School</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Building</td><td class="py-4 text-sm font-bold text-slate-900">12,000 sq ft two-storey school</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Site</td><td class="py-4 text-sm font-bold text-slate-900">1.83-acre secure site</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Parking</td><td class="py-4 text-sm font-bold text-slate-900">40-space car park</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Sport</td><td class="py-4 text-sm font-bold text-slate-900">Multi-Use Games Area</td></tr>
+                                            <tr><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Campus</td><td class="py-4 text-sm font-bold text-slate-900">Direct connections to wider Capel Manor estate</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Executive Summary -->
+            <section id="summary" class="bg-white py-24 px-6 md:px-20 border-y border-neutral-100">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">02 — Executive Summary</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">An exceptional educational environment.</h3>
+                        <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                            Curwen Group, working alongside Capel Manor College, is seeking expressions of interest from specialist SEN school operators for the delivery of a new purpose-built SEN school within the college’s Enfield Campus.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div class="reveal">
+                            <figure class="bg-[#FAF9F6] border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+                                <img src="../images/caplemanor/Capel%20Manor%20Feasibility.jpg" class="w-full h-auto object-cover" alt="Capel Manor College SEN school feasibility layout" />
+                                <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Image: Capel Manor College SEN school feasibility layout.</figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="reveal delay-200">
+                            <div class="bg-[#0A1D37] text-white p-8 md:p-10 rounded-sm shadow-2xl h-full">
+                                <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-8">The proposed development comprises</p>
+                                <div class="space-y-4 text-white/70 font-light leading-relaxed">
+                                    <p><strong class="font-semibold text-white">New school building:</strong> 12,000 sq ft two-storey SEN school building.</p>
+                                    <p><strong class="font-semibold text-white">Secure site:</strong> 1.83-acre site.</p>
+                                    <p><strong class="font-semibold text-white">Access:</strong> Dedicated internal access road.</p>
+                                    <p><strong class="font-semibold text-white">Parking:</strong> 40-space car park.</p>
+                                    <p><strong class="font-semibold text-white">External sport:</strong> Multi-Use Games Area (MUGA).</p>
+                                    <p><strong class="font-semibold text-white">Outdoor provision:</strong> Sensory and therapeutic outdoor space.</p>
+                                    <p><strong class="font-semibold text-white">Heritage:</strong> Retained historic gardener’s cottage and gardens.</p>
+                                    <p><strong class="font-semibold text-white">Estate link:</strong> Direct connections to the wider Capel Manor estate.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reveal mt-14 bg-[#FAF9F6] border border-neutral-100 shadow-sm rounded-sm p-8 md:p-10">
+                        <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-5">What makes this different</p>
+                        <p class="text-slate-600 font-light leading-relaxed text-lg">
+                            What differentiates this opportunity from a conventional school development is the unique relationship with Capel Manor College and the extraordinary facilities already available across the wider campus.
+                        </p>
+                        <p class="text-slate-600 font-light leading-relaxed text-lg mt-5">
+                            The proposed school will benefit from a safe and secure standalone environment whilst being situated within one of London’s most distinctive educational estates.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Location -->
+            <section id="location" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="reveal">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">03 — Location</h2>
+                        <h3 class="text-3xl md:text-5xl font-light mb-10 leading-tight">Enfield, North London.</h3>
+                        <div class="space-y-6 text-white/60 font-light leading-relaxed text-lg mb-12">
+                            <p>
+                                Located immediately south of Junction 25 of the M25 and adjacent to the A10, the site occupies a highly accessible position within the London Borough of Enfield.
+                            </p>
+                            <p>
+                                The proposed school site sits within the grounds of Capel Manor College’s flagship Enfield Campus.
+                            </p>
+                            <p>
+                                The site is ideally positioned to serve a wide catchment area where demand for specialist educational provision continues to increase.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Strategic Road Access</p><p class="text-xl font-light">Immediately south of Junction 25 of the M25</p></div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">A10</p><p class="text-xl font-light">Adjacent to the A10</p></div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Borough</p><p class="text-xl font-light">London Borough of Enfield</p></div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Campus</p><p class="text-xl font-light">Capel Manor College’s flagship Enfield Campus</p></div>
+                        </div>
+                    </div>
+
+                    <div class="reveal">
+                        <figure class="bg-white/5 border border-white/10 p-4 rounded-sm shadow-2xl">
+                            <img src="../images/caplemanor/Location%20Map.jpg" class="w-full h-auto max-h-[680px] object-contain rounded-sm bg-white" alt="Location map showing Capel Manor College, Enfield, Junction 25 of the M25 and A10" />
+                            <figcaption class="px-2 pt-4 text-[10px] uppercase tracking-widest text-white/35 font-bold">Image: Location map.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="max-w-7xl mx-auto mt-14 reveal">
+                    <details class="border border-white/10 bg-white/5 rounded-sm p-6">
+                        <summary class="cursor-pointer flex items-center justify-between text-[10px] uppercase tracking-[0.3em] font-bold text-[#B08D57]">
+                            Accessible catchment areas listed in the proposal
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </summary>
+                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-sm text-white/60 font-light leading-relaxed">
+                            <p>Enfield</p>
+                            <p>Barnet</p>
+                            <p>Haringey</p>
+                            <p>Waltham Forest</p>
+                            <p>Epping Forest</p>
+                            <p>Broxbourne</p>
+                            <p>Hertfordshire</p>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <!-- SECTION: Demand -->
+            <section id="demand" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="reveal text-center mb-16">
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">04 — Strong Demand for New SEN Provision</h2>
+                    <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Growing need across Enfield and North London.</h3>
+                    <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                        The requirement for additional specialist school places continues to increase across London and the Home Counties.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <article class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm p-8 md:p-10">
+                        <i data-lucide="trending-up" class="text-[#B08D57] w-7 h-7 mb-6"></i>
+                        <h4 class="text-2xl font-light mb-5">Rising EHCP Demand</h4>
+                        <p class="text-slate-600 font-light leading-relaxed">
+                            Enfield Council has identified increasing demand for specialist educational provision as the number of children with Education Health and Care Plans continues to rise.
+                        </p>
+                    </article>
+
+                    <article class="reveal delay-100 bg-white border border-neutral-100 shadow-sm rounded-sm p-8 md:p-10">
+                        <i data-lucide="map-pin" class="text-[#B08D57] w-7 h-7 mb-6"></i>
+                        <h4 class="text-2xl font-light mb-5">Local Specialist Placement Pressure</h4>
+                        <p class="text-slate-600 font-light leading-relaxed">
+                            Like many local authorities, Enfield faces ongoing pressure to secure sufficient local specialist placements and reduce reliance on expensive out-of-borough provision.
+                        </p>
+                    </article>
+
+                    <article class="reveal delay-200 bg-white border border-neutral-100 shadow-sm rounded-sm p-8 md:p-10">
+                        <i data-lucide="school" class="text-[#B08D57] w-7 h-7 mb-6"></i>
+                        <h4 class="text-2xl font-light mb-5">National SEND Context</h4>
+                        <p class="text-slate-600 font-light leading-relaxed">
+                            Nationally, the number of EHCPs has increased significantly in recent years, creating substantial demand for new specialist settings.
+                        </p>
+                    </article>
+
+                    <article class="reveal delay-300 bg-[#0A1D37] text-white border border-[#0A1D37] shadow-2xl rounded-sm p-8 md:p-10">
+                        <i data-lucide="check-circle-2" class="text-[#B08D57] w-7 h-7 mb-6"></i>
+                        <h4 class="text-2xl font-light mb-5">Operator Opportunity</h4>
+                        <p class="text-white/65 font-light leading-relaxed">
+                            For operators, the scheme offers the ability to establish a new specialist school in a location where demand is expected to remain strong for many years.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="reveal mt-14 bg-[#FAF9F6] border border-neutral-100 rounded-sm p-8 md:p-10">
+                    <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-5">Purpose-built response to need</p>
+                    <p class="text-slate-600 font-light leading-relaxed text-lg">
+                        The proposed development provides an opportunity to create high-quality local provision within a purpose-built setting capable of meeting this growing need.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECTION: Capel Manor College Campus -->
+            <section id="campus" class="bg-white py-24 px-6 md:px-20 border-y border-neutral-100">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">05 — Capel Manor College</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">A truly unique educational campus.</h3>
+                        <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                            Capel Manor College is London’s leading land-based college and its Enfield Campus extends across approximately 30 acres of gardens, educational facilities and open space.
+                        </p>
+                    </div>
+
+                    <figure class="reveal bg-[#FAF9F6] border border-neutral-100 shadow-xl rounded-sm overflow-hidden mb-14">
+                        <img src="../images/caplemanor/Capel%20Gardens.jpg" class="w-full max-h-[560px] object-cover object-center" alt="Capel Manor College campus gardens and landscaped grounds" />
+                        <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Image: Capel Manor College campus gardens.</figcaption>
+                    </figure>
+
+                    <div class="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Grounds</p><p class="text-sm font-light text-slate-600">More than 30 acres of landscaped grounds and gardens.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Gardens</p><p class="text-sm font-light text-slate-600">Over 60 themed gardens and landscapes.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Zoo</p><p class="text-sm font-light text-slate-600">A zoo with more than 75 species of animals.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Horticulture</p><p class="text-sm font-light text-slate-600">Horticultural teaching facilities.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Animal Management</p><p class="text-sm font-light text-slate-600">Animal management facilities.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Specialist Teaching</p><p class="text-sm font-light text-slate-600">Workshops and specialist teaching accommodation.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Growing Facilities</p><p class="text-sm font-light text-slate-600">Greenhouses and polytunnels.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Campus Amenities</p><p class="text-sm font-light text-slate-600">Café and catering facilities.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Outdoor Learning</p><p class="text-sm font-light text-slate-600">Woodland and outdoor learning environments.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm lg:col-span-3"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Wider Agricultural Links</p><p class="text-sm font-light text-slate-600">Links to Forty Hall Farm and wider agricultural facilities.</p></div>
+                    </div>
+
+                    <div class="reveal mt-14 bg-[#0A1D37] text-white rounded-sm shadow-2xl p-8 md:p-12">
+                        <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-5">Campus value</p>
+                        <p class="text-white/70 font-light leading-relaxed text-lg">
+                            These facilities create an educational environment that is virtually impossible to replicate within a standalone school development.
+                        </p>
+                        <p class="text-white/45 font-light leading-relaxed text-sm mt-6">
+                            The source document also states: “Some of the courses on offer to students at Capel Manor College:” but no specific course list was included in the extracted text.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Safe Secure Self Contained -->
+            <section id="secure" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="reveal">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">06 — Safe, Secure and Self-Contained</h2>
+                        <h3 class="text-3xl md:text-5xl font-light mb-10 leading-tight">Designed specifically for SEN education.</h3>
+                        <div class="space-y-6 text-white/60 font-light leading-relaxed text-lg mb-12">
+                            <p>
+                                The proposed school site has been designed as a secure standalone campus.
+                            </p>
+                            <p>
+                                This approach ensures pupils benefit from a safe and highly structured educational environment whilst remaining within the wider Capel Manor estate.
+                            </p>
+                            <p>
+                                The proposal has been developed with safeguarding, security and pupil wellbeing at its core.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-white/5 border border-white/10 p-5 rounded-sm"><p class="font-bold text-white">Dedicated school entrance</p></div>
+                            <div class="bg-white/5 border border-white/10 p-5 rounded-sm"><p class="font-bold text-white">Controlled access arrangements</p></div>
+                            <div class="bg-white/5 border border-white/10 p-5 rounded-sm"><p class="font-bold text-white">Secure perimeter fencing</p></div>
+                            <div class="bg-white/5 border border-white/10 p-5 rounded-sm"><p class="font-bold text-white">Private access road</p></div>
+                            <div class="bg-white/5 border border-white/10 p-5 rounded-sm"><p class="font-bold text-white">Dedicated parking</p></div>
+                            <div class="bg-white/5 border border-white/10 p-5 rounded-sm"><p class="font-bold text-white">Safe outdoor learning spaces</p></div>
+                            <div class="bg-white/5 border border-white/10 p-5 rounded-sm"><p class="font-bold text-white">Secure recreation areas</p></div>
+                            <div class="bg-white/5 border border-white/10 p-5 rounded-sm"><p class="font-bold text-white">Separation from public visitor areas</p></div>
+                            <div class="bg-white/5 border border-white/10 p-5 rounded-sm sm:col-span-2"><p class="font-bold text-white">Separate Gardener’s Cottage</p></div>
+                        </div>
+                    </div>
+
+                    <div class="reveal delay-200">
+                        <figure class="bg-white/5 border border-white/10 p-4 rounded-sm shadow-2xl">
+                            <img src="../images/caplemanor/Capel%20Manor%20Feasibility.jpg" class="w-full h-auto object-contain rounded-sm bg-white" alt="Secure SEN campus plan showing access, boundaries, parking and school site" />
+                            <figcaption class="px-2 pt-4 text-[10px] uppercase tracking-widest text-white/35 font-bold">Image: secure campus feasibility plan.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Existing Facilities -->
+            <section id="facilities" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="reveal text-center mb-16">
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">07 — Existing Facilities Available to the School</h2>
+                    <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Educational benefits beyond the school boundary.</h3>
+                    <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                        One of the most compelling aspects of this proposal is the opportunity to access facilities that would ordinarily require millions of pounds of additional investment to replicate elsewhere.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+                    <article class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm p-8">
+                        <i data-lucide="paw-print" class="text-[#B08D57] w-7 h-7 mb-6"></i>
+                        <h4 class="text-xl font-light mb-4">Animal Assisted Learning</h4>
+                        <p class="text-slate-500 font-light leading-relaxed text-sm">Access to animal management facilities and zoo environments.</p>
+                    </article>
+
+                    <article class="reveal delay-100 bg-white border border-neutral-100 shadow-sm rounded-sm p-8">
+                        <i data-lucide="trees" class="text-[#B08D57] w-7 h-7 mb-6"></i>
+                        <h4 class="text-xl font-light mb-4">Outdoor Education</h4>
+                        <p class="text-slate-500 font-light leading-relaxed text-sm">Learning opportunities across gardens, woodland and environmental spaces.</p>
+                    </article>
+
+                    <article class="reveal delay-200 bg-white border border-neutral-100 shadow-sm rounded-sm p-8">
+                        <i data-lucide="leaf" class="text-[#B08D57] w-7 h-7 mb-6"></i>
+                        <h4 class="text-xl font-light mb-4">Therapeutic Environments</h4>
+                        <p class="text-slate-500 font-light leading-relaxed text-sm">Sensory experiences within extensive landscaped settings.</p>
+                    </article>
+
+                    <article class="reveal delay-300 bg-white border border-neutral-100 shadow-sm rounded-sm p-8">
+                        <i data-lucide="hammer" class="text-[#B08D57] w-7 h-7 mb-6"></i>
+                        <h4 class="text-xl font-light mb-4">Vocational Exposure</h4>
+                        <p class="text-slate-500 font-light leading-relaxed text-sm">Opportunities to experience practical land-based learning environments.</p>
+                    </article>
+
+                    <article class="reveal delay-300 bg-white border border-neutral-100 shadow-sm rounded-sm p-8">
+                        <i data-lucide="users" class="text-[#B08D57] w-7 h-7 mb-6"></i>
+                        <h4 class="text-xl font-light mb-4">Social Development</h4>
+                        <p class="text-slate-500 font-light leading-relaxed text-sm">Access to wider educational experiences in a carefully managed setting.</p>
+                    </article>
+                </div>
+
+                <div class="reveal mt-14 bg-[#FAF9F6] border border-neutral-100 rounded-sm p-8 md:p-10">
+                    <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-5">Specialist facilities</p>
+                    <p class="text-slate-600 font-light leading-relaxed text-lg">
+                        Capel Manor’s Enfield Campus includes specialist facilities supporting agriculture, horticulture, conservation, animal care and environmental education.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECTION: Preparing Young People -->
+            <section id="adulthood" class="bg-white py-24 px-6 md:px-20 border-y border-neutral-100">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">08 — Preparing Young People for Adulthood</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Progression opportunities.</h3>
+                        <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                            Whilst the primary focus of the proposal is the delivery of a high-quality specialist school, the proximity of Capel Manor College creates additional opportunities for pupils as they approach adulthood.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div class="reveal">
+                            <div class="space-y-6 text-slate-600 font-light leading-relaxed text-lg">
+                                <p>
+                                    Subject to appropriate operational arrangements, pupils may have opportunities to participate in introductory college experiences and vocational taster activities designed to support transition planning.
+                                </p>
+                                <p>
+                                    These experiences can assist pupils and families in understanding progression opportunities beyond compulsory education.
+                                </p>
+                                <a href="https://www.capel.ac.uk/taster-days/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-3 text-[#B08D57] text-[10px] uppercase tracking-[0.3em] font-bold hover:text-[#0A1D37] transition-colors">
+                                    <span>Capel Manor Taster Days</span>
+                                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="reveal delay-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="bg-[#FAF9F6] border border-neutral-100 p-6 rounded-sm"><p class="font-bold text-slate-900 mb-2">College familiarisation visits</p><p class="text-sm text-slate-500 font-light">Introductory exposure to the wider college environment.</p></div>
+                            <div class="bg-[#FAF9F6] border border-neutral-100 p-6 rounded-sm"><p class="font-bold text-slate-900 mb-2">Vocational workshops</p><p class="text-sm text-slate-500 font-light">Practical taster activity linked to land-based learning.</p></div>
+                            <div class="bg-[#FAF9F6] border border-neutral-100 p-6 rounded-sm"><p class="font-bold text-slate-900 mb-2">Careers events</p><p class="text-sm text-slate-500 font-light">Support for transition planning and future pathways.</p></div>
+                            <div class="bg-[#FAF9F6] border border-neutral-100 p-6 rounded-sm"><p class="font-bold text-slate-900 mb-2">Further education pathways</p><p class="text-sm text-slate-500 font-light">Introduction to opportunities beyond compulsory education.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Proposed Development -->
+            <section id="development" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="reveal text-center mb-16">
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">09 — Proposed Development</h2>
+                    <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Purpose-built 12,000 sq ft SEN school.</h3>
+                    <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                        The proposed school building extends to approximately 12,000 sq ft over two storeys. Please note that the accommodation can be varied depending on your requirements. Designed specifically for SEN education, the accommodation provides a modern and flexible learning environment.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <article class="reveal bg-white border border-neutral-100 shadow-xl rounded-sm p-8 md:p-10">
+                        <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-5">Ground Floor Accommodation</p>
+                        <ul class="space-y-4 text-slate-600 font-light leading-relaxed list-disc pl-5 marker:text-[#B08D57]">
+                            <li>Reception and administration suite</li>
+                            <li>Headteacher’s office</li>
+                            <li>Deputy Head office</li>
+                            <li>Medical and first aid room</li>
+                            <li>Meeting rooms</li>
+                            <li>Training rooms</li>
+                            <li>Food preparation room</li>
+                            <li>Assembly and activity hall</li>
+                            <li>Breakout spaces</li>
+                            <li>Accessible WC facilities</li>
+                        </ul>
+                    </article>
+
+                    <article class="reveal delay-200 bg-[#0A1D37] text-white border border-[#0A1D37] shadow-2xl rounded-sm p-8 md:p-10">
+                        <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-5">First Floor Accommodation</p>
+                        <ul class="space-y-4 text-white/65 font-light leading-relaxed list-disc pl-5 marker:text-[#B08D57]">
+                            <li>Multiple teaching classrooms</li>
+                            <li>Vocational teaching kitchen</li>
+                            <li>Staff room</li>
+                            <li>Additional teaching accommodation</li>
+                            <li>Breakout and intervention spaces</li>
+                        </ul>
+                    </article>
+                </div>
+
+                <div class="reveal mt-14 bg-[#FAF9F6] border border-neutral-100 rounded-sm p-8 md:p-10">
+                    <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-5">Flexibility</p>
+                    <p class="text-slate-600 font-light leading-relaxed text-lg">
+                        The layout provides flexibility to accommodate a range of SEND cohorts and operational models.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECTION: External Facilities -->
+            <section id="external" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">10 — External Facilities</h2>
+                        <h3 class="text-3xl md:text-5xl font-light leading-tight mb-4">High quality outdoor provision.</h3>
+                        <p class="text-white/55 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                            The external environment has been designed to support physical activity, wellbeing and therapeutic learning.
+                        </p>
+                    </div>
+
+                    <figure class="reveal bg-white/5 border border-white/10 p-4 md:p-6 rounded-sm shadow-2xl mb-16">
+                        <img src="../images/caplemanor/Capel%20CGI%20.png" class="w-full h-auto object-cover rounded-sm" alt="Capel Manor SEN school external facilities, MUGA, parking and outdoor provision" />
+                        <figcaption class="px-2 pt-4 text-[10px] uppercase tracking-widest text-white/35 font-bold">Image: proposed external facilities and outdoor provision CGI.</figcaption>
+                    </figure>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <article class="reveal bg-white/5 border border-white/10 rounded-sm p-8">
+                            <i data-lucide="activity" class="text-[#B08D57] w-7 h-7 mb-6"></i>
+                            <h4 class="text-2xl font-light mb-5">Multi Use Games Area</h4>
+                            <p class="text-white/60 font-light leading-relaxed">The dedicated MUGA provides year-round sports and recreation facilities.</p>
+                        </article>
+
+                        <article class="reveal delay-100 bg-white/5 border border-white/10 rounded-sm p-8">
+                            <i data-lucide="leaf" class="text-[#B08D57] w-7 h-7 mb-6"></i>
+                            <h4 class="text-2xl font-light mb-5">Sensory and Therapeutic Spaces</h4>
+                            <ul class="space-y-3 text-white/60 font-light leading-relaxed list-disc pl-5 marker:text-[#B08D57]">
+                                <li>Outdoor learning</li>
+                                <li>Sensory activities</li>
+                                <li>Quiet reflection</li>
+                                <li>Nature-based education</li>
+                            </ul>
+                        </article>
+
+                        <article class="reveal delay-200 bg-white/5 border border-white/10 rounded-sm p-8">
+                            <i data-lucide="car" class="text-[#B08D57] w-7 h-7 mb-6"></i>
+                            <h4 class="text-2xl font-light mb-5">Parking and Access</h4>
+                            <ul class="space-y-3 text-white/60 font-light leading-relaxed list-disc pl-5 marker:text-[#B08D57]">
+                                <li>40 parking spaces</li>
+                                <li>Dedicated drop-off facilities</li>
+                                <li>Internal circulation road</li>
+                                <li>Service access arrangements</li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Support from Capel Manor -->
+            <section id="support" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="reveal text-center mb-16">
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">11 — Support from Capel Manor College</h2>
+                    <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">A shared vision.</h3>
+                </div>
+
+                <div class="reveal bg-white border border-neutral-100 shadow-xl rounded-sm p-8 md:p-12">
+                    <div class="space-y-6 text-slate-600 font-light leading-relaxed text-lg">
+                        <p>
+                            The trustees, leadership team and staff of Capel Manor College are enthusiastic about the opportunity to work alongside an established SEN school provider.
+                        </p>
+                        <p>
+                            There is a shared ambition to create a long-term partnership that delivers exceptional outcomes for young people whilst making best use of the outstanding educational environment available at the Enfield Campus.
+                        </p>
+                        <p>
+                            The relationship offers the potential to create a genuinely distinctive specialist school that combines the safety and structure of a dedicated SEN setting with the benefits of an established further education campus.
+                        </p>
+                        <p class="text-slate-900 font-medium">
+                            This represents a rare opportunity to establish a specialist school in a location unlike any other currently available in the London market.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Expressions of Interest -->
+            <section id="contact" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="reveal">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">12 — Expressions of Interest Invited</h2>
+                        <h3 class="text-3xl md:text-5xl font-light leading-tight mb-8">Proposed Specialist SEN School.</h3>
+                        <div class="space-y-5 text-white/60 font-light leading-relaxed text-lg">
+                            <p><strong class="font-semibold text-white">Location:</strong> Capel Manor College, Enfield.</p>
+                            <p><strong class="font-semibold text-white">Building:</strong> 12,000 Sq Ft School Building.</p>
+                            <p><strong class="font-semibold text-white">Site:</strong> 1.83 Acre Secure Site.</p>
+                            <p><strong class="font-semibold text-white">Parking:</strong> 40 Parking Spaces.</p>
+                            <p><strong class="font-semibold text-white">External Sport:</strong> Multi Use Games Area.</p>
+                            <p><strong class="font-semibold text-white">Campus Access:</strong> Direct Access to Exceptional Existing Educational Facilities.</p>
+                            <p class="text-white/80 font-medium">Confidential discussions welcomed.</p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4 mt-10">
+                            <button onclick="handleContact()" class="px-8 py-4 bg-[#B08D57] text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm flex items-center space-x-3">
+                                <span>Email Steve</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                            <button onclick="handleContactDan()" class="px-8 py-4 border border-white/20 text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:border-[#B08D57] hover:text-[#B08D57] transition-all rounded-sm flex items-center space-x-3">
+                                <span>Email Dan</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="reveal delay-200 bg-white/5 border border-white/10 rounded-sm p-8 md:p-10">
+                        <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-8">For further information please contact</p>
+                        <div class="space-y-8">
+                            <div class="border-b border-white/10 pb-6">
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Contact</p>
+                                <p class="text-white text-xl font-light">Steve Curwen</p>
+                                <p class="text-white/55 font-light mt-2">steve@curwengroup.co.uk</p>
+                            </div>
+                            <div>
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Or</p>
+                                <p class="text-white text-xl font-light">Dan Johnson</p>
+                                <p class="text-white/55 font-light mt-2">dan@curwengroup.co.uk</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Legal Notice / Disclaimer -->
+            <section id="legal" class="bg-neutral-950 py-24 px-6 md:px-20 text-white">
+                <div class="max-w-5xl mx-auto">
+                    <div class="reveal">
+                        <div class="flex items-center space-x-4 mb-10">
+                            <div class="w-12 h-[1px] bg-[#B08D57]"></div>
+                            <h3 class="text-[10px] tracking-[0.5em] uppercase font-bold text-[#B08D57]">Legal Notice / Disclaimer</h3>
+                        </div>
+                        <div class="space-y-6 text-sm font-light text-white/50 leading-relaxed">
+                            <p class="text-white/80 font-medium">No formal legal notice, confidentiality wording or investment disclaimer is included in the current Capel Manor College SEN School Proposal document.</p>
+                            <p>This document is provided for information purposes only. All areas, capacities, site boundaries, planning assumptions, education-use assumptions, operational access arrangements, external facilities and partnership arrangements should be verified by interested parties through their own professional due diligence.</p>
+                            <p>No warranty is given as to the accuracy or completeness of the information provided. Any final published brochure or investment memorandum should include agent-approved legal wording, accuracy disclaimers, planning caveats, measured survey confirmation, operational due diligence and safeguarding review requirements.</p>
+                            <p class="pt-8 border-t border-white/5 italic">Placeholder wording only — replace with approved legal and agency wording before circulation.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <button onclick="scrollToSection('hero')" class="fixed bottom-8 right-8 z-[100] p-4 bg-white shadow-2xl border border-neutral-100 hover:bg-[#B08D57] hover:text-white transition-all group" aria-label="Back to top">
+            <i data-lucide="arrow-right" class="-rotate-90 group-hover:translate-y-[-2px] transition-transform w-5 h-5"></i>
+        </button>
+    </div>
+
+    <script>
+        const REQUIRED_PASSWORD = 'capel_sen';
+        const CONTACT_EMAIL = 'steve@curwengroup.co.uk';
+        const CONTACT_EMAIL_DAN = 'dan@curwengroup.co.uk';
+        const EMAIL_SUBJECT = 'Capel Manor College, Enfield - Proposed SEN School Opportunity';
+
+        const loginForm = document.getElementById('login-form');
+        const passwordInput = document.getElementById('password-input');
+        const errorMessage = document.getElementById('error-message');
+        const authScreen = document.getElementById('auth-screen');
+        const mainContent = document.getElementById('main-content');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (passwordInput.value === REQUIRED_PASSWORD) {
+                authScreen.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+                initLucide();
+                initScrollReveal();
+            } else {
+                errorMessage.classList.remove('hidden');
+                passwordInput.classList.add('border-red-500');
+            }
+        });
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) element.scrollIntoView({ behavior: 'smooth' });
+            if (isMenuOpen) toggleMenu();
+        }
+
+        function handleContact() {
+            window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
+        }
+
+        function handleContactDan() {
+            window.location.href = `mailto:${CONTACT_EMAIL_DAN}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
+        }
+
+        function initScrollReveal() {
+            const observerOptions = { threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, observerOptions);
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        function initLucide() { lucide.createIcons(); }
+        window.onload = () => { initLucide(); };
+    </script>
+</body>
+</html>
