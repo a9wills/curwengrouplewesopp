@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Margaret Fisher House - Sheltered Housing Opportunity</title>
+    <link rel="icon" type="image/png" href="/favicon/curwenfavicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .reveal {
+            opacity: 0;
+            transform: translateY(3rem);
+            transition: all 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        ::selection { background-color: #B08D57; color: white; }
+        .hero-gradient { background: linear-gradient(180deg, rgba(10,29,55,0.16) 0%, rgba(10,29,55,0.22) 38%, rgba(10,29,55,0.96) 100%); }
+        .image-zoom { transition: transform 700ms ease; }
+        .image-frame:hover .image-zoom { transform: scale(1.035); }
+    </style>
+</head>
+<body class="bg-[#FAF9F6] text-slate-900">
+
+    <!-- Authentication Screen -->
+    <div id="auth-screen" class="min-h-screen flex items-center justify-center bg-[#E5E5E1] p-4 fixed inset-0 z-[200]">
+        <div class="w-full max-w-md bg-white shadow-2xl rounded-sm p-8 md:p-12">
+            <div class="flex justify-center mb-10">
+                <img src="https://cdn.anthology.to/static/retailers/alt/curwen_group.png" alt="Curwen Group" class="h-14 w-auto" />
+            </div>
+            <h2 class="text-center text-sm tracking-[0.3em] uppercase font-light mb-2 text-slate-900">Investment Memorandum</h2>
+            <p class="text-center text-[10px] tracking-[0.25em] uppercase font-bold mb-8 text-[#B08D57]">Margaret Fisher House</p>
+            <form id="login-form" class="space-y-4">
+                <input
+                    id="password-input"
+                    type="password"
+                    placeholder="Enter Access Code"
+                    class="w-full px-4 py-4 bg-neutral-50 border border-neutral-200 rounded-sm text-base tracking-widest focus:outline-none focus:border-[#B08D57] transition-colors"
+                />
+                <p id="error-message" class="hidden text-[10px] text-red-600 uppercase tracking-widest text-center font-bold">Invalid password.</p>
+                <button type="submit" class="w-full py-4 bg-[#0A1D37] text-white text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-slate-800 transition-all rounded-sm">
+                    Unlock Document
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="hidden min-h-screen">
+
+        <!-- Navigation -->
+        <nav class="fixed top-0 left-0 right-0 z-[100] bg-white/80 backdrop-blur-md border-b border-neutral-100 px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="https://cdn.anthology.to/static/retailers/alt/curwen_group.png" class="h-8 md:h-10 w-auto" alt="Curwen Group" />
+                <div class="hidden md:block h-6 w-[1px] bg-neutral-200"></div>
+                <span class="hidden md:block text-[10px] tracking-[0.3em] uppercase font-bold text-slate-900">Margaret Fisher House</span>
+            </div>
+
+            <div class="hidden xl:flex items-center space-x-6">
+                <button onclick="scrollToSection('hero')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Home</button>
+                <button onclick="scrollToSection('summary')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Summary</button>
+                <button onclick="scrollToSection('use-case')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Use Case</button>
+                <button onclick="scrollToSection('accommodation')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Accommodation</button>
+                <button onclick="scrollToSection('facilities')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Facilities</button>
+                <button onclick="scrollToSection('location')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Location</button>
+                <button onclick="handleContact()" class="ml-2 px-5 py-2.5 bg-[#0A1D37] text-white text-[9px] uppercase tracking-[0.2em] font-bold hover:bg-[#B08D57] transition-all rounded-sm flex items-center space-x-2">
+                    <i data-lucide="mail" class="w-3 h-3"></i>
+                    <span>Contact Us</span>
+                </button>
+            </div>
+
+            <button class="xl:hidden" onclick="toggleMenu()" aria-label="Open menu">
+                <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden fixed inset-0 z-[90] bg-[#0A1D37] text-white p-12 flex flex-col justify-center space-y-7">
+            <button onclick="scrollToSection('hero')" class="text-2xl font-light tracking-widest text-left">Home</button>
+            <button onclick="scrollToSection('summary')" class="text-2xl font-light tracking-widest text-left">Summary</button>
+            <button onclick="scrollToSection('use-case')" class="text-2xl font-light tracking-widest text-left">Use Case</button>
+            <button onclick="scrollToSection('accommodation')" class="text-2xl font-light tracking-widest text-left">Accommodation</button>
+            <button onclick="scrollToSection('facilities')" class="text-2xl font-light tracking-widest text-left">Facilities</button>
+            <button onclick="scrollToSection('location')" class="text-2xl font-light tracking-widest text-left">Location</button>
+            <button onclick="handleContact()" class="text-2xl font-bold tracking-widest text-left text-[#B08D57]">Contact Us</button>
+        </div>
+
+        <main class="pt-20">
+            <!-- SECTION: Hero -->
+            <section id="hero" class="relative min-h-[calc(100svh-5rem)] md:h-[92vh] md:min-h-0 w-full overflow-hidden">
+                <img src="../images/margaretFisher/margaretFisherSH/MFH%20Proposed%20Front.jpg" class="absolute inset-0 w-full h-full object-cover scale-105" alt="Front elevation of Margaret Fisher House on Old Kent Road" />
+                <div class="absolute inset-0 hero-gradient"></div>
+
+                <div class="relative md:absolute md:top-10 md:left-20 z-10 reveal px-6 pt-8 md:px-0 md:pt-0">
+                    <div class="bg-[#B08D57] p-4 sm:p-6 md:p-8 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/20 max-w-sm">
+                        <p class="text-white text-[12px] md:text-[14px] tracking-[0.4em] font-black uppercase mb-1.5">Sheltered Housing</p>
+                        <p class="text-white text-[10px] md:text-[11px] tracking-[0.2em] font-bold uppercase mb-4">Domestic Abuse Support Accommodation</p>
+                        <div class="w-full h-[1.5px] bg-white/30 mb-4"></div>
+                        <p class="text-white text-[10px] md:text-[11px] tracking-[0.15em] font-semibold uppercase leading-relaxed">
+                            12 self-contained units<br/>comprehensive refurbishment underway
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative md:absolute md:bottom-20 md:left-20 max-w-6xl px-6 pt-10 pb-10 md:px-0 md:pt-0 md:pb-0">
+                    <div class="reveal">
+                        <p class="inline-block bg-[#0A1D37]/85 border border-white/20 text-[#B08D57] text-[10px] sm:text-[12px] md:text-sm tracking-[0.18em] sm:tracking-[0.32em] uppercase font-bold mb-4 px-4 py-2 rounded-sm shadow-lg backdrop-blur-sm">30 Old Kent Road, Paddock Wood, Tonbridge, Kent TN12 6JD</p>
+                        <h1 class="text-4xl md:text-7xl xl:text-8xl font-extralight text-white leading-none tracking-tighter uppercase mb-5 md:mb-6">
+                            Margaret<br/>Fisher House
+                        </h1>
+                        <p class="text-white/68 text-sm md:text-lg font-light max-w-3xl mb-6 md:mb-8">
+                            A refurbished sheltered housing opportunity suited to operators supporting victim-survivors of domestic abuse, combining private self-contained accommodation with secure access, staff facilities and shared amenity space.
+                        </p>
+
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 max-w-5xl mb-6 md:mb-8">
+                            <div class="bg-[#0A1D37]/80 border border-white/10 backdrop-blur-md rounded-sm px-3 py-3 sm:px-6 sm:py-5">
+                                <p class="text-2xl sm:text-3xl font-bold text-white">12</p>
+                                <p class="text-[8px] sm:text-[9px] uppercase tracking-[0.16em] sm:tracking-[0.25em] text-white/45 font-bold mt-1">Self-Contained Units</p>
+                            </div>
+                            <div class="bg-[#0A1D37]/80 border border-white/10 backdrop-blur-md rounded-sm px-3 py-3 sm:px-6 sm:py-5">
+                                <p class="text-2xl sm:text-3xl font-bold text-white">4</p>
+                                <p class="text-[8px] sm:text-[9px] uppercase tracking-[0.16em] sm:tracking-[0.25em] text-white/45 font-bold mt-1">One-Bed Flats</p>
+                            </div>
+                            <div class="bg-[#0A1D37]/80 border border-white/10 backdrop-blur-md rounded-sm px-3 py-3 sm:px-6 sm:py-5">
+                                <p class="text-2xl sm:text-3xl font-bold text-white">Secure</p>
+                                <p class="text-[8px] sm:text-[9px] uppercase tracking-[0.16em] sm:tracking-[0.25em] text-white/45 font-bold mt-1">Entry Phone</p>
+                            </div>
+                            <div class="bg-[#0A1D37]/80 border border-white/10 backdrop-blur-md rounded-sm px-3 py-3 sm:px-6 sm:py-5">
+                                <p class="text-xl sm:text-2xl font-bold text-white">Late 2026</p>
+                                <p class="text-[8px] sm:text-[9px] uppercase tracking-[0.16em] sm:tracking-[0.25em] text-white/45 font-bold mt-1">Available</p>
+                            </div>
+                        </div>
+
+                        <button onclick="handleContact()" class="px-6 sm:px-8 py-4 bg-[#B08D57] text-white text-[10px] sm:text-[11px] tracking-[0.22em] sm:tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm flex items-center space-x-3">
+                            <span>Discuss The Opportunity</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Executive Summary -->
+            <section id="summary" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                    <div class="lg:col-span-7">
+                        <div class="reveal">
+                            <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">01 - Executive Summary</h2>
+                            <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-8">
+                                A 12-unit sheltered housing setting with the right operational ingredients for domestic abuse accommodation.
+                            </h3>
+                            <div class="space-y-6 text-slate-600 font-light leading-relaxed text-lg">
+                                <p>
+                                    Margaret Fisher House is a sheltered housing opportunity at 30 Old Kent Road, Paddock Wood, Tonbridge, Kent TN12 6JD. The property provides 12 self-contained units, four of which are configured as one-bedroom apartments.
+                                </p>
+                                <p>
+                                    Each room benefits from a wet room and cooking facilities. The two one-bedroom flats in the bungalow include comprehensive kitchen areas within the lounge, while the main building provides shared amenity and support facilities including a communal kitchen, lounge and garden area.
+                                </p>
+                                <p>
+                                    The building is currently undergoing comprehensive refurbishment and is expected to be available in late 2026. Its secure access, staff bedroom, lift, laundry, parking and town-centre location make it particularly relevant for operators supporting victim-survivors of domestic abuse who require privacy, independence, practical support and access to everyday services.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5">
+                        <div class="reveal delay-200">
+                            <div class="bg-white p-8 md:p-10 border border-neutral-100 shadow-xl rounded-sm">
+                                <h4 class="text-[10px] tracking-[0.2em] uppercase font-bold mb-10 text-center text-slate-400">Accommodation Summary</h4>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-sm text-left border-collapse">
+                                        <thead>
+                                            <tr class="border-b border-neutral-100">
+                                                <th class="pb-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Feature</th>
+                                                <th class="pb-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Detail</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-slate-800">
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Units</td><td class="py-4 text-sm font-bold text-slate-900">12 self-contained units</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">One-Beds</td><td class="py-4 text-sm font-bold text-slate-900">4 one-bedroom apartments</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Bathrooms</td><td class="py-4 text-sm font-bold text-slate-900">Wet room to each room</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Cooking</td><td class="py-4 text-sm font-bold text-slate-900">Cooking facilities to each room</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Shared Areas</td><td class="py-4 text-sm font-bold text-slate-900">Communal kitchen, lounge and garden</td></tr>
+                                            <tr><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Availability</td><td class="py-4 text-sm font-bold text-slate-900">Late 2026</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <figure class="reveal mt-16 bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden image-frame">
+                    <img src="../images/margaretFisher/margaretFisherSH/MFH%20Rear%20.jpg" class="w-full max-h-[560px] object-cover object-center image-zoom" alt="Rear elevation, parking and garden at Margaret Fisher House" />
+                    <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Image: rear elevation, parking and garden amenity.</figcaption>
+                </figure>
+            </section>
+
+            <!-- SECTION: Domestic Abuse Use Case -->
+            <section id="use-case" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="reveal">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">02 - Domestic Abuse Accommodation Use Case</h2>
+                        <h3 class="text-3xl md:text-5xl font-light mb-10 leading-tight">Privacy, independence and support within one managed setting.</h3>
+                        <div class="space-y-5 text-white/60 font-light leading-relaxed text-lg">
+                            <p>For domestic abuse accommodation providers, Margaret Fisher House offers a practical balance between self-contained privacy and managed support. Residents can occupy independent rooms or flats with their own wet room and cooking facilities, while still having access to staff accommodation, shared amenities and secure site controls.</p>
+                            <p>The layout supports a trauma-informed operating model where residents can choose privacy when needed, while communal space remains available for managed support, peer contact, life skills, family work and structured activity.</p>
+                            <p>Operational suitability will remain subject to provider safeguarding protocols, risk assessment, commissioning requirements, security specification and any statutory approvals required for the intended use.</p>
+                        </div>
+                    </div>
+
+                    <div class="reveal delay-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-white/5 border border-white/10 p-6 rounded-sm"><i data-lucide="lock-keyhole" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Security</p><p class="text-white/60 font-light">Secure entry-phone system, parking and managed access arrangements.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-6 rounded-sm"><i data-lucide="door-closed" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Privacy</p><p class="text-white/60 font-light">Self-contained accommodation with private wet rooms and cooking facilities.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-6 rounded-sm"><i data-lucide="users" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Support</p><p class="text-white/60 font-light">Staff bedroom, lift, laundry and shared rooms supporting day-to-day operation.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-6 rounded-sm"><i data-lucide="map-pin" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Access</p><p class="text-white/60 font-light">Town-centre services and transport close by for residents rebuilding independence.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Accommodation -->
+            <section id="accommodation" class="bg-white py-24 px-6 md:px-20 border-y border-neutral-100">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">03 - Existing Accommodation</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">12 self-contained units across the main house and bungalow.</h3>
+                        <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                            The existing layout supports a sheltered housing model with individual rooms, wet rooms, cooking provision, larger one-bedroom apartments and dedicated support spaces.
+                        </p>
+                    </div>
+
+                    <figure class="reveal bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+                        <img src="../images/margaretFisher/margaretFisherSH/MFH%20Existing%20Layout.jpg" class="w-full h-auto object-contain bg-white" alt="Existing Margaret Fisher House layout showing 12 apartments" />
+                        <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Existing layout: 12 self-contained units with support and communal areas.</figcaption>
+                    </figure>
+
+                    <div class="reveal mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Self-Contained</p><p class="text-sm font-light text-slate-600">12 self-contained units, each with wet room and cooking facilities.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">One-Bed Flats</p><p class="text-sm font-light text-slate-600">Four units configured as one-bedroom apartments.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Bungalow Flats</p><p class="text-sm font-light text-slate-600">Two bungalow one-bedroom flats with comprehensive kitchen areas in the lounge.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Support Space</p><p class="text-sm font-light text-slate-600">Staff bedroom, lift access, laundry and secure entry-phone system.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Refurbishment Standard -->
+            <section id="standard" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="reveal text-center mb-16">
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">04 - Refurbishment Standard</h2>
+                    <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Practical, calm and residential interiors.</h3>
+                    <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                        Comprehensive refurbishment is underway to create modern accommodation suitable for a sheltered housing operator, with durable finishes, accessible wet rooms and individual cooking provision.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <figure class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden image-frame">
+                        <img src="../images/margaretFisher/margaretFisherSH/MFH%20Prop%20Studio.jpeg" class="w-full h-72 object-cover image-zoom" alt="Proposed self-contained studio accommodation" />
+                        <figcaption class="px-5 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Self-contained room</figcaption>
+                    </figure>
+                    <figure class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden image-frame">
+                        <img src="../images/margaretFisher/margaretFisherSH/Prop%20Studio%201.jpeg" class="w-full h-72 object-cover image-zoom" alt="Proposed refurbished studio with kitchenette" />
+                        <figcaption class="px-5 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Room with cooking facilities</figcaption>
+                    </figure>
+                    <figure class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden image-frame">
+                        <img src="../images/margaretFisher/margaretFisherSH/Prop%20Studio%202.jpeg" class="w-full h-72 object-cover image-zoom" alt="Proposed refurbished studio accommodation" />
+                        <figcaption class="px-5 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Refurbished private space</figcaption>
+                    </figure>
+                    <figure class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden image-frame">
+                        <img src="../images/margaretFisher/margaretFisherSH/MFH%20Prop%20Wet%20Room.jpeg" class="w-full h-72 object-cover image-zoom" alt="Proposed wet room" />
+                        <figcaption class="px-5 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Wet room</figcaption>
+                    </figure>
+                    <figure class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden image-frame">
+                        <img src="../images/margaretFisher/margaretFisherSH/Shower%20Room%20.jpeg" class="w-full h-72 object-cover image-zoom" alt="Refurbished shower room" />
+                        <figcaption class="px-5 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Shower room</figcaption>
+                    </figure>
+                    <figure class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden image-frame">
+                        <img src="../images/margaretFisher/margaretFisherSH/MFH%20Prop%20Hallway.jpeg" class="w-full h-72 object-cover image-zoom" alt="Proposed hallway finish" />
+                        <figcaption class="px-5 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Internal finish</figcaption>
+                    </figure>
+                    <figure class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden image-frame lg:col-span-2">
+                        <img src="../images/margaretFisher/margaretFisherSH/Prop%20En-Suite%20Bedroom%20Flat%206.jpeg" class="w-full h-72 object-cover image-zoom" alt="Proposed one-bedroom apartment bedroom" />
+                        <figcaption class="px-5 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">One-bedroom apartment accommodation</figcaption>
+                    </figure>
+                    <figure class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden image-frame">
+                        <img src="../images/margaretFisher/margaretFisherSH/MFH%20Bungalow%20.jpg" class="w-full h-72 object-cover image-zoom" alt="Bungalow accommodation at Margaret Fisher House" />
+                        <figcaption class="px-5 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Bungalow accommodation</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <!-- SECTION: Facilities -->
+            <section id="facilities" class="bg-white py-24 px-6 md:px-20 border-y border-neutral-100">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">05 - Communal Facilities &amp; Site Features</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Shared space that supports stabilisation and managed independence.</h3>
+                        <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                            Alongside private accommodation, Margaret Fisher House includes a communal kitchen, lounge and garden area, plus operational features including a staff bedroom, lift, laundry room, parking and secure entry-phone system.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+                        <figure class="reveal bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden image-frame">
+                            <img src="../images/margaretFisher/margaretFisherSH/Communal%20Kitchen.png" class="w-full h-auto object-cover image-zoom" alt="Communal kitchen at Margaret Fisher House" />
+                            <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Communal kitchen.</figcaption>
+                        </figure>
+                        <figure class="reveal delay-200 bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden image-frame">
+                            <img src="../images/margaretFisher/margaretFisherSH/Lounge_Dining%20Room.png" class="w-full h-auto object-cover image-zoom" alt="Communal lounge and dining area at Margaret Fisher House" />
+                            <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Communal lounge and dining area.</figcaption>
+                        </figure>
+                    </div>
+
+                    <div class="reveal mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Garden</p><p class="text-sm font-light text-slate-600">Communal garden area for managed outdoor amenity and resident wellbeing.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Operations</p><p class="text-sm font-light text-slate-600">Staff bedroom, lift, laundry room and practical back-of-house support.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Security</p><p class="text-sm font-light text-slate-600">Parking and secure entry-phone system to support controlled access.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: External Areas -->
+            <section id="external" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="reveal text-center mb-16">
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">06 - External Amenity &amp; Site Boundary</h2>
+                    <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Parking, garden and clear site context.</h3>
+                    <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                        The site combines residential accommodation, bungalow flats, garden amenity and off-street parking within a clear Old Kent Road setting.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <figure class="reveal bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden image-frame">
+                        <img src="../images/margaretFisher/margaretFisherSH/MFH%20Rear%20.jpg" class="w-full h-[360px] object-cover image-zoom" alt="Rear parking and garden area at Margaret Fisher House" />
+                        <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Rear parking and garden area.</figcaption>
+                    </figure>
+                    <figure class="reveal delay-200 bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+                        <img src="../images/margaretFisher/margaretFisherSH/promap.jpeg" class="w-full h-[360px] object-contain bg-white" alt="Promap red-line boundary plan for Margaret Fisher House" />
+                        <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Indicative red-line site boundary plan.</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <!-- SECTION: Location -->
+            <section id="location" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">07 - Paddock Wood Location</h2>
+                        <h3 class="text-3xl md:text-5xl font-light leading-tight mb-4">Town-centre services within easy reach.</h3>
+                        <p class="text-white/55 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                            Margaret Fisher House is very well located for residents who need access to day-to-day services, transport, health provision and community infrastructure while rebuilding independence.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                        <div class="reveal">
+                            <figure class="bg-white/5 border border-white/10 shadow-2xl rounded-sm overflow-hidden">
+                                <img src="../images/margaretFisher/margaretFisherSH/Location%20Map.png" class="w-full h-auto object-contain bg-white" alt="Location map showing Margaret Fisher House and nearby Paddock Wood amenities" />
+                                <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-white/35 font-bold">Image: Paddock Wood location and nearby amenities.</figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="reveal delay-200 bg-white/5 border border-white/10 rounded-sm overflow-hidden">
+                            <div class="p-6 md:p-8 border-b border-white/10">
+                                <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-4">Nearby Facilities</p>
+                                <p class="text-sm text-white/50 font-light leading-relaxed">Approximate distances are straight-line distances from TN12 6JD where published, or short-walk estimates based on town-centre addresses.</p>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-sm text-left border-collapse">
+                                    <thead>
+                                        <tr class="border-b border-white/10">
+                                            <th class="p-5 uppercase tracking-widest text-[9px] text-white/35 font-bold">Facility</th>
+                                            <th class="p-5 uppercase tracking-widest text-[9px] text-white/35 font-bold">Approx. Distance</th>
+                                            <th class="p-5 uppercase tracking-widest text-[9px] text-white/35 font-bold">Relevance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-white/70">
+                                        <tr class="border-b border-white/10"><td class="p-5 font-semibold text-white">Paddock Wood Station</td><td class="p-5">270 yards</td><td class="p-5">Rail access; step-free station with staffed assistance periods.</td></tr>
+                                        <tr class="border-b border-white/10"><td class="p-5 font-semibold text-white">Woodlands Health Centre</td><td class="p-5">330 yards</td><td class="p-5">Local GP access on Allington Road.</td></tr>
+                                        <tr class="border-b border-white/10"><td class="p-5 font-semibold text-white">Patrick Duff Opticians</td><td class="p-5">100 yards</td><td class="p-5">Closest listed optician service.</td></tr>
+                                        <tr class="border-b border-white/10"><td class="p-5 font-semibold text-white">Paddock Wood Pharmacy</td><td class="p-5">Short walk</td><td class="p-5">Pharmacy at 12 Commercial Road with NHS pharmacy services.</td></tr>
+                                        <tr class="border-b border-white/10"><td class="p-5 font-semibold text-white">Paddock Wood Library</td><td class="p-5">Short walk</td><td class="p-5">9 Commercial Road; books, printing and free Wi-Fi.</td></tr>
+                                        <tr class="border-b border-white/10"><td class="p-5 font-semibold text-white">Paddock Wood Post Office</td><td class="p-5">Short walk</td><td class="p-5">19-23 Commercial Road; postal, identity, travel and money services.</td></tr>
+                                        <tr class="border-b border-white/10"><td class="p-5 font-semibold text-white">Waitrose &amp; Partners</td><td class="p-5">Approx. 0.3 miles</td><td class="p-5">Accessible supermarket on Church Road with customer parking and facilities.</td></tr>
+                                        <tr class="border-b border-white/10"><td class="p-5 font-semibold text-white">Leigh Academy Paddock Wood</td><td class="p-5">260 yards</td><td class="p-5">Nearby primary school, relevant for residents with children.</td></tr>
+                                        <tr><td class="p-5 font-semibold text-white">Tunbridge Wells Hospital at Pembury</td><td class="p-5">4.2 miles</td><td class="p-5">Closest listed hospital for the postcode.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Delivery -->
+            <section id="delivery" class="bg-white py-24 px-6 md:px-20 border-y border-neutral-100">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="reveal">
+                        <figure class="bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden image-frame">
+                            <img src="../images/margaretFisher/margaretFisherSH/MFH%20Proposed%20Front.jpg" class="w-full h-auto object-cover image-zoom" alt="Front elevation of Margaret Fisher House" />
+                            <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Image: Margaret Fisher House front elevation.</figcaption>
+                        </figure>
+                    </div>
+                    <div class="reveal delay-200">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">08 - Delivery Programme</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-8">Comprehensive refurbishment underway. Available late 2026.</h3>
+                        <div class="space-y-5 text-slate-600 font-light leading-relaxed text-lg">
+                            <p>The building is currently undergoing comprehensive refurbishment and is expected to be available in late 2026.</p>
+                            <p>The final specification, safeguarding enhancements, operational fit-out and commissioning route should be agreed with the selected sheltered housing or domestic abuse accommodation operator.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Contact -->
+            <section id="contact" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="reveal">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">09 - Contact &amp; Enquiries</h2>
+                        <h3 class="text-3xl md:text-5xl font-light leading-tight mb-8">Sheltered housing and domestic abuse accommodation enquiries.</h3>
+                        <div class="space-y-5 text-white/60 font-light leading-relaxed text-lg">
+                            <p>For further information regarding the Margaret Fisher House sheltered housing opportunity, please enquire directly.</p>
+                            <p><strong class="font-semibold text-white">Address:</strong> Margaret Fisher House, 30 Old Kent Road, Paddock Wood, Tonbridge, Kent TN12 6JD.</p>
+                            <p><strong class="font-semibold text-white">Accommodation:</strong> 12 self-contained units, including four one-bedroom apartments.</p>
+                            <p><strong class="font-semibold text-white">Availability:</strong> Late 2026, subject to refurbishment programme and operator requirements.</p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4 mt-10">
+                            <button onclick="handleContact()" class="px-8 py-4 bg-[#B08D57] text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm flex items-center space-x-3">
+                                <span>Email Steve</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                            <button onclick="handleContactDan()" class="px-8 py-4 border border-white/20 text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:border-[#B08D57] hover:text-[#B08D57] transition-all rounded-sm flex items-center space-x-3">
+                                <span>Email Dan</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="reveal delay-200 bg-white/5 border border-white/10 rounded-sm p-8 md:p-10">
+                        <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-8">For further information please contact</p>
+                        <div class="space-y-8">
+                            <div class="border-b border-white/10 pb-6">
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Contact</p>
+                                <p class="text-white text-xl font-light">Steve Curwen</p>
+                                <p class="text-white/55 font-light mt-2">steve@curwengroup.co.uk</p>
+                            </div>
+                            <div class="border-b border-white/10 pb-6">
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Or</p>
+                                <p class="text-white text-xl font-light">Dan Johnson</p>
+                                <p class="text-white/55 font-light mt-2">dan@curwengroup.co.uk</p>
+                            </div>
+                            <div>
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Opportunity</p>
+                                <p class="text-white font-light">Request further information or discuss sheltered housing operator / domestic abuse accommodation requirements.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Legal Notice / Disclaimer -->
+            <section id="legal" class="bg-neutral-950 py-24 px-6 md:px-20 text-white">
+                <div class="max-w-5xl mx-auto">
+                    <div class="reveal">
+                        <div class="flex items-center space-x-4 mb-10">
+                            <div class="w-12 h-[1px] bg-[#B08D57]"></div>
+                            <h3 class="text-[10px] tracking-[0.5em] uppercase font-bold text-[#B08D57]">Legal Notice / Disclaimer</h3>
+                        </div>
+                        <div class="space-y-6 text-sm font-light text-white/50 leading-relaxed">
+                            <p class="text-white/80 font-medium">This brochure is provided for information purposes only and does not constitute a safeguarding, planning, commissioning or operational approval.</p>
+                            <p>All areas, unit numbers, layouts, images, specifications, security assumptions, domestic abuse accommodation suitability, sheltered housing assumptions, refurbishment programme, availability dates and operational requirements should be verified by interested parties through their own professional due diligence.</p>
+                            <p>Any use for victim-survivors of domestic abuse must be reviewed by a suitably qualified provider and commissioner, with appropriate safeguarding protocols, risk assessment, referral pathways, staff model, security specification and statutory approvals where required.</p>
+                            <p>Nearby facility distances are approximate. Published straight-line distances have been used where available and should be checked against current mapping and service availability before operational reliance.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <button onclick="scrollToSection('hero')" class="fixed bottom-8 right-8 z-[100] p-4 bg-white shadow-2xl border border-neutral-100 hover:bg-[#B08D57] hover:text-white transition-all group" aria-label="Back to top">
+            <i data-lucide="arrow-right" class="-rotate-90 group-hover:translate-y-[-2px] transition-transform w-5 h-5"></i>
+        </button>
+    </div>
+
+    <script>
+        const REQUIRED_PASSWORD = 'margaret_sh';
+        const CONTACT_EMAIL = 'steve@curwengroup.co.uk';
+        const CONTACT_EMAIL_DAN = 'dan@curwengroup.co.uk';
+        const EMAIL_SUBJECT = 'Margaret Fisher House - Sheltered Housing Opportunity';
+
+        const loginForm = document.getElementById('login-form');
+        const passwordInput = document.getElementById('password-input');
+        const errorMessage = document.getElementById('error-message');
+        const authScreen = document.getElementById('auth-screen');
+        const mainContent = document.getElementById('main-content');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (passwordInput.value === REQUIRED_PASSWORD) {
+                authScreen.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+                initLucide();
+                initScrollReveal();
+            } else {
+                errorMessage.classList.remove('hidden');
+                passwordInput.classList.add('border-red-500');
+            }
+        });
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) element.scrollIntoView({ behavior: 'smooth' });
+            if (isMenuOpen) toggleMenu();
+        }
+
+        function handleContact() {
+            window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
+        }
+
+        function handleContactDan() {
+            window.location.href = `mailto:${CONTACT_EMAIL_DAN}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
+        }
+
+        function initScrollReveal() {
+            const observerOptions = { threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, observerOptions);
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        function initLucide() { lucide.createIcons(); }
+        window.onload = () => { initLucide(); };
+    </script>
+</body>
+</html>
