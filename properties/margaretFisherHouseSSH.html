@@ -462,25 +462,33 @@
                             <p><strong class="font-semibold text-white">Delivery:</strong> Completed units expected late 2026 / early 2027, subject to programme and statutory requirements.</p>
                             <p><strong class="font-semibold text-white">Location:</strong> Old Kent Road, Paddock Wood.</p>
                         </div>
-                        <button onclick="handleContact()" class="mt-10 px-8 py-4 bg-[#B08D57] text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm flex items-center space-x-3">
-                            <span>Discuss The SSH Opportunity</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </button>
+                        <div class="flex flex-col sm:flex-row gap-4 mt-10">
+                            <button onclick="handleContact()" class="px-8 py-4 bg-[#B08D57] text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm flex items-center space-x-3">
+                                <span>Email Steve</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                            <button onclick="handleContactDan()" class="px-8 py-4 border border-white/20 text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:border-[#B08D57] hover:text-[#B08D57] transition-all rounded-sm flex items-center space-x-3">
+                                <span>Email Dan</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="reveal delay-200 bg-white/5 border border-white/10 rounded-sm p-8 md:p-10">
-                        <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-8">Enquiry Details</p>
-                        <div class="space-y-6">
-                            <div class="border-b border-white/10 pb-5">
-                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Contact Name</p>
-                                <p class="text-white font-light">Steve Curwen</p>
+                        <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-8">For further information please contact</p>
+                        <div class="space-y-8">
+                            <div class="border-b border-white/10 pb-6">
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Contact</p>
+                                <p class="text-white text-xl font-light">Steve Curwen</p>
+                                <p class="text-white/55 font-light mt-2">steve@curwengroup.co.uk</p>
                             </div>
-                            <div class="border-b border-white/10 pb-5">
-                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Email</p>
-                                <p class="text-white font-light">steve@curwengroup.co.uk</p>
+                            <div class="border-b border-white/10 pb-6">
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Or</p>
+                                <p class="text-white text-xl font-light">Dan Johnson</p>
+                                <p class="text-white/55 font-light mt-2">dan@curwengroup.co.uk</p>
                             </div>
                             <div>
-                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">CTA</p>
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Opportunity</p>
                                 <p class="text-white font-light">Request further information or discuss Specialist Supported Housing operator / delivery requirements.</p>
                             </div>
                         </div>
@@ -515,6 +523,7 @@
     <script>
         const REQUIRED_PASSWORD = 'margaret_ssh';
         const CONTACT_EMAIL = 'steve@curwengroup.co.uk';
+        const CONTACT_EMAIL_DAN = 'dan@curwengroup.co.uk';
         const EMAIL_SUBJECT = 'Margaret Fisher House - SSH Opportunity';
 
         const loginForm = document.getElementById('login-form');
@@ -560,6 +569,10 @@
 
         function handleContact() {
             window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
+        }
+
+        function handleContactDan() {
+            window.location.href = `mailto:${CONTACT_EMAIL_DAN}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
         }
 
         function initScrollReveal() {
