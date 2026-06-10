@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curwen Group - Property Brochures</title>
+    <link rel="icon" type="image/png" href="/favicon/curwenfavicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(3rem);
+            transition: all 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        ::selection {
+            background-color: #B08D57;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-[#FAF9F6] text-slate-900">
+    <nav class="fixed top-0 left-0 right-0 z-[100] bg-white/85 backdrop-blur-md border-b border-neutral-100 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#home" class="flex items-center space-x-4" aria-label="Curwen Group property brochures">
+                <img src="https://cdn.anthology.to/static/retailers/alt/curwen_group.png" class="h-8 md:h-10 w-auto" alt="Curwen Group" />
+                <div class="hidden md:block h-6 w-[1px] bg-neutral-200"></div>
+                <span class="hidden md:block text-[10px] tracking-[0.3em] uppercase font-bold text-slate-900">Property Brochures</span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <button onclick="scrollToSection('home')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Home</button>
+                <button onclick="scrollToSection('properties')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Properties</button>
+                <button onclick="handleContact()" class="px-5 py-2.5 bg-[#0A1D37] text-white text-[9px] uppercase tracking-[0.2em] font-bold hover:bg-[#B08D57] transition-all rounded-sm inline-flex items-center space-x-2">
+                    <i data-lucide="mail" class="w-3 h-3"></i>
+                    <span>Contact</span>
+                </button>
+            </div>
+
+            <button class="md:hidden p-2" onclick="toggleMenu()" aria-label="Toggle menu">
+                <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="hidden fixed inset-0 z-[90] bg-[#0A1D37] text-white p-12 flex flex-col justify-center space-y-8">
+        <button onclick="scrollToSection('home')" class="text-2xl font-light tracking-widest text-left">Home</button>
+        <button onclick="scrollToSection('properties')" class="text-2xl font-light tracking-widest text-left">Properties</button>
+        <button onclick="handleContact()" class="text-2xl font-bold tracking-widest text-left text-[#B08D57]">Contact</button>
+    </div>
+
+    <main id="home" class="pt-20">
+        <section class="relative min-h-[78vh] overflow-hidden">
+            <img src="../images/st_pancras_terrace_flat_combination.png" class="absolute inset-0 h-full w-full object-cover" alt="Curwen Group property portfolio" />
+            <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/85"></div>
+
+            <div class="relative min-h-[78vh] max-w-7xl mx-auto px-6 md:px-20 flex items-end pb-16 md:pb-24">
+                <div class="reveal max-w-4xl">
+                    <p class="inline-block bg-[#0A1D37]/85 border border-white/20 text-[#B08D57] text-[11px] md:text-sm tracking-[0.4em] uppercase font-bold mb-5 px-4 py-2 rounded-sm shadow-lg backdrop-blur-sm">Curwen Group</p>
+                    <h1 class="text-4xl md:text-7xl font-extralight text-white leading-none uppercase mb-6">
+                        Property <br class="hidden sm:block" />Brochures
+                    </h1>
+                    <p class="text-white/70 text-base md:text-xl font-light max-w-2xl mb-10 leading-relaxed">
+                        A private index of current property opportunities and investment memoranda.
+                    </p>
+                    <button onclick="scrollToSection('properties')" class="inline-flex items-center justify-center space-x-4 px-8 py-4 bg-[#B08D57] text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm">
+                        <span>View Properties</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="properties" class="py-24 px-6 md:px-20">
+            <div class="max-w-7xl mx-auto">
+                <div class="reveal max-w-3xl mb-14">
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">Properties</h2>
+                    <p class="text-3xl md:text-5xl font-light leading-tight text-slate-900">Current Curwen Group property pages.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                    <article class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden flex flex-col">
+                        <img src="../images/wilmington/wilmingtonHouseFront.png" class="w-full h-64 object-cover" alt="Wilmington House" />
+                        <div class="p-8 flex flex-col grow">
+                            <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-4">Nursery Opportunity</p>
+                            <h3 class="text-2xl font-light text-slate-900 mb-4">Wilmington House</h3>
+                            <p class="text-sm font-light text-slate-500 leading-relaxed mb-8 grow">East Grinstead Class E opportunity with potential for a 70-80 place children's day nursery.</p>
+                            <a href="./wilmingtonHouse.html" class="inline-flex items-center justify-center space-x-3 px-6 py-4 bg-[#0A1D37] text-white text-[10px] tracking-[0.25em] uppercase font-bold hover:bg-[#B08D57] transition-all rounded-sm">
+                                <span>Open Brochure</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden flex flex-col">
+                        <img src="../images/margaretFisher/margaretFisherSH/MFH%20Proposed%20Front.jpg" class="w-full h-64 object-cover" alt="Margaret Fisher House sheltered housing" />
+                        <div class="p-8 flex flex-col grow">
+                            <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-4">Sheltered Housing</p>
+                            <h3 class="text-2xl font-light text-slate-900 mb-4">Margaret Fisher House</h3>
+                            <p class="text-sm font-light text-slate-500 leading-relaxed mb-8 grow">Paddock Wood sheltered housing opportunity with 12 self-contained units.</p>
+                            <a href="./margaretFisherHouseSH.html" class="inline-flex items-center justify-center space-x-3 px-6 py-4 bg-[#0A1D37] text-white text-[10px] tracking-[0.25em] uppercase font-bold hover:bg-[#B08D57] transition-all rounded-sm">
+                                <span>Open Brochure</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden flex flex-col">
+                        <img src="../images/margaretFisher/margaretFisherSSH/MFH%20Proposed%20Front.jpg" class="w-full h-64 object-cover" alt="Margaret Fisher House specialist supported housing" />
+                        <div class="p-8 flex flex-col grow">
+                            <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-4">SSH Opportunity</p>
+                            <h3 class="text-2xl font-light text-slate-900 mb-4">Margaret Fisher House SSH</h3>
+                            <p class="text-sm font-light text-slate-500 leading-relaxed mb-8 grow">Specialist Supported Housing version for 9 self-contained one-bedroom apartments.</p>
+                            <a href="./margaretFisherHouseSSH.html" class="inline-flex items-center justify-center space-x-3 px-6 py-4 bg-[#0A1D37] text-white text-[10px] tracking-[0.25em] uppercase font-bold hover:bg-[#B08D57] transition-all rounded-sm">
+                                <span>Open Brochure</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden flex flex-col">
+                        <img src="../images/mulberry/mulberry_house_exterior_wide.png" class="w-full h-64 object-cover" alt="Mulberry House" />
+                        <div class="p-8 flex flex-col grow">
+                            <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-4">Nursery Opportunity</p>
+                            <h3 class="text-2xl font-light text-slate-900 mb-4">Mulberry House</h3>
+                            <p class="text-sm font-light text-slate-500 leading-relaxed mb-8 grow">Newbury large-format nursery opportunity with internal and external provision.</p>
+                            <a href="./mulberryHouse.html" class="inline-flex items-center justify-center space-x-3 px-6 py-4 bg-[#0A1D37] text-white text-[10px] tracking-[0.25em] uppercase font-bold hover:bg-[#B08D57] transition-all rounded-sm">
+                                <span>Open Brochure</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden flex flex-col">
+                        <img src="../images/broadwater/broadwaterFront.jpeg" class="w-full h-64 object-cover" alt="Broadwater Road Campus" />
+                        <div class="p-8 flex flex-col grow">
+                            <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-4">Educational Campus</p>
+                            <h3 class="text-2xl font-light text-slate-900 mb-4">Broadwater Road Campus</h3>
+                            <p class="text-sm font-light text-slate-500 leading-relaxed mb-8 grow">Worthing campus opportunity forming Parcel 1 of a wider mixed-use regeneration masterplan.</p>
+                            <a href="./broadwaterRoad.html" class="inline-flex items-center justify-center space-x-3 px-6 py-4 bg-[#0A1D37] text-white text-[10px] tracking-[0.25em] uppercase font-bold hover:bg-[#B08D57] transition-all rounded-sm">
+                                <span>Open Brochure</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden flex flex-col">
+                        <img src="../images/caplemanor/CapelCGI.png" class="w-full h-64 object-cover" alt="Capel Manor College" />
+                        <div class="p-8 flex flex-col grow">
+                            <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-4">SEN School</p>
+                            <h3 class="text-2xl font-light text-slate-900 mb-4">Capel Manor College</h3>
+                            <p class="text-sm font-light text-slate-500 leading-relaxed mb-8 grow">Enfield proposed SEN school opportunity within the Capel Manor College campus setting.</p>
+                            <a href="./capelManor.html" class="inline-flex items-center justify-center space-x-3 px-6 py-4 bg-[#0A1D37] text-white text-[10px] tracking-[0.25em] uppercase font-bold hover:bg-[#B08D57] transition-all rounded-sm">
+                                <span>Open Brochure</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <article class="reveal bg-white border border-neutral-100 shadow-sm rounded-sm overflow-hidden flex flex-col md:col-span-2 xl:col-span-1">
+                        <img src="../images/st_pancras_terrace_flat_combination.png" class="w-full h-64 object-cover" alt="De Montfort Terrace" />
+                        <div class="p-8 flex flex-col grow">
+                            <p class="text-[#B08D57] text-[10px] tracking-[0.35em] uppercase font-bold mb-4">Investment Memorandum</p>
+                            <h3 class="text-2xl font-light text-slate-900 mb-4">De Montfort Terrace</h3>
+                            <p class="text-sm font-light text-slate-500 leading-relaxed mb-8 grow">Lewes residential development and investment memorandum for houses and apartments.</p>
+                            <a href="./stPancras.html" class="inline-flex items-center justify-center space-x-3 px-6 py-4 bg-[#0A1D37] text-white text-[10px] tracking-[0.25em] uppercase font-bold hover:bg-[#B08D57] transition-all rounded-sm">
+                                <span>Open Brochure</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 px-6 md:px-20 bg-neutral-900 text-white">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-10">
+                <div class="reveal max-w-2xl">
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">Contact</h2>
+                    <p class="text-3xl md:text-4xl font-light leading-tight">For further information, contact the Curwen Group team.</p>
+                </div>
+                <button onclick="handleContact()" class="reveal inline-flex items-center justify-center space-x-4 px-10 py-5 bg-[#B08D57] text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                    <span>Email Us</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-neutral-950 text-white/35 px-6 md:px-20 py-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
+            <p class="text-[10px] uppercase tracking-widest">&copy; 2026 Curwen Group Ltd. All Rights Reserved.</p>
+            <p class="text-[10px] uppercase tracking-widest">Private Property Index</p>
+        </div>
+    </footer>
+
+    <script>
+        const CONTACT_EMAIL = "steve@curwengroup.co.uk";
+        const EMAIL_SUBJECT = "Curwen Group Property Enquiry";
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+            if (isMenuOpen) toggleMenu();
+        }
+
+        function handleContact() {
+            window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
+        }
+
+        function initScrollReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        window.onload = () => {
+            lucide.createIcons();
+            initScrollReveal();
+        };
+    </script>
+</body>
+</html>
