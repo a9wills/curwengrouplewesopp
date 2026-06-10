@@ -219,7 +219,7 @@
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
                         <figure class="reveal bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
-                            <img src="../images/margaretFisher/margaretFisherSSH/MFHexisting.png" class="w-full h-auto object-contain bg-white" alt="Existing Margaret Fisher House layout showing 12 apartments" />
+                            <img src="../images/margaretFisher/margaretFisherSSH/SHExistingLayout.png" class="w-full h-auto object-contain bg-white" alt="Existing Margaret Fisher House layout showing 12 apartments" />
                             <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Existing layout: 12 apartments / units.</figcaption>
                         </figure>
 
@@ -365,7 +365,7 @@
 
                             <figure class="bg-white/5 border border-white/10 shadow-2xl rounded-sm overflow-hidden">
                                 <img src="../images/margaretFisher/margaretFisherSSH/promap.jpeg" class="w-full h-auto object-contain bg-white" alt="Promap red-line boundary plan for Margaret Fisher House on Old Kent Road" />
-                                <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-white/35 font-bold">Image: indicative red-line site boundary plan.</figcaption>
+                                <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-white/35 font-bold">Image: Red-line site boundary plan.</figcaption>
                             </figure>
                         </div>
                     </div>
@@ -437,10 +437,6 @@
                                 <span>Email Steve</span>
                                 <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </button>
-                            <button onclick="handleContactDan()" class="px-8 py-4 border border-white/20 text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:border-[#B08D57] hover:text-[#B08D57] transition-all rounded-sm flex items-center space-x-3">
-                                <span>Email Dan</span>
-                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </button>
                         </div>
                     </div>
 
@@ -451,11 +447,6 @@
                                 <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Contact</p>
                                 <p class="text-white text-xl font-light">Steve Curwen</p>
                                 <p class="text-white/55 font-light mt-2">steve@curwengroup.co.uk</p>
-                            </div>
-                            <div class="border-b border-white/10 pb-6">
-                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Or</p>
-                                <p class="text-white text-xl font-light">Dan Johnson</p>
-                                <p class="text-white/55 font-light mt-2">dan@curwengroup.co.uk</p>
                             </div>
                             <div>
                                 <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Opportunity</p>
@@ -493,7 +484,6 @@
     <script>
         const REQUIRED_PASSWORD = 'margaret_ssh';
         const CONTACT_EMAIL = 'steve@curwengroup.co.uk';
-        const CONTACT_EMAIL_DAN = 'dan@curwengroup.co.uk';
         const EMAIL_SUBJECT = 'Margaret Fisher House - SSH Opportunity';
 
         const loginForm = document.getElementById('login-form');
@@ -539,10 +529,6 @@
 
         function handleContact() {
             window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
-        }
-
-        function handleContactDan() {
-            window.location.href = `mailto:${CONTACT_EMAIL_DAN}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
         }
 
         function initScrollReveal() {
