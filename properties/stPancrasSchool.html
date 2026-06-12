@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St Pancras Lewes - Nursery Opportunity Brochure</title>
+    <link rel="icon" type="image/png" href="/favicon/curwenfavicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .reveal {
+            opacity: 0;
+            transform: translateY(3rem);
+            transition: all 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        ::selection { background-color: #B08D57; color: white; }
+        details summary::-webkit-details-marker { display: none; }
+        .hero-gradient { background: linear-gradient(180deg, rgba(10,29,55,0.18) 0%, rgba(10,29,55,0.18) 34%, rgba(10,29,55,0.96) 100%); }
+        .dark-gradient { background: linear-gradient(135deg, #0A1D37 0%, #071426 100%); }
+        .image-card img { transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1); }
+        .image-card:hover img { transform: scale(1.035); }
+        .pdf-frame { width: 100%; min-height: 620px; border: 0; background: #fff; }
+        @media (max-width: 768px) { .pdf-frame { min-height: 420px; } }
+    </style>
+</head>
+<body class="bg-[#FAF9F6] text-slate-900">
+
+    <!-- Authentication Screen -->
+    <div id="auth-screen" class="min-h-screen flex items-center justify-center bg-[#E5E5E1] p-4 fixed inset-0 z-[200]">
+        <div class="w-full max-w-md bg-white shadow-2xl rounded-sm p-8 md:p-12">
+            <div class="flex justify-center mb-10">
+                <img src="https://cdn.anthology.to/static/retailers/alt/curwen_group.png" alt="Curwen Group" class="h-14 w-auto" />
+            </div>
+            <h2 class="text-center text-sm tracking-[0.3em] uppercase font-light mb-2 text-slate-900">Investment Memorandum</h2>
+            <p class="text-center text-[10px] tracking-[0.25em] uppercase font-bold mb-8 text-[#B08D57]">St Pancras Lewes</p>
+            <form id="login-form" class="space-y-4">
+                <input
+                    id="password-input"
+                    type="password"
+                    placeholder="Enter Access Code"
+                    class="w-full px-4 py-4 bg-neutral-50 border border-neutral-200 rounded-sm text-base tracking-widest focus:outline-none focus:border-[#B08D57] transition-colors"
+                />
+                <p id="error-message" class="hidden text-[10px] text-red-600 uppercase tracking-widest text-center font-bold">Invalid password.</p>
+                <button type="submit" class="w-full py-4 bg-[#0A1D37] text-white text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-slate-800 transition-all rounded-sm">
+                    Unlock Document
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="hidden min-h-screen">
+
+        <!-- Navigation -->
+        <nav class="fixed top-0 left-0 right-0 z-[100] bg-white/80 backdrop-blur-md border-b border-neutral-100 px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="https://cdn.anthology.to/static/retailers/alt/curwen_group.png" class="h-8 md:h-10 w-auto" alt="Curwen Group" />
+                <div class="hidden md:block h-6 w-[1px] bg-neutral-200"></div>
+                <span class="hidden md:block text-[10px] tracking-[0.3em] uppercase font-bold text-slate-900">St Pancras Lewes</span>
+            </div>
+
+            <div class="hidden xl:flex items-center space-x-6">
+                <button onclick="scrollToSection('hero')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Home</button>
+                <button onclick="scrollToSection('summary')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Summary</button>
+                <button onclick="scrollToSection('facts')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Facts</button>
+                <button onclick="scrollToSection('location')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Location</button>
+                <button onclick="scrollToSection('layout')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Layout</button>
+                <button onclick="scrollToSection('outdoor')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Outdoor</button>
+                <button onclick="scrollToSection('science')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Science Block</button>
+                <button onclick="scrollToSection('market')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Market</button>
+                <button onclick="scrollToSection('contact')" class="ml-2 px-5 py-2.5 bg-[#0A1D37] text-white text-[9px] uppercase tracking-[0.2em] font-bold hover:bg-[#B08D57] transition-all rounded-sm flex items-center space-x-2">
+                    <i data-lucide="mail" class="w-3 h-3"></i>
+                    <span>Contact Us</span>
+                </button>
+            </div>
+
+            <button class="xl:hidden" onclick="toggleMenu()" aria-label="Open menu">
+                <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden fixed inset-0 z-[90] bg-[#0A1D37] text-white p-12 flex flex-col justify-center space-y-7">
+            <button onclick="scrollToSection('hero')" class="text-2xl font-light tracking-widest text-left">Home</button>
+            <button onclick="scrollToSection('summary')" class="text-2xl font-light tracking-widest text-left">Summary</button>
+            <button onclick="scrollToSection('facts')" class="text-2xl font-light tracking-widest text-left">Facts</button>
+            <button onclick="scrollToSection('location')" class="text-2xl font-light tracking-widest text-left">Location</button>
+            <button onclick="scrollToSection('layout')" class="text-2xl font-light tracking-widest text-left">Layout</button>
+            <button onclick="scrollToSection('outdoor')" class="text-2xl font-light tracking-widest text-left">Outdoor</button>
+            <button onclick="scrollToSection('science')" class="text-2xl font-light tracking-widest text-left">Science Block</button>
+            <button onclick="scrollToSection('market')" class="text-2xl font-light tracking-widest text-left">Market</button>
+            <button onclick="handleContact()" class="text-2xl font-bold tracking-widest text-left text-[#B08D57]">Contact Us</button>
+        </div>
+
+        <main class="pt-20">
+
+            <!-- SECTION: Hero -->
+            <section id="hero" class="relative min-h-[calc(100svh-5rem)] md:h-[92vh] md:min-h-0 w-full overflow-hidden">
+                <img src="../images/stpancrasnursery/SPS%201.jpeg" class="absolute inset-0 w-full h-full object-cover scale-105" alt="St Pancras Catholic Primary School frontage on De Montfort Road, Lewes" />
+                <div class="absolute inset-0 hero-gradient"></div>
+
+                <div class="relative md:absolute md:top-10 md:left-20 z-10 reveal px-6 pt-8 md:px-0 md:pt-0">
+                    <div class="bg-[#B08D57] p-4 sm:p-6 md:p-8 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-white/20 max-w-sm">
+                        <p class="text-white text-[12px] md:text-[14px] tracking-[0.4em] font-black uppercase mb-1.5">Nursery Opportunity</p>
+                        <p class="text-white text-[10px] md:text-[11px] tracking-[0.2em] font-bold uppercase mb-4">Former Primary School</p>
+                        <div class="w-full h-[1.5px] bg-white/30 mb-4"></div>
+                        <p class="text-white text-[10px] md:text-[11px] tracking-[0.15em] font-semibold uppercase leading-relaxed">
+                            Potential early years reuse<br/>Subject to approvals and measured survey
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative md:absolute md:bottom-20 md:left-20 max-w-5xl px-6 pt-10 pb-10 md:px-0 md:pt-0 md:pb-0">
+                    <div class="reveal">
+                        <p class="inline-block bg-[#0A1D37]/85 border border-white/20 text-[#B08D57] text-[10px] sm:text-[12px] md:text-sm tracking-[0.24em] sm:tracking-[0.45em] uppercase font-bold mb-4 px-4 py-2 rounded-sm shadow-lg backdrop-blur-sm">De Montfort Road, Lewes BN7 1SR</p>
+                        <h1 class="text-4xl md:text-7xl xl:text-8xl font-extralight text-white leading-none tracking-tighter uppercase mb-5 md:mb-6">
+                            St Pancras<br/>Lewes
+                        </h1>
+                        <p class="text-white/70 text-sm md:text-lg font-light max-w-3xl mb-6 md:mb-8">
+                            A closed former Catholic primary school with existing education infrastructure, secure external play areas, a hall, library, nursery accommodation and a distinctive sustainable Art &amp; Science block.
+                        </p>
+
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 max-w-5xl mb-6 md:mb-8">
+                            <div class="bg-[#0A1D37]/80 border border-white/10 backdrop-blur-md rounded-sm px-3 py-3 sm:px-6 sm:py-5">
+                                <p class="text-xl sm:text-2xl font-bold text-white">Closed</p>
+                                <p class="text-[8px] sm:text-[9px] uppercase tracking-[0.16em] sm:tracking-[0.25em] text-white/45 font-bold mt-1">Former School</p>
+                            </div>
+                            <div class="bg-[#0A1D37]/80 border border-white/10 backdrop-blur-md rounded-sm px-3 py-3 sm:px-6 sm:py-5">
+                                <p class="text-xl sm:text-2xl font-bold text-white">Good</p>
+                                <p class="text-[8px] sm:text-[9px] uppercase tracking-[0.16em] sm:tracking-[0.25em] text-white/45 font-bold mt-1">Latest School Ofsted</p>
+                            </div>
+                            <div class="bg-[#0A1D37]/80 border border-white/10 backdrop-blur-md rounded-sm px-3 py-3 sm:px-6 sm:py-5">
+                                <p class="text-xl sm:text-2xl font-bold text-white">107</p>
+                                <p class="text-[8px] sm:text-[9px] uppercase tracking-[0.16em] sm:tracking-[0.25em] text-white/45 font-bold mt-1">Pupils at 2023 Inspection</p>
+                            </div>
+                            <div class="bg-[#0A1D37]/80 border border-white/10 backdrop-blur-md rounded-sm px-3 py-3 sm:px-6 sm:py-5">
+                                <p class="text-xl sm:text-2xl font-bold text-white">TBC</p>
+                                <p class="text-[8px] sm:text-[9px] uppercase tracking-[0.16em] sm:tracking-[0.25em] text-white/45 font-bold mt-1">Nursery Capacity</p>
+                            </div>
+                        </div>
+
+                        <button onclick="handleContact()" class="px-6 sm:px-8 py-4 bg-[#B08D57] text-white text-[10px] sm:text-[11px] tracking-[0.22em] sm:tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm flex items-center space-x-3">
+                            <span>Request Further Information</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Executive Summary -->
+            <section id="summary" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                    <div class="lg:col-span-7">
+                        <div class="reveal">
+                            <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">01 — Executive Summary</h2>
+                            <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-8">
+                                A former education campus with early years reuse potential.
+                            </h3>
+                            <div class="space-y-6 text-slate-600 font-light leading-relaxed text-lg">
+                                <p>
+                                    St Pancras Catholic Primary School is a closed former Roman Catholic primary school located on De Montfort Road in Lewes. The property presents a potential opportunity for early years reuse, benefiting from its former education use, established school layout, secure external areas and specialist learning accommodation.
+                                </p>
+                                <p>
+                                    The supplied upper ground and tower layout identifies a nursery room, cloakroom, toilets, hall, library, kitchen, reception, medical room, office / support space and multiple teaching rooms. The lower ground layout identifies support accommodation including storage, staff areas, plant rooms, kitchenette and ancillary spaces.
+                                </p>
+                                <p>
+                                    The site should be positioned as a differentiated nursery opportunity rather than a simple closed-school conversion: the key assets are the existing education infrastructure, secure play areas, strong Lewes location and sustainable Art &amp; Science block.
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                                    <div class="flex items-center space-x-3 text-sm font-medium text-slate-800"><i data-lucide="check" class="text-[#B08D57] w-4.5 h-4.5"></i><span>Closed former primary school</span></div>
+                                    <div class="flex items-center space-x-3 text-sm font-medium text-slate-800"><i data-lucide="check" class="text-[#B08D57] w-4.5 h-4.5"></i><span>Existing education infrastructure</span></div>
+                                    <div class="flex items-center space-x-3 text-sm font-medium text-slate-800"><i data-lucide="check" class="text-[#B08D57] w-4.5 h-4.5"></i><span>Secure outdoor play areas</span></div>
+                                    <div class="flex items-center space-x-3 text-sm font-medium text-slate-800"><i data-lucide="check" class="text-[#B08D57] w-4.5 h-4.5"></i><span>Hall, library, kitchen and support spaces</span></div>
+                                    <div class="flex items-center space-x-3 text-sm font-medium text-slate-800"><i data-lucide="check" class="text-[#B08D57] w-4.5 h-4.5"></i><span>Distinctive Art &amp; Science block</span></div>
+                                    <div class="flex items-center space-x-3 text-sm font-medium text-slate-800"><i data-lucide="check" class="text-[#B08D57] w-4.5 h-4.5"></i><span>Capacity subject to measured survey</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5">
+                        <div class="reveal delay-200">
+                            <div class="bg-white p-10 border border-neutral-100 shadow-xl">
+                                <h4 class="text-[10px] tracking-[0.2em] uppercase font-bold mb-10 text-center text-slate-400">Opportunity Snapshot</h4>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-sm text-left border-collapse">
+                                        <tbody class="text-slate-800">
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Property</td><td class="py-4 text-sm font-bold text-slate-900">St Pancras Catholic Primary School</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Address</td><td class="py-4 text-sm font-bold text-slate-900">De Montfort Road, Lewes BN7 1SR</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Former Use</td><td class="py-4 text-sm font-bold text-slate-900">Roman Catholic Primary School</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Status</td><td class="py-4 text-sm font-bold text-slate-900">Closed former school</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Latest School Ofsted</td><td class="py-4 text-sm font-bold text-slate-900">Good, March 2023</td></tr>
+                                            <tr class="border-b border-neutral-100"><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Proposed Use</td><td class="py-4 text-sm font-bold text-slate-900">Potential day nursery / early years use</td></tr>
+                                            <tr><td class="py-4 text-[9px] uppercase tracking-widest text-slate-400 font-bold">Capacity</td><td class="py-4 text-sm font-bold text-slate-900">To be confirmed by measured survey and EYFS review</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Verified Site Facts -->
+            <section id="facts" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="reveal">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">02 — Verified Site Facts</h2>
+                        <h3 class="text-3xl md:text-5xl font-light mb-10 leading-tight">Clear facts, with no unsupported capacity claim.</h3>
+                        <p class="text-white/60 font-light leading-relaxed text-lg mb-10">
+                            The property is a closed former Roman Catholic primary school. The latest school inspection remained Good and recorded 107 pupils on roll at the time of inspection. A former school capacity of 140 has been identified from DfE / GIAS search data, but should be verified against the formal DfE establishment data before external publication.
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">URN</p><p class="text-xl font-light">114568</p></div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Local Authority</p><p class="text-xl font-light">East Sussex</p></div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Diocese</p><p class="text-xl font-light">Arundel &amp; Brighton</p></div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Former Age Range</p><p class="text-xl font-light">4–11</p></div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Pupils on Roll</p><p class="text-xl font-light">107 at 2023 inspection</p></div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Former School Capacity</p><p class="text-xl font-light">140, verification required</p></div>
+                        </div>
+                    </div>
+
+                    <div class="reveal delay-200">
+                        <figure class="bg-white/5 border border-white/10 rounded-sm overflow-hidden shadow-2xl">
+                            <img src="../images/stpancrasnursery/St%20Pancras%20Primary%20School%2C%20De%20Montford%20Road%2C%20Lewes%20OS.jpg" class="w-full h-auto object-contain bg-white" alt="OS site plan showing St Pancras Catholic Primary School site boundary on De Montfort Road, Lewes" />
+                            <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-white/35 font-bold">Site boundary / OS context supplied for St Pancras Catholic Primary School.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <div class="reveal mt-16 max-w-7xl mx-auto bg-white/5 border border-white/10 rounded-sm p-8">
+                    <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-4">Important note</p>
+                    <p class="text-sm font-light text-white/55 leading-relaxed">
+                        The supplied layout plans are marked “Not to Scale”. They are useful for understanding layout, room relationships and conversion potential, but must not be used to calculate floor areas or registered nursery capacity. Any child-place number must be calculated from measured usable childcare areas and confirmed through operator, planning, building-control and Ofsted registration review.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECTION: Location & Lewes Context -->
+            <section id="location" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="reveal text-center mb-16">
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">03 — Location &amp; Lewes Context</h2>
+                    <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">A central Lewes setting within an established family catchment.</h3>
+                    <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                        The site sits within the Lewes urban area, surrounded by established residential streets, nearby schools, local amenities and transport links. Earlier postcode research places Lewes railway station approximately 1 km from BN7 1SR.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+                    <figure class="reveal bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+                        <img src="../images/stpancrasnursery/St%20Pancras%20Location%20Map.png" class="w-full h-auto object-cover" alt="Aerial location map showing St Pancras Catholic Primary School within Lewes" />
+                        <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Lewes location context showing the school within the wider town setting.</figcaption>
+                    </figure>
+                    <div class="reveal delay-200 grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div class="bg-white border border-neutral-100 shadow-sm p-7 rounded-sm"><i data-lucide="home" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-sm font-bold text-slate-900 mb-2">Residential Catchment</p><p class="text-sm font-light text-slate-500 leading-relaxed">Established family housing surrounds the site, supporting a local nursery proposition.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-7 rounded-sm"><i data-lucide="train" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-sm font-bold text-slate-900 mb-2">Transport Links</p><p class="text-sm font-light text-slate-500 leading-relaxed">Lewes railway station is approximately 1 km from BN7 1SR based on postcode research.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-7 rounded-sm"><i data-lucide="school" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-sm font-bold text-slate-900 mb-2">Education Setting</p><p class="text-sm font-light text-slate-500 leading-relaxed">The site sits among nearby education and family infrastructure within Lewes.</p></div>
+                        <div class="bg-white border border-neutral-100 shadow-sm p-7 rounded-sm"><i data-lucide="map-pinned" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-sm font-bold text-slate-900 mb-2">Town Context</p><p class="text-sm font-light text-slate-500 leading-relaxed">The opportunity is embedded in the Lewes urban fabric rather than an isolated edge-of-town site.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Site Boundary Access Arrival -->
+            <section id="access" class="bg-white py-24 px-6 md:px-20 border-y border-neutral-100">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">04 — Site Boundary, Access &amp; Arrival</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Secure school identity with operational access to be assessed.</h3>
+                        <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                            The existing school frontage, secure gates, boundary wall and school keep-clear markings create a clear education identity. However, nursery conversion will need a detailed strategy for parent drop-off, collection, staff access, servicing, buggy access and disabled access.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <figure class="reveal image-card bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden"><div class="overflow-hidden"><img src="../images/stpancrasnursery/SPS2.jpeg" class="w-full h-72 object-cover" alt="Street context and elevated view of St Pancras school site" /></div><figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Street and elevated site context.</figcaption></figure>
+                        <figure class="reveal delay-100 image-card bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden"><div class="overflow-hidden"><img src="../images/stpancrasnursery/SPS3.jpeg" class="w-full h-72 object-cover" alt="Side and rear access road context at St Pancras Lewes" /></div><figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Side / rear road and access context.</figcaption></figure>
+                        <figure class="reveal delay-200 image-card bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden"><div class="overflow-hidden"><img src="../images/stpancrasnursery/SPS7.jpeg" class="w-full h-72 object-cover" alt="Side elevation and road context of St Pancras Catholic Primary School" /></div><figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Side elevation and surrounding road pattern.</figcaption></figure>
+                    </div>
+
+                    <div class="reveal mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-[#FAF9F6] border border-neutral-100 p-8 rounded-sm">
+                            <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-5">Operational Strengths</p>
+                            <ul class="space-y-3 text-sm font-light text-slate-600 leading-relaxed">
+                                <li>• Existing secure boundary treatment.</li>
+                                <li>• Existing school gates and controlled access points.</li>
+                                <li>• Clear education frontage and signage.</li>
+                                <li>• School keep-clear road markings visible outside the site.</li>
+                                <li>• Enclosed site character supporting safeguarding review.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-[#FAF9F6] border border-neutral-100 p-8 rounded-sm">
+                            <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-5">Due Diligence Items</p>
+                            <ul class="space-y-3 text-sm font-light text-slate-600 leading-relaxed">
+                                <li>• Highways review for drop-off and pick-up.</li>
+                                <li>• On-street parking pressure and staff parking assessment.</li>
+                                <li>• Accessibility review for level changes, steps, ramps and buggies.</li>
+                                <li>• Emergency vehicle access and fire escape review.</li>
+                                <li>• Parent arrival and visitor-control strategy.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Upper Ground Layout -->
+            <section id="layout" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">05 — Existing Education Layout</h2>
+                        <h3 class="text-3xl md:text-5xl font-light leading-tight mb-4">Upper ground and tower accommodation already show key nursery-use components.</h3>
+                        <p class="text-white/55 font-light text-lg max-w-4xl mx-auto">
+                            The supplied upper ground and tower plan shows a nursery room, cloakroom, toilets, hall, library, kitchen, reception, medical room, office / support space and multiple teaching rooms. The plan is not to scale and cannot be used to calculate capacity.
+                        </p>
+                    </div>
+
+                    <figure class="reveal bg-white/5 border border-white/10 p-4 md:p-6 rounded-sm shadow-2xl overflow-hidden">
+                        <img src="../images/stpancrasnursery/Room%20Layout%20Tower%20%26%20Ground%20Floor%20revised.jpg" class="w-full h-auto object-contain bg-white" alt="Upper ground and tower layout plan for St Pancras school" />
+                        <figcaption class="px-2 pt-4 text-[10px] uppercase tracking-widest text-white/35 font-bold">Upper ground and tower layout — supplied plan marked not to scale.</figcaption>
+                    </figure>
+
+                    <div class="reveal mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-white/5 border border-white/10 p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">G14 Nursery</p><p class="text-sm font-light text-white/55">Existing nursery-labelled space shown on plan.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">G2 Hall</p><p class="text-sm font-light text-white/55">Potential indoor gross motor, dining, activity or event space.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">G1 Library</p><p class="text-sm font-light text-white/55">Potential reading, calm, SEN or sensory-support room.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Tower</p><p class="text-sm font-light text-white/55">Lobby, reception and medical room support controlled arrival.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">G4 Kitchen</p><p class="text-sm font-light text-white/55">Potential catering / food-preparation support, subject to compliance.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">G12 Cloakroom</p><p class="text-sm font-light text-white/55">Children's coats, bags and nursery circulation support.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">G7 Office</p><p class="text-sm font-light text-white/55">Facilities / management / admin support space.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Teaching Rooms</p><p class="text-sm font-light text-white/55">Multiple rooms could support age-banded nursery accommodation.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Lower Ground -->
+            <section id="lower-ground" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                    <div class="lg:col-span-7 reveal">
+                        <figure class="bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+                            <img src="../images/stpancrasnursery/Room%20Layout%20Lower%20Ground%20Floor.jpg" class="w-full h-auto object-contain bg-white" alt="Lower ground and crypt layout plan for St Pancras school" />
+                            <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Lower ground and crypt layout — supplied plan marked not to scale.</figcaption>
+                        </figure>
+                    </div>
+                    <div class="lg:col-span-5 reveal delay-200">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">06 — Lower Ground &amp; Support Areas</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-8">Useful back-of-house potential, with restricted-height caveats.</h3>
+                        <div class="space-y-5 text-slate-600 font-light leading-relaxed text-lg">
+                            <p>The lower ground / crypt plan shows ARK LG14, kitchenette, under-stair cupboard, boiler room, water tank room, stores, staff room, toilets and caretaker store.</p>
+                            <p>Several areas are marked as restricted height, including LG13, LG12, LG11, LG10 and related lower-ground areas. These spaces should not be assumed to count as usable childcare areas.</p>
+                            <p>This accommodation should be positioned as operational support potential: storage, staff / back-of-house, plant, ancillary use and operator support, subject to measured survey, building-control advice and condition review.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Outdoor Play -->
+            <section id="outdoor" class="bg-white py-24 px-6 md:px-20 border-y border-neutral-100">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">07 — Outdoor Play &amp; Secure External Areas</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">Existing fenced hardstanding, play areas and nursery-ready outdoor potential.</h3>
+                        <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                            The supplied imagery shows secure hardstanding, fenced play areas, external surfacing, gates and existing playground-style provision. This is one of the strongest nursery-conversion positives, subject to measured area, safeguarding, accessibility and risk-assessment review.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <figure class="reveal image-card bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden"><div class="overflow-hidden"><img src="../images/stpancrasnursery/SPS4.jpeg" class="w-full h-96 object-cover" alt="Secure hardstanding play court at St Pancras school" /></div><figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Secure hardstanding play court.</figcaption></figure>
+                        <figure class="reveal delay-100 image-card bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden"><div class="overflow-hidden"><img src="../images/stpancrasnursery/SPS5.jpeg" class="w-full h-96 object-cover" alt="Fenced external play area at St Pancras school" /></div><figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Fenced external play area.</figcaption></figure>
+                        <figure class="reveal delay-200 image-card bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden"><div class="overflow-hidden"><img src="../images/stpancrasnursery/SPS6.jpeg" class="w-full h-96 object-cover" alt="External play area and road access relationship at St Pancras school" /></div><figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">External play and access relationship.</figcaption></figure>
+                        <figure class="reveal delay-300 image-card bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden"><div class="overflow-hidden"><img src="../images/stpancrasnursery/St-Pancras-front%20ground%20level%20play%20area.jpg" class="w-full h-96 object-cover" alt="Colourful front ground-level play area at St Pancras school" /></div><figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Existing front ground-level play area.</figcaption></figure>
+                    </div>
+
+                    <div class="reveal mt-12 grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="bg-[#FAF9F6] border border-neutral-100 p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Hardstanding Play</p><p class="text-sm font-light text-slate-600">Potential for bikes, scooters, movement and all-weather outdoor activity.</p></div>
+                        <div class="bg-[#FAF9F6] border border-neutral-100 p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Early Years Play</p><p class="text-sm font-light text-slate-600">Existing colourful play surfacing supports the early years story.</p></div>
+                        <div class="bg-[#FAF9F6] border border-neutral-100 p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Age Zoning</p><p class="text-sm font-light text-slate-600">Potential to separate baby, toddler and pre-school outdoor activity areas.</p></div>
+                        <div class="bg-[#FAF9F6] border border-neutral-100 p-6 rounded-sm"><p class="text-[9px] uppercase tracking-widest text-slate-400 font-bold mb-3">Secure Boundaries</p><p class="text-sm font-light text-slate-600">Fencing and gates support safeguarding-led nursery design review.</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Science Block -->
+            <section id="science" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="reveal">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">08 — Sustainable Art &amp; Science Block</h2>
+                        <h3 class="text-3xl md:text-5xl font-light mb-10 leading-tight">The clearest point of differentiation.</h3>
+                        <div class="space-y-6 text-white/60 font-light leading-relaxed text-lg">
+                            <p>A key feature of the site is its dedicated Art &amp; Science block, a modern sustainable learning building that can help distinguish the opportunity from more conventional converted nursery buildings.</p>
+                            <p>Publicly available architectural information previously identified this as a BakerBrown Art &amp; Science extension opened in 2006, with sustainable design credentials including timber / shingle external character and environmental design principles.</p>
+                            <p>Subject to survey and operator design, this space could support a creative studio, STEM-inspired pre-school room, sensory provision, discovery room, parent / community room, staff training space or premium activity studio.</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12">
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Potential Use</p><p class="text-xl font-light">Creative / STEM room</p></div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Operator Appeal</p><p class="text-xl font-light">Premium differentiation</p></div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Alternative Use</p><p class="text-xl font-light">Sensory / discovery room</p></div>
+                            <div class="border-l border-[#B08D57] pl-6 py-2"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Caveat</p><p class="text-xl font-light">Condition survey required</p></div>
+                        </div>
+                    </div>
+
+                    <div class="reveal delay-200 grid grid-cols-1 gap-6">
+                        <figure class="bg-white/5 border border-white/10 rounded-sm overflow-hidden shadow-2xl"><img src="../images/stpancrasnursery/science_block.jpg" class="w-full h-80 object-cover" alt="Exterior of the sustainable Art and Science block at St Pancras school" /><figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-white/35 font-bold">Sustainable Art &amp; Science block exterior.</figcaption></figure>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <figure class="bg-white/5 border border-white/10 rounded-sm overflow-hidden"><img src="../images/stpancrasnursery/science_block_entrance.jpg" class="w-full h-56 object-cover" alt="Entrance to the science block at St Pancras school" /><figcaption class="px-5 py-4 text-[9px] uppercase tracking-widest text-white/35 font-bold">Science block entrance.</figcaption></figure>
+                            <figure class="bg-white/5 border border-white/10 rounded-sm overflow-hidden"><img src="../images/stpancrasnursery/science_block_internal.jpg" class="w-full h-56 object-cover" alt="Internal learning space within the science block" /><figcaption class="px-5 py-4 text-[9px] uppercase tracking-widest text-white/35 font-bold">Internal specialist learning space.</figcaption></figure>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Indicative Nursery Conversion Concept -->
+            <section id="concept" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="reveal text-center mb-16">
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">09 — Indicative Nursery Conversion Concept</h2>
+                    <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">How an early years operator could think about the site.</h3>
+                    <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                        This is not a proposed final layout. It is an initial operator-use concept based on the supplied layout plans and imagery. Final room use, age allocation and capacity must be confirmed by measured survey, operator design, EYFS review and statutory approvals.
+                    </p>
+                </div>
+
+                <div class="reveal overflow-x-auto bg-white border border-neutral-100 shadow-sm rounded-sm">
+                    <table class="w-full text-sm text-left border-collapse">
+                        <thead>
+                            <tr class="bg-[#0A1D37] text-white border-b border-neutral-100">
+                                <th class="p-6 uppercase tracking-widest text-[9px] font-bold">Existing Area / Feature</th>
+                                <th class="p-6 uppercase tracking-widest text-[9px] font-bold">Potential Nursery Role</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-slate-800">
+                            <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">G14 Nursery</td><td class="p-6">Early years / toddler or pre-school room, subject to measured area.</td></tr>
+                            <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">G12 Cloakroom</td><td class="p-6">Children's coats, bags and nursery circulation support.</td></tr>
+                            <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">G2 Hall</td><td class="p-6">Indoor gross motor play, dining, events, movement, wraparound or multi-use activity.</td></tr>
+                            <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">G1 Library</td><td class="p-6">Reading room, calm room, SEND support, sensory provision or small-group learning.</td></tr>
+                            <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">G4 Kitchen</td><td class="p-6">Food preparation / catering support, subject to hygiene, ventilation and compliance review.</td></tr>
+                            <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">Tower Reception / Medical Room</td><td class="p-6">Parent arrival, visitor control, administration and first aid / care room.</td></tr>
+                            <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">G7 Facilities Office</td><td class="p-6">Management, admin, staff or operator support space.</td></tr>
+                            <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">Multiple Teaching Rooms</td><td class="p-6">Potential age-banded rooms for babies, toddlers and pre-school children.</td></tr>
+                            <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">Lower Ground Stores / Staff Areas</td><td class="p-6">Storage, staff support, plant and back-of-house use, subject to restricted-height and condition review.</td></tr>
+                            <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">Art &amp; Science Block</td><td class="p-6">Premium creative, STEM, sensory, discovery, training or pre-school activity space.</td></tr>
+                            <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">External Hardstanding</td><td class="p-6">Secure outdoor play, ride-on toys, active play and age-zoned outdoor provision.</td></tr>
+                            <tr class="hover:bg-neutral-50"><td class="p-6 font-bold">Front Ground-Level Play Area</td><td class="p-6">Early years outdoor provision and child-friendly arrival impression, subject to safeguarding and access review.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SECTION: EYFS Capacity Framework -->
+            <section id="eyfs" class="bg-[#FAF9F6] py-24 px-6 md:px-20 border-y border-neutral-100">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                    <div class="lg:col-span-6 reveal">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">10 — EYFS Capacity Framework</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-8">Nursery capacity should not be stated until usable childcare area is measured.</h3>
+                        <div class="space-y-5 text-slate-600 font-light leading-relaxed text-lg">
+                            <p>EYFS capacity is based on usable indoor childcare space, age mix, staffing ratios, toilets, sleep/rest space, circulation, safeguarding, outdoor access and Ofsted registration. The former school capacity is not the same as nursery capacity.</p>
+                            <p>Usable childcare floor area excludes areas such as storage, thoroughfares, staff areas, cloakrooms, utility rooms, kitchens and toilets. Outdoor space also cannot simply be added to indoor space to increase registered capacity.</p>
+                            <p>The correct brochure position is therefore “capacity to be confirmed” until a measured survey and nursery operator layout have been completed.</p>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-6 reveal delay-200">
+                        <div class="overflow-x-auto bg-white border border-neutral-100 shadow-xl rounded-sm">
+                            <table class="w-full text-sm text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-[#0A1D37] text-white border-b border-neutral-100">
+                                        <th class="p-6 uppercase tracking-widest text-[9px] font-bold">Age Group</th>
+                                        <th class="p-6 uppercase tracking-widest text-[9px] font-bold">Minimum Indoor Space</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-slate-800">
+                                    <tr class="border-b border-neutral-100"><td class="p-6 font-bold">Children under 2</td><td class="p-6">3.5 sq m per child</td></tr>
+                                    <tr class="border-b border-neutral-100"><td class="p-6 font-bold">2-year-olds</td><td class="p-6">2.5 sq m per child</td></tr>
+                                    <tr><td class="p-6 font-bold">3–5-year-olds</td><td class="p-6">2.3 sq m per child</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-8 bg-white border border-neutral-100 rounded-sm p-6">
+                            <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-4">Capacity Statement</p>
+                            <p class="text-sm font-light text-slate-500 leading-relaxed">No nursery capacity is stated in this draft. Capacity should be calculated only after measured usable childcare areas, room allocations, EYFS ratios and operator design are confirmed.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Planning -->
+            <section id="planning" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">11 — Planning &amp; Use-Class Route</h2>
+                        <h3 class="text-3xl md:text-5xl font-light leading-tight mb-4">Early years reuse is subject to planning and statutory confirmation.</h3>
+                        <p class="text-white/55 font-light text-lg max-w-4xl mx-auto">
+                            The former use is understood to be education use. A day nursery use would normally fall within Class E(f), but planning permission or formal confirmation may be required depending on the lawful existing use, material-change assessment, planning constraints and local authority position.
+                        </p>
+                    </div>
+
+                    <div class="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                        <div class="bg-white/5 border border-white/10 p-7 rounded-sm"><i data-lucide="landmark" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-sm font-bold text-white mb-2">Use Class</p><p class="text-sm font-light text-white/50 leading-relaxed">Education to potential Class E(f) nursery use requires planning advice.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-7 rounded-sm"><i data-lucide="map" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-sm font-bold text-white mb-2">Planning Geography</p><p class="text-sm font-light text-white/50 leading-relaxed">The site appears to sit within South Downs National Park planning geography.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-7 rounded-sm"><i data-lucide="car" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-sm font-bold text-white mb-2">Highways</p><p class="text-sm font-light text-white/50 leading-relaxed">Parent drop-off, parking, staff access and servicing need review.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-7 rounded-sm"><i data-lucide="shield-alert" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-sm font-bold text-white mb-2">Statutory Checks</p><p class="text-sm font-light text-white/50 leading-relaxed">Fire, building control, accessibility, safeguarding and Ofsted registration required.</p></div>
+                    </div>
+
+                    <div class="reveal mt-12 bg-white/5 border border-white/10 rounded-sm p-8">
+                        <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-4">Recommended wording</p>
+                        <p class="text-sm font-light text-white/55 leading-relaxed">Potential early years reuse is subject to planning/use-class confirmation with the relevant planning authority, including any requirement for change of use, building-control approvals, highways/drop-off assessment and any heritage, conservation, ecological, accessibility or neighbour-amenity constraints.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Market Demand -->
+            <section id="market" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="reveal mb-16">
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">12 — Market Demand &amp; Childcare Context</h2>
+                    <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-6">An established Lewes childcare market, not an unsupported undersupply claim.</h3>
+                    <p class="text-slate-500 font-light text-lg max-w-4xl leading-relaxed">
+                        The market evidence should be presented carefully. East Sussex childcare sufficiency data indicates a broad childcare market with generally sufficient provision at district level, but also parent access issues, funded-hours expansion and housing growth that may increase pressure on places. Lewes should therefore be positioned as a quality-led market where differentiation matters.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+                    <div class="reveal bg-white border border-neutral-100 shadow-sm p-7 rounded-sm"><p class="text-3xl font-bold text-[#0A1D37] mb-3">704</p><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-4">East Sussex Providers</p><p class="text-sm font-light text-slate-500 leading-relaxed">County childcare market scale from earlier sufficiency research.</p></div>
+                    <div class="reveal delay-100 bg-white border border-neutral-100 shadow-sm p-7 rounded-sm"><p class="text-3xl font-bold text-[#0A1D37] mb-3">98.5%</p><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-4">Good / Outstanding</p><p class="text-sm font-light text-slate-500 leading-relaxed">High-quality local provision means the operator proposition must stand out.</p></div>
+                    <div class="reveal delay-200 bg-white border border-neutral-100 shadow-sm p-7 rounded-sm"><p class="text-3xl font-bold text-[#0A1D37] mb-3">29%</p><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-4">Access Issues</p><p class="text-sm font-light text-slate-500 leading-relaxed">Parent survey access problems identified in earlier childcare research.</p></div>
+                    <div class="reveal delay-300 bg-white border border-neutral-100 shadow-sm p-7 rounded-sm"><p class="text-3xl font-bold text-[#0A1D37] mb-3">30 hrs</p><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-4">Funded Childcare</p><p class="text-sm font-light text-slate-500 leading-relaxed">Expanded funded-hours entitlement may increase demand for formal childcare.</p></div>
+                </div>
+
+                <div class="reveal bg-[#FAF9F6] border border-neutral-100 rounded-sm p-8">
+                    <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-4">Demand conclusion</p>
+                    <p class="text-sm font-light text-slate-600 leading-relaxed">The opportunity should be positioned around differentiated, high-quality, full-day early years provision rather than a simple claim of local undersupply. The former school setting, outdoor space, hall, library and Art &amp; Science block are the strongest ways to separate the site from existing local competition.</p>
+                </div>
+            </section>
+
+            <!-- SECTION: Competition -->
+            <section id="competition" class="bg-white py-24 px-6 md:px-20 border-y border-neutral-100">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">13 — Local Competition Review</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">A competitive local market where site differentiation matters.</h3>
+                        <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                            This is not an empty market. The most important nearby competitor is The Old School House Montessori Nursery on De Montfort Road itself. The brochure should acknowledge competition and then explain why St Pancras is physically distinctive.
+                        </p>
+                    </div>
+
+                    <div class="reveal overflow-x-auto bg-white border border-neutral-100 shadow-sm rounded-sm">
+                        <table class="w-full text-sm text-left border-collapse">
+                            <thead>
+                                <tr class="bg-[#0A1D37] text-white border-b border-neutral-100">
+                                    <th class="p-6 uppercase tracking-widest text-[9px] font-bold">Provider</th>
+                                    <th class="p-6 uppercase tracking-widest text-[9px] font-bold">Position</th>
+                                    <th class="p-6 uppercase tracking-widest text-[9px] font-bold">Research Note</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-slate-800">
+                                <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">The Old School House Montessori Nursery</td><td class="p-6">De Montfort Road</td><td class="p-6">Outstanding; direct competitor on the same road; previously identified as 48 places.</td></tr>
+                                <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">Busy Bees Day Nursery at Lewes</td><td class="p-6">St James Street</td><td class="p-6">Good; full day care; previously identified as 51 places.</td></tr>
+                                <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">Stepping Stones</td><td class="p-6">Morris Road</td><td class="p-6">Good; previously identified as 38 places; later Ofsted concern action noted during research.</td></tr>
+                                <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">Pippa’s Group</td><td class="p-6">Landport Community Hub</td><td class="p-6">Good; previously identified as 30 places; term-time provision.</td></tr>
+                                <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">Southover Nursery School</td><td class="p-6">Southover Church Hall</td><td class="p-6">Good; sessional day care; previously identified as 30 places.</td></tr>
+                                <tr class="border-b border-neutral-100 hover:bg-neutral-50"><td class="p-6 font-bold">Cottage Pre-School</td><td class="p-6">Christie Road</td><td class="p-6">Good; previously identified as 24 places.</td></tr>
+                                <tr class="hover:bg-neutral-50"><td class="p-6 font-bold">Kiddie Capers Childcare Ltd</td><td class="p-6">Lewes</td><td class="p-6">Registered in 2025; no inspection report was available at time of previous research.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Why This Site Works -->
+            <section id="advantage" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">14 — Why This Site Works</h2>
+                        <h3 class="text-3xl md:text-5xl font-light leading-tight mb-4">A differentiated former school nursery proposition.</h3>
+                        <p class="text-white/55 font-light text-lg max-w-4xl mx-auto">
+                            The investment story is not just “there is childcare demand”. It is that this asset has physical features that many nurseries struggle to create from scratch.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <article class="reveal bg-white/5 border border-white/10 p-8 rounded-sm"><div class="w-12 h-12 rounded-sm bg-[#B08D57] text-white flex items-center justify-center text-sm font-bold mb-8">1</div><h4 class="text-2xl font-light mb-4">Former Education Asset</h4><p class="text-white/50 font-light leading-relaxed">Existing school layout, safeguarding logic and child-focused infrastructure.</p></article>
+                        <article class="reveal delay-100 bg-white/5 border border-white/10 p-8 rounded-sm"><div class="w-12 h-12 rounded-sm bg-[#B08D57] text-white flex items-center justify-center text-sm font-bold mb-8">2</div><h4 class="text-2xl font-light mb-4">Secure Outdoor Provision</h4><p class="text-white/50 font-light leading-relaxed">Existing fenced hardstanding, early years play areas and age-zoning potential.</p></article>
+                        <article class="reveal delay-200 bg-white/5 border border-white/10 p-8 rounded-sm"><div class="w-12 h-12 rounded-sm bg-[#B08D57] text-white flex items-center justify-center text-sm font-bold mb-8">3</div><h4 class="text-2xl font-light mb-4">Science / Creative Block</h4><p class="text-white/50 font-light leading-relaxed">A premium point of difference for STEM, art, sensory or discovery-led provision.</p></article>
+                        <article class="reveal delay-300 bg-white/5 border border-white/10 p-8 rounded-sm"><div class="w-12 h-12 rounded-sm bg-[#B08D57] text-white flex items-center justify-center text-sm font-bold mb-8">4</div><h4 class="text-2xl font-light mb-4">Central Lewes Catchment</h4><p class="text-white/50 font-light leading-relaxed">Established residential surroundings, town setting and transport access.</p></article>
+                        <article class="reveal delay-400 bg-white/5 border border-white/10 p-8 rounded-sm"><div class="w-12 h-12 rounded-sm bg-[#B08D57] text-white flex items-center justify-center text-sm font-bold mb-8">5</div><h4 class="text-2xl font-light mb-4">Operational Flexibility</h4><p class="text-white/50 font-light leading-relaxed">Hall, library, kitchen, reception, medical room and support accommodation.</p></article>
+                        <article class="reveal delay-500 bg-white/5 border border-white/10 p-8 rounded-sm"><div class="w-12 h-12 rounded-sm bg-[#B08D57] text-white flex items-center justify-center text-sm font-bold mb-8">6</div><h4 class="text-2xl font-light mb-4">Premium Nursery Potential</h4><p class="text-white/50 font-light leading-relaxed">More distinctive than a standard converted residential, church hall or office setting.</p></article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Risks -->
+            <section id="risks" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+                <div class="reveal text-center mb-16">
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">15 — Risks, Constraints &amp; Due Diligence</h2>
+                    <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">The checks needed before capacity, cost or operation can be confirmed.</h3>
+                    <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                        Serious nursery operators will expect these issues to be surfaced. Including them strengthens the brochure because it shows the opportunity has been reviewed honestly.
+                    </p>
+                </div>
+
+                <div class="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="bg-white border border-neutral-100 p-6 rounded-sm shadow-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Measured Survey</p><p class="text-sm font-light text-slate-600">Required before any nursery capacity can be stated.</p></div>
+                    <div class="bg-white border border-neutral-100 p-6 rounded-sm shadow-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Not-to-Scale Plans</p><p class="text-sm font-light text-slate-600">Current plans are layout references only.</p></div>
+                    <div class="bg-white border border-neutral-100 p-6 rounded-sm shadow-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Planning / Use Class</p><p class="text-sm font-light text-slate-600">Nursery conversion requires formal planning advice.</p></div>
+                    <div class="bg-white border border-neutral-100 p-6 rounded-sm shadow-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Ofsted Registration</p><p class="text-sm font-light text-slate-600">Required before operation as an early years setting.</p></div>
+                    <div class="bg-white border border-neutral-100 p-6 rounded-sm shadow-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Fire Strategy</p><p class="text-sm font-light text-slate-600">Important for multi-level buildings and sleeping children.</p></div>
+                    <div class="bg-white border border-neutral-100 p-6 rounded-sm shadow-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Accessibility</p><p class="text-sm font-light text-slate-600">Level changes, ramps, steps and buggy access require review.</p></div>
+                    <div class="bg-white border border-neutral-100 p-6 rounded-sm shadow-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Highways / Drop-Off</p><p class="text-sm font-light text-slate-600">Surrounding roads appear constrained and need assessment.</p></div>
+                    <div class="bg-white border border-neutral-100 p-6 rounded-sm shadow-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Parking</p><p class="text-sm font-light text-slate-600">No confirmed dedicated parking count is currently available.</p></div>
+                    <div class="bg-white border border-neutral-100 p-6 rounded-sm shadow-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Outdoor Play Measurement</p><p class="text-sm font-light text-slate-600">Usable external play areas need measured confirmation.</p></div>
+                    <div class="bg-white border border-neutral-100 p-6 rounded-sm shadow-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Building Condition</p><p class="text-sm font-light text-slate-600">Roof, services, heating, drainage, asbestos and RAAC checks required.</p></div>
+                    <div class="bg-white border border-neutral-100 p-6 rounded-sm shadow-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Science Block Condition</p><p class="text-sm font-light text-slate-600">Specialist block should be surveyed despite being a major feature.</p></div>
+                    <div class="bg-white border border-neutral-100 p-6 rounded-sm shadow-sm"><p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-3">Neighbour Amenity</p><p class="text-sm font-light text-slate-600">Traffic, outdoor play noise and operating hours need planning review.</p></div>
+                </div>
+            </section>
+
+            <!-- SECTION: Image Gallery -->
+            <section id="gallery" class="bg-white py-24 px-6 md:px-20 border-y border-neutral-100">
+                <div class="max-w-7xl mx-auto">
+                    <div class="reveal text-center mb-16">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">16 — Image Gallery / Asset Showcase</h2>
+                        <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">A visual record of the opportunity.</h3>
+                        <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
+                            The gallery shows the frontage, street context, side and rear elevations, secure hardstanding, play areas, maps, plans and science block imagery available for this draft brochure.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        <img src="../images/stpancrasnursery/SPS%201.jpeg" class="w-full h-64 object-cover rounded-sm shadow-sm border border-neutral-100" alt="St Pancras frontage" />
+                        <img src="../images/stpancrasnursery/SPS2.jpeg" class="w-full h-64 object-cover rounded-sm shadow-sm border border-neutral-100" alt="St Pancras elevated context" />
+                        <img src="../images/stpancrasnursery/SPS3.jpeg" class="w-full h-64 object-cover rounded-sm shadow-sm border border-neutral-100" alt="St Pancras side elevation" />
+                        <img src="../images/stpancrasnursery/SPS4.jpeg" class="w-full h-64 object-cover rounded-sm shadow-sm border border-neutral-100" alt="St Pancras secure playcourt" />
+                        <img src="../images/stpancrasnursery/SPS5.jpeg" class="w-full h-64 object-cover rounded-sm shadow-sm border border-neutral-100" alt="St Pancras fenced play area" />
+                        <img src="../images/stpancrasnursery/SPS6.jpeg" class="w-full h-64 object-cover rounded-sm shadow-sm border border-neutral-100" alt="St Pancras access and play relationship" />
+                        <img src="../images/stpancrasnursery/SPS7.jpeg" class="w-full h-64 object-cover rounded-sm shadow-sm border border-neutral-100" alt="St Pancras side close-up" />
+                        <img src="../images/stpancrasnursery/science_block.jpg" class="w-full h-64 object-cover rounded-sm shadow-sm border border-neutral-100" alt="Science block exterior" />
+                        <img src="../images/stpancrasnursery/science_block_internal.jpg" class="w-full h-64 object-cover rounded-sm shadow-sm border border-neutral-100" alt="Science block internal" />
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Closing -->
+            <section id="closing" class="relative bg-neutral-950 py-28 px-6 md:px-20 text-white overflow-hidden">
+                <div class="absolute inset-0 opacity-25">
+                    <img src="../images/stpancrasnursery/St-Pancras-front%20ground%20level%20play%20area.jpg" class="w-full h-full object-cover" alt="St Pancras play area background" />
+                </div>
+                <div class="absolute inset-0 bg-[#050B16]/85"></div>
+                <div class="relative z-10 max-w-6xl mx-auto text-center">
+                    <div class="reveal">
+                        <p class="text-[#B08D57] text-[10px] tracking-[0.45em] uppercase font-bold mb-8">Final Positioning</p>
+                        <h2 class="text-4xl md:text-7xl font-extralight leading-tight mb-10">
+                            A rare opportunity to reposition a closed former school as a differentiated early years setting.
+                        </h2>
+                        <p class="text-white/65 text-lg font-light max-w-4xl mx-auto leading-relaxed">
+                            St Pancras combines existing education infrastructure, secure outdoor areas, hall, library, nursery accommodation, kitchen, support spaces and a distinctive Art &amp; Science block. Subject to planning, Ofsted registration, measured survey and operator due diligence, the property has strong potential to support a premium nursery proposition in Lewes.
+                        </p>
+                        <button onclick="handleContact()" class="mt-12 px-8 py-4 bg-[#B08D57] text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm inline-flex items-center space-x-3">
+                            <span>Request Further Information</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Contact -->
+            <section id="contact" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="reveal">
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">17 — Contact &amp; Enquiries</h2>
+                        <h3 class="text-3xl md:text-5xl font-light leading-tight mb-8">Discuss the St Pancras nursery opportunity.</h3>
+                        <div class="space-y-5 text-white/60 font-light leading-relaxed text-lg">
+                            <p>For further information regarding acquisition, leasehold opportunities, nursery conversion potential, measured survey requirements or operator due diligence, please enquire directly.</p>
+                            <p><strong class="font-semibold text-white">Opportunity:</strong> Closed former primary school with potential early years reuse.</p>
+                            <p><strong class="font-semibold text-white">Location:</strong> St Pancras Catholic Primary School, De Montfort Road, Lewes BN7 1SR.</p>
+                            <p><strong class="font-semibold text-white">Capacity:</strong> To be confirmed by measured survey and EYFS review.</p>
+                            <p class="text-white/40 text-sm">Replace contact details if a different agent, operator or project contact should be used.</p>
+                        </div>
+                        <button onclick="handleContact()" class="mt-10 px-8 py-4 bg-[#B08D57] text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm flex items-center space-x-3">
+                            <span>Make An Enquiry</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                    <div class="reveal delay-200 bg-white/5 border border-white/10 rounded-sm p-8 md:p-10">
+                        <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-8">Enquiry Details</p>
+                        <div class="space-y-6">
+                            <div class="border-b border-white/10 pb-5">
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Contact Name</p>
+                                <p class="text-white font-light">Steve Curwen</p>
+                            </div>
+                            <div class="border-b border-white/10 pb-5">
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Email</p>
+                                <p class="text-white font-light">steve@curwengroup.co.uk</p>
+                            </div>
+                            <div>
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">CTA</p>
+                                <p class="text-white font-light">Request further information, arrange a viewing, or discuss the nursery conversion opportunity.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Legal Notice / Disclaimer -->
+            <section id="legal" class="bg-neutral-950 py-24 px-6 md:px-20 text-white">
+                <div class="max-w-5xl mx-auto">
+                    <div class="reveal">
+                        <div class="flex items-center space-x-4 mb-10">
+                            <div class="w-12 h-[1px] bg-[#B08D57]"></div>
+                            <h3 class="text-[10px] tracking-[0.5em] uppercase font-bold text-[#B08D57]">Legal Notice / Disclaimer</h3>
+                        </div>
+                        <div class="space-y-6 text-sm font-light text-white/50 leading-relaxed">
+                            <p class="text-white/80 font-medium">This document is provided for information purposes only and is based on publicly researched information, supplied photographs and supplied layout plans.</p>
+                            <p>All areas, boundaries, capacities, use-class references, planning assumptions, nursery conversion potential, outdoor play assumptions, access arrangements, parking assumptions, market statistics and operational assumptions should be verified by interested parties through their own professional due diligence.</p>
+                            <p>The supplied layout plans are marked “Not to Scale”. They should be treated as layout references only and not as measured drawings. No nursery capacity is stated or implied by the plans.</p>
+                            <p>No warranty is given as to the accuracy or completeness of the information provided. Any final published investment memorandum should include agent-approved legal wording, measured survey confirmation, planning caveats, image permissions and due diligence requirements.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <button onclick="scrollToSection('hero')" class="fixed bottom-8 right-8 z-[100] p-4 bg-white shadow-2xl border border-neutral-100 hover:bg-[#B08D57] hover:text-white transition-all group" aria-label="Back to top">
+            <i data-lucide="arrow-right" class="-rotate-90 group-hover:translate-y-[-2px] transition-transform w-5 h-5"></i>
+        </button>
+    </div>
+
+    <script>
+        const REQUIRED_PASSWORD = 'stpancras_bn7';
+        const CONTACT_EMAIL = 'steve@curwengroup.co.uk';
+        const EMAIL_SUBJECT = 'St Pancras Lewes - Nursery Opportunity';
+
+        const loginForm = document.getElementById('login-form');
+        const passwordInput = document.getElementById('password-input');
+        const errorMessage = document.getElementById('error-message');
+        const authScreen = document.getElementById('auth-screen');
+        const mainContent = document.getElementById('main-content');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (passwordInput.value === REQUIRED_PASSWORD) {
+                authScreen.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+                initLucide();
+                initScrollReveal();
+            } else {
+                errorMessage.classList.remove('hidden');
+                passwordInput.classList.add('border-red-500');
+            }
+        });
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) element.scrollIntoView({ behavior: 'smooth' });
+            if (isMenuOpen) toggleMenu();
+        }
+
+        function handleContact() {
+            window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
+        }
+
+        function initScrollReveal() {
+            const observerOptions = { threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, observerOptions);
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        function initLucide() { lucide.createIcons(); }
+        window.onload = () => { initLucide(); };
+    </script>
+</body>
+</html>
