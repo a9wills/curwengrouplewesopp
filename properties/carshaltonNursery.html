@@ -70,9 +70,9 @@
             <div class="hidden xl:flex items-center space-x-6">
                 <button onclick="scrollToSection('hero')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Home</button>
                 <button onclick="scrollToSection('summary')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Summary</button>
-                <button onclick="scrollToSection('facts')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Facts</button>
+                <button onclick="scrollToSection('facts')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Property Facts</button>
                 <button onclick="scrollToSection('terms')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Terms</button>
-                <button onclick="scrollToSection('location')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Location</button>
+                <button onclick="scrollToSection('location')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Access</button>
                 <button onclick="scrollToSection('site')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Site</button>
                 <button onclick="scrollToSection('layout')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Rooms</button>
                 <button onclick="scrollToSection('outdoor')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Outdoor</button>
@@ -92,9 +92,9 @@
         <div id="mobile-menu" class="hidden fixed inset-0 z-[90] bg-[#0A1D37] text-white p-12 flex flex-col justify-center space-y-7">
             <button onclick="scrollToSection('hero')" class="text-2xl font-light tracking-widest text-left">Home</button>
             <button onclick="scrollToSection('summary')" class="text-2xl font-light tracking-widest text-left">Summary</button>
-            <button onclick="scrollToSection('facts')" class="text-2xl font-light tracking-widest text-left">Facts</button>
+            <button onclick="scrollToSection('facts')" class="text-2xl font-light tracking-widest text-left">Property Facts</button>
             <button onclick="scrollToSection('terms')" class="text-2xl font-light tracking-widest text-left">Terms</button>
-            <button onclick="scrollToSection('location')" class="text-2xl font-light tracking-widest text-left">Location</button>
+            <button onclick="scrollToSection('location')" class="text-2xl font-light tracking-widest text-left">Access</button>
             <button onclick="scrollToSection('site')" class="text-2xl font-light tracking-widest text-left">Site</button>
             <button onclick="scrollToSection('layout')" class="text-2xl font-light tracking-widest text-left">Rooms</button>
             <button onclick="scrollToSection('outdoor')" class="text-2xl font-light tracking-widest text-left">Outdoor</button>
@@ -219,11 +219,11 @@
                 </div>
             </section>
 
-            <!-- SECTION: Verified Site Facts -->
+            <!-- SECTION: Property Facts -->
             <section id="facts" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
                 <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                     <div class="reveal">
-                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">02 - Verified Site Facts</h2>
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">02 - Property Facts</h2>
                         <h3 class="text-3xl md:text-5xl font-light mb-10 leading-tight">A concise fact base for the current brochure.</h3>
                         <p class="text-white/60 font-light leading-relaxed text-lg mb-10">
                             This version uses the agreed property facts, lease terms and CGI room imagery. Further planning, market and operating evidence can be added later when confirmed.
@@ -349,13 +349,13 @@
                 </div>
             </section>
 
-            <!-- SECTION: Location Context -->
+            <!-- SECTION: Location and Access -->
             <section id="location" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
                 <div class="reveal text-center mb-16">
-                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">04 - Location &amp; Catchment Context</h2>
+                    <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">04 - Location &amp; Access</h2>
                     <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">High Street visibility with a deeper garden setting.</h3>
                     <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
-                        The frontage and top-view CGI position the nursery as a visible High Street setting with a warm early years identity, a deeper rear garden and nearby parking context. The site benefits from a narrow side parking area and is immediately adjacent to Carshalton High Street Car Park. Detailed catchment, competitor and transport evidence still needs a separate research pass before final publication.
+                        The frontage and top-view CGI position the nursery as a visible High Street setting with a warm early years identity, a deeper rear garden and nearby parking context. The site benefits from a narrow side parking area and is immediately adjacent to Carshalton High Street Car Park.
                     </p>
                 </div>
 
@@ -475,45 +475,23 @@
             <section id="planning" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
                 <div class="max-w-7xl mx-auto">
                     <div class="reveal text-center mb-16">
-                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">08 - Planning &amp; Use-Class Route</h2>
-                        <h3 class="text-3xl md:text-5xl font-light leading-tight mb-4">Planning status and nursery use need formal confirmation.</h3>
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">08 - Planning &amp; Agreement Conditions</h2>
+                        <h3 class="text-3xl md:text-5xl font-light leading-tight mb-4">Planning conditions sit within the agreed transaction structure.</h3>
                         <p class="text-white/55 font-light text-lg max-w-4xl mx-auto">
-                            The supplied headline position is Existing Class E, but before final publication the nursery proposition still needs formal confirmation on lawful use, any required nursery permission, outdoor play, drop-off, building-control matters and Ofsted registration.
+                            The supplied headline position is Existing Class E. The heads of terms record the transaction as subject to satisfactory planning permission for use of the premises as a children's day nursery and for the outside space to be used as a nursery garden, with no onerous conditions attached.
                         </p>
                     </div>
 
                     <div class="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                        <div class="bg-white/5 border border-white/10 p-7 rounded-sm"><i data-lucide="landmark" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-sm font-bold text-white mb-2">Use Class</p><p class="text-sm font-light text-white/50 leading-relaxed">Existing Class E is supplied as a headline fact; confirm lawful use and whether day nursery use needs permission or formal confirmation.</p></div>
-                        <div class="bg-white/5 border border-white/10 p-7 rounded-sm"><i data-lucide="map" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-sm font-bold text-white mb-2">Planning Checks</p><p class="text-sm font-light text-white/50 leading-relaxed">Relevant planning history and constraints should be checked separately before issue.</p></div>
-                        <div class="bg-white/5 border border-white/10 p-7 rounded-sm"><i data-lucide="car" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-sm font-bold text-white mb-2">Highways</p><p class="text-sm font-light text-white/50 leading-relaxed">Parent drop-off, parking, staff access and servicing need review.</p></div>
-                        <div class="bg-white/5 border border-white/10 p-7 rounded-sm"><i data-lucide="shield-alert" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-sm font-bold text-white mb-2">Statutory Checks</p><p class="text-sm font-light text-white/50 leading-relaxed">Fire, building control, accessibility, safeguarding and Ofsted registration required.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-7 rounded-sm"><i data-lucide="landmark" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-sm font-bold text-white mb-2">Use Class</p><p class="text-sm font-light text-white/50 leading-relaxed">Existing Class E is supplied as a headline fact and forms part of the buyer information.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-7 rounded-sm"><i data-lucide="file-check-2" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-sm font-bold text-white mb-2">Premises Permission</p><p class="text-sm font-light text-white/50 leading-relaxed">The transaction is conditional on satisfactory planning permission for day nursery use, with no onerous conditions attached.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-7 rounded-sm"><i data-lucide="trees" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-sm font-bold text-white mb-2">Garden Permission</p><p class="text-sm font-light text-white/50 leading-relaxed">The outside space condition relates to its proposed use as a day nursery garden.</p></div>
+                        <div class="bg-white/5 border border-white/10 p-7 rounded-sm"><i data-lucide="clipboard-check" class="text-[#B08D57] w-6 h-6 mb-5"></i><p class="text-sm font-bold text-white mb-2">Agreement Conditions</p><p class="text-sm font-light text-white/50 leading-relaxed">The Agreement for Lease conditionality, board approval and sub-letting permission remain part of the formal structure.</p></div>
                     </div>
 
                     <div class="reveal mt-12 bg-white/5 border border-white/10 rounded-sm p-8">
-                        <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-4">Recommended wording</p>
-                        <p class="text-sm font-light text-white/55 leading-relaxed">Potential early years use is subject to planning/use-class confirmation with the relevant authority, including confirmation of the Existing Class E position, any requirement for change of use, building-control approvals, highways/drop-off assessment and any heritage, conservation, ecological, accessibility, acoustic, outdoor-play or neighbour-amenity constraints.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECTION: Why This Site Works -->
-            <section id="advantage" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white overflow-hidden">
-                <div class="max-w-7xl mx-auto">
-                    <div class="reveal text-center mb-16">
-                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">09 - Why This Site Works</h2>
-                        <h3 class="text-3xl md:text-5xl font-light leading-tight mb-4">A nursery proposition built around visibility, garden depth and warm room design.</h3>
-                        <p class="text-white/55 font-light text-lg max-w-4xl mx-auto">
-                            The current brochure story is physical and experiential: a visible High Street nursery, generous internal accommodation, secure outdoor space and CGI rooms that show the intended quality of environment.
-                        </p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <article class="reveal bg-white/5 border border-white/10 p-8 rounded-sm"><div class="w-12 h-12 rounded-sm bg-[#B08D57] text-white flex items-center justify-center text-sm font-bold mb-8">1</div><h4 class="text-2xl font-light mb-4">High Street Visibility</h4><p class="text-white/50 font-light leading-relaxed">The frontage concept gives the nursery a clear public identity and visible parent-arrival point.</p></article>
-                        <article class="reveal delay-100 bg-white/5 border border-white/10 p-8 rounded-sm"><div class="w-12 h-12 rounded-sm bg-[#B08D57] text-white flex items-center justify-center text-sm font-bold mb-8">2</div><h4 class="text-2xl font-light mb-4">Secure Rear Garden</h4><p class="text-white/50 font-light leading-relaxed">The assumed c.5,500 sq ft garden is the strongest differentiation point for a High Street nursery.</p></article>
-                        <article class="reveal delay-200 bg-white/5 border border-white/10 p-8 rounded-sm"><div class="w-12 h-12 rounded-sm bg-[#B08D57] text-white flex items-center justify-center text-sm font-bold mb-8">3</div><h4 class="text-2xl font-light mb-4">85-Child Capacity</h4><p class="text-white/50 font-light leading-relaxed">The brochure can now state the realistic registered capacity assumption clearly.</p></article>
-                        <article class="reveal delay-300 bg-white/5 border border-white/10 p-8 rounded-sm"><div class="w-12 h-12 rounded-sm bg-[#B08D57] text-white flex items-center justify-center text-sm font-bold mb-8">4</div><h4 class="text-2xl font-light mb-4">Class E / Vacant Possession</h4><p class="text-white/50 font-light leading-relaxed">The supplied headline facts give the opportunity a clear starting position for operator review.</p></article>
-                        <article class="reveal delay-400 bg-white/5 border border-white/10 p-8 rounded-sm"><div class="w-12 h-12 rounded-sm bg-[#B08D57] text-white flex items-center justify-center text-sm font-bold mb-8">5</div><h4 class="text-2xl font-light mb-4">Parking Support</h4><p class="text-white/50 font-light leading-relaxed">Side parking for around 3 or 4 cars and the adjacent High Street car park can support the access strategy, subject to verification.</p></article>
-                        <article class="reveal delay-500 bg-white/5 border border-white/10 p-8 rounded-sm"><div class="w-12 h-12 rounded-sm bg-[#B08D57] text-white flex items-center justify-center text-sm font-bold mb-8">6</div><h4 class="text-2xl font-light mb-4">Room Variety</h4><p class="text-white/50 font-light leading-relaxed">Baby, toddler, messy-play and quiet-room CGI assets help show a full early years setting.</p></article>
+                        <p class="text-[10px] uppercase tracking-[0.35em] font-bold text-[#B08D57] mb-4">Buyer note</p>
+                        <p class="text-sm font-light text-white/55 leading-relaxed">The planning items are presented as transaction conditions from the heads of terms rather than as a separate market assumption. Final wording should follow the agreed Agreement for Lease and solicitor-approved documentation.</p>
                     </div>
                 </div>
             </section>
@@ -522,7 +500,7 @@
             <section id="gallery" class="bg-white py-24 px-6 md:px-20 border-y border-neutral-100">
                 <div class="max-w-7xl mx-auto">
                     <div class="reveal text-center mb-16">
-                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">10 - Image Gallery / CGI Showcase</h2>
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">09 - Image Gallery / CGI Showcase</h2>
                         <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">A visual record of the proposed nursery environment.</h3>
                         <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
                             These CGI images show the proposed site context, frontage, reception, childcare rooms and secure garden environment.
@@ -547,7 +525,7 @@
             <section id="risks" class="bg-white py-24 px-6 md:px-20 border-y border-neutral-100">
                 <div class="max-w-7xl mx-auto">
                     <div class="reveal text-center mb-16">
-                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">11 - Risks, Constraints &amp; Due Diligence</h2>
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">10 - Risks, Constraints &amp; Due Diligence</h2>
                         <h3 class="text-3xl md:text-5xl font-light text-slate-900 leading-tight mb-4">The checks needed before capacity, cost or operation can be confirmed.</h3>
                         <p class="text-slate-500 font-light text-lg max-w-4xl mx-auto leading-relaxed">
                             Serious nursery operators will expect these issues to be surfaced. Keeping the caveats visible makes the brochure more credible.
@@ -577,13 +555,13 @@
             <section id="contact" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white">
                 <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                     <div class="reveal">
-                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">12 - Contact &amp; Enquiries</h2>
+                        <h2 class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-10">11 - Contact &amp; Enquiries</h2>
                         <h3 class="text-3xl md:text-5xl font-light leading-tight mb-8">Nursery opportunity enquiries.</h3>
                         <div class="space-y-5 text-white/60 font-light leading-relaxed text-lg">
                             <p><strong class="font-semibold text-white">Opportunity:</strong> Carshalton nursery opportunity.</p>
                             <p><strong class="font-semibold text-white">Location:</strong> 27-29 High Street, Carshalton SM5 3AP, UK.</p>
                             <p><strong class="font-semibold text-white">Capacity:</strong> Realistic registered capacity assumption of 85 children.</p>
-                            <p class="text-white/40 text-sm">Replace contact details if a different agent, operator or project contact should be used.</p>
+                            <p class="text-white/40 text-sm">For further information, contact Dan Johnson using the details provided.</p>
                         </div>
                         <button onclick="handleContact()" class="mt-10 px-8 py-4 bg-[#B08D57] text-white text-[11px] tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm flex items-center space-x-3">
                             <span>Make An Enquiry</span>
@@ -596,11 +574,15 @@
                         <div class="space-y-6">
                             <div class="border-b border-white/10 pb-5">
                                 <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Contact Name</p>
-                                <p class="text-white font-light">Steve Curwen</p>
+                                <p class="text-white font-light">Dan Johnson</p>
+                            </div>
+                            <div class="border-b border-white/10 pb-5">
+                                <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Telephone</p>
+                                <p class="text-white font-light">07789 294318</p>
                             </div>
                             <div class="border-b border-white/10 pb-5">
                                 <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">Email</p>
-                                <p class="text-white font-light">steve@curwengroup.co.uk</p>
+                                <p class="text-white font-light">dan@curwengroup.co.uk</p>
                             </div>
                             <div>
                                 <p class="text-[9px] uppercase tracking-widest text-white/35 font-bold mb-2">CTA</p>
@@ -620,10 +602,8 @@
                             <h3 class="text-[10px] tracking-[0.5em] uppercase font-bold text-[#B08D57]">Legal Notice / Disclaimer</h3>
                         </div>
                         <div class="space-y-6 text-sm font-light text-white/50 leading-relaxed">
-                            <p class="text-white/80 font-medium">This document is a draft template provided for information and planning purposes only.</p>
-                            <p>All areas, boundaries, capacities, use-class references, planning assumptions, nursery conversion potential, outdoor play assumptions, access arrangements, parking assumptions, market statistics, lease terms, rental assumptions, refurbishment contribution mechanics and operational assumptions should be verified by interested parties through their own professional due diligence.</p>
-                            <p>The lease terms summarised in this brochure are intended as heads of terms only and remain subject to contract, survey, planning, board approval, Agreement for Lease conditionality and formal legal documentation.</p>
-                            <p>The stated 85-child capacity is a working registered-capacity assumption and should be verified against measured usable childcare areas, EYFS space standards, operator layout and statutory registration requirements.</p>
+                            <p class="text-white/80 font-medium">This document is provided for information purposes only and is based on supplied information, supplied photographs and illustrative CGI imagery.</p>
+                            <p>All areas, boundaries, capacities, use-class references, planning assumptions, nursery conversion potential, outdoor play assumptions, access arrangements, parking assumptions, market statistics, lease terms and operational assumptions should be verified by interested parties through their own professional due diligence.</p>
                             <p>No warranty is given as to the accuracy or completeness of the information provided. Any final published investment memorandum should include agent-approved legal wording, measured survey confirmation, planning caveats, image permissions and due diligence requirements.</p>
                         </div>
                     </div>
@@ -638,7 +618,7 @@
 
     <script>
         const REQUIRED_PASSWORD = 'carshalton_sm5';
-        const CONTACT_EMAIL = 'steve@curwengroup.co.uk';
+        const CONTACT_EMAIL = 'dan@curwengroup.co.uk';
         const EMAIL_SUBJECT = 'Carshalton Nursery Opportunity';
 
         const loginForm = document.getElementById('login-form');
