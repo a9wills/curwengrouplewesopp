@@ -75,10 +75,6 @@
                 <button onclick="scrollToSection('accommodation')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Delivery</button>
                 <button onclick="scrollToSection('control')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Control</button>
 
-                <button onclick="handleContact()" class="ml-2 px-5 py-2.5 bg-[#0A1D37] text-white text-[9px] uppercase tracking-[0.2em] font-bold hover:bg-[#B08D57] transition-all rounded-sm flex items-center space-x-2">
-                    <i data-lucide="mail" class="w-3 h-3"></i>
-                    <span>Discuss Brief</span>
-                </button>
             </div>
 
             <button class="xl:hidden" onclick="toggleMenu()" aria-label="Open menu">
@@ -97,7 +93,6 @@
             <button onclick="scrollToSection('dropoff')" class="text-2xl font-light tracking-widest text-left">Drop-Off</button>
             <button onclick="scrollToSection('accommodation')" class="text-2xl font-light tracking-widest text-left">Delivery</button>
             <button onclick="scrollToSection('control')" class="text-2xl font-light tracking-widest text-left">Control</button>
-            <button onclick="handleContact()" class="text-2xl font-bold tracking-widest text-left text-[#B08D57]">Discuss Brief</button>
         </div>
 
         <main class="pt-20">
@@ -147,10 +142,6 @@
                             </div>
                         </div>
 
-                        <button onclick="handleContact()" class="px-6 sm:px-8 py-4 bg-[#B08D57] text-white text-[10px] sm:text-[11px] tracking-[0.22em] sm:tracking-[0.3em] uppercase font-bold hover:bg-white hover:text-[#0A1D37] transition-all rounded-sm flex items-center space-x-3">
-                            <span>Discuss Maypole Brief</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </button>
                     </div>
                 </div>
             </section>
@@ -519,9 +510,6 @@
     </div>
 
     <script>
-        const CONTACT_EMAIL = 'steve@curwengroup.co.uk';
-        const EMAIL_SUBJECT = '21-29 Sandringham Road, Thornton Heath - Maypole SEN School Concept';
-
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
         let isMenuOpen = false;
@@ -542,10 +530,6 @@
             const element = document.getElementById(id);
             if (element) element.scrollIntoView({ behavior: 'smooth' });
             if (isMenuOpen) toggleMenu();
-        }
-
-        function handleContact() {
-            window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
         }
 
         function initScrollReveal() {
