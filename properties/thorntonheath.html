@@ -379,12 +379,14 @@
                     <div class="lg:col-span-7">
                         <figure class="reveal bg-[#FAF9F6] border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
                             <video
+                                id="dropoff-video"
                                 class="w-full h-auto object-cover bg-neutral-950"
                                 controls
                                 muted
                                 playsinline
                                 preload="metadata"
                                 poster="../images/thornton/GarageCGI.png"
+                                data-stop-at="8"
                                 aria-label="Secure staggered drop-off video showing shutter-controlled arrival sequence"
                             >
                                 <source src="../images/thornton/videos/dropOff.mp4" type="video/mp4" />
@@ -567,10 +569,33 @@
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         }
 
+        function initVideoCaps() {
+            document.querySelectorAll('video[data-stop-at]').forEach(video => {
+                const stopAt = Number(video.dataset.stopAt);
+                if (!Number.isFinite(stopAt)) return;
+
+                video.addEventListener('play', () => {
+                    if (video.currentTime >= stopAt) video.currentTime = 0;
+                });
+
+                video.addEventListener('seeking', () => {
+                    if (video.currentTime > stopAt) video.currentTime = stopAt;
+                });
+
+                video.addEventListener('timeupdate', () => {
+                    if (video.currentTime >= stopAt) {
+                        video.pause();
+                        video.currentTime = stopAt;
+                    }
+                });
+            });
+        }
+
         function initLucide() { lucide.createIcons(); }
         window.onload = () => {
             initLucide();
             initScrollReveal();
+            initVideoCaps();
         };
     </script>
 </body>
