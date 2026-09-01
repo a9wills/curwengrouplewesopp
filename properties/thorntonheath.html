@@ -302,15 +302,15 @@
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm md:text-base">
                             <div class="border-l border-[#B08D57] pl-5">
                                 <p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Conceptual Only</p>
-                                <p class="text-slate-600 font-light leading-relaxed">The layout is an early test fit, not a fixed design or final accommodation schedule.</p>
+                                <p class="text-slate-600 font-light leading-relaxed">The layout is indicative only, not a fixed design or final accommodation schedule.</p>
                             </div>
                             <div class="border-l border-[#B08D57] pl-5">
                                 <p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Requirements-Led</p>
-                                <p class="text-slate-600 font-light leading-relaxed">Any plans would be shaped around Maypole's pupil model, staffing, safeguarding and therapy requirements.</p>
+                                <p class="text-slate-600 font-light leading-relaxed">Any plans would be guided by Maypole's pupil model, staffing, safeguarding and therapy requirements.</p>
                             </div>
                             <div class="border-l border-[#B08D57] pl-5">
                                 <p class="text-[9px] uppercase tracking-widest text-[#B08D57] font-bold mb-2">Planning Consent</p>
-                                <p class="text-slate-600 font-light leading-relaxed">If Maypole are interested, Curwen Group would deliver the property with full planning consent for the agreed school use.</p>
+                                <p class="text-slate-600 font-light leading-relaxed">If this property is of interest, Curwen Group would deliver the property with full planning consent for the agreed school use and layout.</p>
                             </div>
                         </div>
                     </div>
@@ -338,14 +338,12 @@
                     <div class="lg:col-span-7">
                         <figure class="reveal bg-[#FAF9F6] border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
                             <video
-                                id="dropoff-video"
                                 class="w-full h-auto object-cover bg-neutral-950"
                                 controls
                                 muted
                                 playsinline
                                 preload="metadata"
                                 poster="../images/thornton/GarageCGI.png"
-                                data-stop-at="8.5"
                                 aria-label="Secure staggered drop-off video showing shutter-controlled arrival sequence"
                             >
                                 <source src="../images/thornton/videos/dropOff.mp4" type="video/mp4" />
@@ -363,7 +361,7 @@
                             </h3>
                             <div class="space-y-5 text-slate-600 font-light leading-relaxed text-lg">
                                 <p>
-                                    The garage / loading arrangement can be explored as a secure drop-off bay. Vehicles could enter through the opened shutter, the shutter could close behind the vehicle, and the pupil could then be received within a controlled enclosed environment.
+                                    The existing garage can be explored as a secure drop-off bay. Vehicles could enter through the opened shutter, the shutter could close behind the vehicle, and the pupil could then be received within a controlled enclosed environment.
                                 </p>
                                 <p>
                                     A vehicle turntable could also be explored within the bay, allowing taxis to drive in, rotate and exit in forward gear. Once the pupil transfer is complete, the shutter reopens and the vehicle exits. This supports staggered arrivals, limits pupil mixing at the front of the building and creates a calmer handover process for students who need predictable transitions.
@@ -540,33 +538,10 @@
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         }
 
-        function initVideoCaps() {
-            document.querySelectorAll('video[data-stop-at]').forEach(video => {
-                const stopAt = Number(video.dataset.stopAt);
-                if (!Number.isFinite(stopAt)) return;
-
-                video.addEventListener('play', () => {
-                    if (video.currentTime >= stopAt) video.currentTime = 0;
-                });
-
-                video.addEventListener('seeking', () => {
-                    if (video.currentTime > stopAt) video.currentTime = stopAt;
-                });
-
-                video.addEventListener('timeupdate', () => {
-                    if (video.currentTime >= stopAt) {
-                        video.pause();
-                        video.currentTime = stopAt;
-                    }
-                });
-            });
-        }
-
         function initLucide() { lucide.createIcons(); }
         window.onload = () => {
             initLucide();
             initScrollReveal();
-            initVideoCaps();
         };
     </script>
 </body>
