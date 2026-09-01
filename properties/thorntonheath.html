@@ -362,9 +362,10 @@
                                 playsinline
                                 preload="metadata"
                                 poster="../images/thornton/GarageCGI.png"
+                                data-playback-rate="0.75"
                                 aria-label="Secure staggered drop-off video showing shutter-controlled arrival sequence"
                             >
-                                <source src="../images/thornton/videos/dropOff.mp4" type="video/mp4" />
+                                <source src="../images/thornton/videos/dropOff1.mp4" type="video/mp4" />
                                 Your browser does not support the video tag.
                             </video>
                             <figcaption class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold">Video: secure arrival bay concept with shutter-controlled access.</figcaption>
@@ -561,10 +562,27 @@
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         }
 
+        function initVideoPlaybackRates() {
+            document.querySelectorAll('video[data-playback-rate]').forEach(video => {
+                const playbackRate = Number(video.dataset.playbackRate);
+                if (!Number.isFinite(playbackRate)) return;
+
+                const applyPlaybackRate = () => {
+                    video.defaultPlaybackRate = playbackRate;
+                    video.playbackRate = playbackRate;
+                };
+
+                video.addEventListener('loadedmetadata', applyPlaybackRate);
+                video.addEventListener('play', applyPlaybackRate);
+                applyPlaybackRate();
+            });
+        }
+
         function initLucide() { lucide.createIcons(); }
         window.onload = () => {
             initLucide();
             initScrollReveal();
+            initVideoPlaybackRates();
         };
     </script>
 </body>
