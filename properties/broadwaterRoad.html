@@ -23,30 +23,8 @@
 </head>
 <body class="bg-[#FAF9F6] text-slate-900">
 
-    <!-- Authentication Screen -->
-    <div id="auth-screen" class="min-h-screen flex items-center justify-center bg-[#E5E5E1] p-4 fixed inset-0 z-[200]">
-        <div class="w-full max-w-md bg-white shadow-2xl rounded-sm p-8 md:p-12">
-            <div class="flex justify-center mb-10">
-                <img src="https://cdn.anthology.to/static/retailers/alt/curwen_group.png" alt="Curwen Group" class="h-14 w-auto" />
-            </div>
-            <h2 class="text-center text-sm tracking-[0.3em] uppercase font-light mb-8 text-slate-900">Investment Memorandum</h2>
-            <form id="login-form" class="space-y-4">
-                <input
-                    id="password-input"
-                    type="password"
-                    placeholder="Enter Access Code"
-                    class="w-full px-4 py-4 bg-neutral-50 border border-neutral-200 rounded-sm text-base tracking-widest focus:outline-none focus:border-[#B08D57] transition-colors"
-                />
-                <p id="error-message" class="hidden text-[10px] text-red-600 uppercase tracking-widest text-center font-bold">Invalid password.</p>
-                <button type="submit" class="w-full py-4 bg-[#0A1D37] text-white text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-slate-800 transition-all rounded-sm">
-                    Unlock Document
-                </button>
-            </form>
-        </div>
-    </div>
-
     <!-- Main Content -->
-    <div id="main-content" class="hidden min-h-screen">
+    <div id="main-content" class="min-h-screen">
 
         <!-- Navigation -->
         <nav class="fixed top-0 left-0 right-0 z-[100] bg-white/80 backdrop-blur-md border-b border-neutral-100 px-6 py-4 flex justify-between items-center">
@@ -608,29 +586,9 @@
     </div>
 
     <script>
-        const REQUIRED_PASSWORD = 'broadwater_road_28k';
         const CONTACT_EMAIL = 'steve@curwengroup.co.uk';
         const CONTACT_EMAIL_DAN = 'dan@curwengroup.co.uk';
         const EMAIL_SUBJECT = 'Broadwater Road Campus: Parcel 1 - Investment Opportunity';
-
-        const loginForm = document.getElementById('login-form');
-        const passwordInput = document.getElementById('password-input');
-        const errorMessage = document.getElementById('error-message');
-        const authScreen = document.getElementById('auth-screen');
-        const mainContent = document.getElementById('main-content');
-
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (passwordInput.value === REQUIRED_PASSWORD) {
-                authScreen.classList.add('hidden');
-                mainContent.classList.remove('hidden');
-                initLucide();
-                initScrollReveal();
-            } else {
-                errorMessage.classList.remove('hidden');
-                passwordInput.classList.add('border-red-500');
-            }
-        });
 
         const mobileMenu = document.getElementById('mobile-menu');
         const menuIcon = document.getElementById('menu-icon');
@@ -673,7 +631,10 @@
         }
 
         function initLucide() { lucide.createIcons(); }
-        window.onload = () => { initLucide(); };
+        window.onload = () => {
+            initLucide();
+            initScrollReveal();
+        };
     </script>
 </body>
 </html>
