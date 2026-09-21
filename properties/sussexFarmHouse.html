@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sussex House Farm — Rural Storage Opportunity</title>
+    <link rel="icon" type="image/png" href="/favicon/curwenfavicon.png">
+    <script src="https://cdn.tailwindcss.com">
+</script>
+    <script src="https://unpkg.com/lucide@latest">
+</script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .reveal {
+            opacity: 0;
+            transform: translateY(3rem);
+            transition: all 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        ::selection { background-color: #B08D57; color: white; }
+        section { scroll-margin-top: 5rem; }
+        details summary::-webkit-details-marker { display: none; }
+        .hero-gradient { background: linear-gradient(180deg, rgba(10,29,55,0.48) 0%, rgba(10,29,55,0.70) 38%, rgba(10,29,55,0.96) 100%); }
+    
+        .section-title { font-size:clamp(2rem,4vw,3rem); font-weight:300; line-height:1.15; margin-bottom:2rem; }
+        .eyebrow { color:#B08D57; font-size:10px; letter-spacing:.3em; text-transform:uppercase; font-weight:700; margin-bottom:2rem; }
+        .copy { color:#475569; font-size:1.125rem; font-weight:300; line-height:1.8; }
+        .copy p + p { margin-top:1.25rem; }
+        .image-caption { padding:1rem 1.5rem; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:#64748b; line-height:1.7; }
+        @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto!important; } .reveal { transition:none; transform:none; } }
+        @media print { nav, #mobile-menu, #back-top { display:none!important; } main { padding-top:0!important; } .reveal { opacity:1!important; transform:none!important; } figure, tr { break-inside:avoid; } body { print-color-adjust:exact; -webkit-print-color-adjust:exact; } }
+    </style>
+</head>
+<body class="bg-[#FAF9F6] text-slate-900">
+<div id="main-content" class="min-h-screen">
+<nav aria-label="Main navigation" class="fixed top-0 left-0 right-0 z-[100] bg-white/80 backdrop-blur-md border-b border-neutral-100 px-6 py-4 flex justify-between items-center gap-6">
+<a href="#hero" class="flex items-center gap-4">
+<img src="https://cdn.anthology.to/static/retailers/alt/curwen_group.png" class="h-8 md:h-10 w-auto" alt="Curwen Group">
+<span class="hidden xl:block border-l border-neutral-200 pl-4 text-[10px] tracking-[.3em] uppercase font-bold">Sussex House Farm</span>
+</a>
+<div class="hidden lg:flex items-center gap-6">
+<a href="#summary" class="text-[9px] uppercase tracking-[.15em] font-bold text-slate-500 hover:text-[#B08D57]">Opportunity</a>
+<a href="#location" class="text-[9px] uppercase tracking-[.15em] font-bold text-slate-500 hover:text-[#B08D57]">Location</a>
+<a href="#buildings" class="text-[9px] uppercase tracking-[.15em] font-bold text-slate-500 hover:text-[#B08D57]">Buildings</a>
+<a href="#concept" class="text-[9px] uppercase tracking-[.15em] font-bold text-slate-500 hover:text-[#B08D57]">Concept</a>
+<a href="#demand" class="text-[9px] uppercase tracking-[.15em] font-bold text-slate-500 hover:text-[#B08D57]">Demand</a>
+<a href="#phasing" class="text-[9px] uppercase tracking-[.15em] font-bold text-slate-500 hover:text-[#B08D57]">Phasing</a>
+<a href="#potential" class="text-[9px] uppercase tracking-[.15em] font-bold text-slate-500 hover:text-[#B08D57]">Potential</a>
+<a href="#contact" class="px-5 py-3 bg-[#0A1D37] text-white text-[9px] uppercase tracking-[.2em] font-bold hover:bg-[#B08D57]">Contact Us</a>
+</div>
+<button id="menu-toggle" class="lg:hidden p-2" onclick="toggleMenu()" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+<i data-lucide="menu" class="w-6 h-6">
+</i>
+</button>
+</nav>
+<div id="mobile-menu" class="hidden fixed inset-0 z-[90] bg-[#0A1D37] text-white px-8 pt-28 pb-8 overflow-y-auto">
+<div class="flex flex-col gap-6">
+<a href="#summary" onclick="closeMenu()" class="text-xl font-light tracking-widest">Opportunity</a>
+<a href="#location" onclick="closeMenu()" class="text-xl font-light tracking-widest">Location</a>
+<a href="#buildings" onclick="closeMenu()" class="text-xl font-light tracking-widest">Buildings</a>
+<a href="#concept" onclick="closeMenu()" class="text-xl font-light tracking-widest">Concept</a>
+<a href="#demand" onclick="closeMenu()" class="text-xl font-light tracking-widest">Demand</a>
+<a href="#phasing" onclick="closeMenu()" class="text-xl font-light tracking-widest">Phasing</a>
+<a href="#potential" onclick="closeMenu()" class="text-xl font-light tracking-widest">Potential</a>
+<a href="#contact" onclick="closeMenu()" class="text-xl text-[#B08D57] font-bold">Contact Us</a>
+</div>
+</div>
+<main class="pt-20">
+<section id="hero" class="relative min-h-[850px] lg:min-h-[900px] w-full overflow-hidden bg-[#0A1D37]">
+<img src="../images/sussexFarmHouse/placeholder.svg" alt="Sussex House Farm — estate aerial image placeholder" class="absolute inset-0 w-full h-full object-cover">
+<div class="absolute inset-0 hero-gradient">
+</div>
+<div class="relative z-10 px-6 md:px-20 pt-10 pb-16 max-w-[1600px] mx-auto">
+<div class="bg-[#B08D57] border border-white/20 p-6 md:p-8 max-w-sm shadow-xl mb-20">
+<p class="text-white text-xs tracking-[.35em] font-bold uppercase">Repositioning Opportunity</p>
+<div class="h-px bg-white/30 my-4">
+</div>
+<p class="text-white text-[10px] tracking-[.2em] font-semibold uppercase leading-loose">Existing rural buildings<br>Modern self-storage potential</p>
+</div>
+<p class="text-[#B08D57] text-xs tracking-[.35em] uppercase font-bold mb-5">Cowden / East Sussex</p>
+<h1 class="text-5xl md:text-7xl xl:text-8xl font-extralight text-white leading-none tracking-tighter uppercase mb-6">Sussex<br>House Farm</h1>
+<p class="text-white/80 text-lg font-light max-w-2xl mb-8">A unique opportunity to create a substantial rural storage destination serving the Kent and East Sussex border.</p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl text-white mb-8">
+<div class="bg-white/5 border border-white/10 p-5 sm:p-7">
+<p class="text-2xl sm:text-3xl font-light">32,800</p>
+<p class="text-[9px] uppercase tracking-[.18em] text-white/60 font-bold mt-2">Sq ft existing footprint</p>
+</div>
+<div class="bg-white/5 border border-white/10 p-5 sm:p-7">
+<p class="text-2xl sm:text-3xl font-light">30,000+</p>
+<p class="text-[9px] uppercase tracking-[.18em] text-white/60 font-bold mt-2">Sq ft potential lettable storage</p>
+</div>
+<div class="bg-white/5 border border-white/10 p-5 sm:p-7">
+<p class="text-2xl sm:text-3xl font-light">Phased</p>
+<p class="text-[9px] uppercase tracking-[.18em] text-white/60 font-bold mt-2">Conversion &amp; rollout</p>
+</div>
+</div>
+<a href="#summary" class="inline-flex items-center gap-3 px-8 py-4 bg-[#B08D57] text-white text-[10px] tracking-[.25em] uppercase font-bold hover:bg-white hover:text-[#0A1D37]">Explore the opportunity <i data-lucide="arrow-right" class="w-4 h-4">
+</i>
+</a>
+<p class="text-white/50 text-[10px] mt-6">Image to follow: whole-estate aerial with the principal buildings subtly highlighted.</p>
+</div>
+</section>
+<section id="summary" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="reveal">
+<p class="eyebrow">01 — The Opportunity</p>
+<h2 class="section-title">Existing buildings.<br>Exceptional new potential.</h2>
+<div class="copy">
+<p>Sussex House Farm is a substantial rural estate at Cowden / East Sussex, with extensive existing agricultural and equestrian buildings and approximately <strong class="font-semibold text-slate-900">32,800 sq ft of ground-floor building footprint.</strong>
+</p>
+<p>The opportunity is to reposition part of the estate as a secure, easy-access self-storage and business-storage facility, creating <strong class="font-semibold text-slate-900">30,000+ sq ft of lettable storage space</strong> through internal conversion and selective mezzanine floors.</p>
+<p>The existing structures mean significantly less new-build development is potentially required, allowing the estate’s built volume to support a new commercial use.</p>
+</div>
+</div>
+<div class="reveal">
+<figure class="bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+<img src="../images/sussexFarmHouse/placeholder.svg" alt="Sussex House Farm — image placeholder" class="w-full aspect-[8/5] object-cover" loading="lazy">
+<figcaption class="image-caption">Image to follow: hero aerial of the whole estate, principal buildings subtly highlighted.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="location" class="bg-white py-24 px-6 md:px-20 border-y border-neutral-100">
+<div class="max-w-7xl mx-auto">
+<p class="eyebrow">02 — Location &amp; Customer Catchment</p>
+<div class="grid lg:grid-cols-2 gap-16">
+<div class="reveal">
+<h2 class="section-title">Rural setting.<br>Significant surrounding catchment.</h2>
+<div class="copy">
+<p>Approximately <strong>1 mile from Cowden</strong>, around <strong>7 miles from East Grinstead</strong> and around <strong>8 miles from Tunbridge Wells</strong>, the estate sits between several meaningful population centres.</p>
+<p>Convenient for Edenbridge, Hartfield, Forest Row, Dormansland and surrounding villages, it serves a broad local catchment of households, tradespeople and small businesses.</p>
+</div>
+<div class="mt-8">
+<figure class="bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+<img src="../images/sussexFarmHouse/placeholder.svg" alt="Sussex House Farm — image placeholder" class="w-full aspect-[8/5] object-cover" loading="lazy">
+<figcaption class="image-caption">Image to follow: regional map centred on Sussex House Farm, with rings / drive-time areas showing Edenbridge, East Grinstead, Forest Row and Tunbridge Wells.</figcaption>
+</figure>
+</div>
+</div>
+<div class="reveal">
+<div class="bg-[#FAF9F6] p-8 md:p-10">
+<p class="eyebrow">Nearby populations</p>
+<table class="w-full text-sm">
+<thead>
+<tr class="border-b border-neutral-200 text-left text-slate-500">
+<th class="pb-4 font-medium" scope="col">Location</th>
+<th class="pb-4 text-right font-medium" scope="col">Residents</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-neutral-200">
+<th scope="row" class="py-5 text-left font-light">Cowden</th>
+<td class="py-5 text-right font-semibold">859</td>
+</tr>
+<tr class="border-b border-neutral-200">
+<th scope="row" class="py-5 text-left font-light">Hartfield</th>
+<td class="py-5 text-right font-semibold">2,251</td>
+</tr>
+<tr class="border-b border-neutral-200">
+<th scope="row" class="py-5 text-left font-light">Forest Row</th>
+<td class="py-5 text-right font-semibold">4,864</td>
+</tr>
+<tr class="border-b border-neutral-200">
+<th scope="row" class="py-5 text-left font-light">Edenbridge</th>
+<td class="py-5 text-right font-semibold">9,883</td>
+</tr>
+<tr class="border-b border-neutral-200">
+<th scope="row" class="py-5 text-left font-light">East Grinstead</th>
+<td class="py-5 text-right font-semibold">27,783</td>
+</tr>
+</tbody>
+</table>
+<div class="mt-8">
+<p class="text-5xl font-light text-[#0A1D37]">45,000+</p>
+<p class="copy mt-4">Residents across these areas alone, before including Tunbridge Wells and the wider rural catchment.</p>
+<p class="text-xs text-slate-500 mt-5">Population figures and approximate distances supplied for this overview.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="buildings" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+<p class="eyebrow">03 — Existing Buildings &amp; Development Capacity</p>
+<h2 class="section-title">32,800 sq ft already under roof.</h2>
+<div class="grid lg:grid-cols-2 gap-12 items-start">
+<div class="reveal">
+<figure class="bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+<img src="../images/sussexFarmHouse/placeholder.svg" alt="Sussex House Farm — image placeholder" class="w-full aspect-[8/5] object-cover" loading="lazy">
+<figcaption class="image-caption">Image to follow: aerial / isometric estate plan labelling Buildings A, B, C and D with their square footage.</figcaption>
+</figure>
+<p class="text-xs text-slate-500 mt-4">Concept references: A — arena; B — pole barn; C — Barn 3; D — Barn 4.</p>
+</div>
+<div class="copy reveal">
+<p>The indoor equestrian arena’s <strong class="font-semibold text-slate-900">clear-span construction and height</strong> make it particularly well suited to internal storage conversion.</p>
+<p>A selective mezzanine strategy could increase total storage floor area to approximately <strong class="font-semibold text-slate-900">43,000–45,000 sq ft gross</strong>, depending on structural and planning feasibility.</p>
+<p>This gross floor area is distinct from net lettable storage space, which allows for corridors, access and operational requirements.</p>
+</div>
+</div>
+<div class="mt-12 overflow-x-auto bg-white border border-neutral-100 p-6 md:p-10">
+<table class="w-full min-w-[580px] text-sm text-left">
+<caption class="text-left eyebrow">Existing accommodation</caption>
+<thead>
+<tr class="border-b border-neutral-200 text-[10px] uppercase tracking-widest text-slate-500">
+<th class="pb-5" scope="col">Building</th>
+<th class="pb-5" scope="col">Approx. footprint</th>
+<th class="pb-5" scope="col">Potential</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-neutral-100">
+<th scope="row" class="py-6 pr-4 font-medium">A — Indoor equestrian arena</th>
+<td class="py-6 pr-4 whitespace-nowrap">12,000 sq ft</td>
+<td class="py-6 text-slate-600 font-light">Premium indoor self-storage + mezzanine</td>
+</tr>
+<tr class="border-b border-neutral-100">
+<th scope="row" class="py-6 pr-4 font-medium">B — Pole barn</th>
+<td class="py-6 pr-4 whitespace-nowrap">5,000 sq ft</td>
+<td class="py-6 text-slate-600 font-light">Large drive-up / business storage + possible upper level</td>
+</tr>
+<tr class="border-b border-neutral-100">
+<th scope="row" class="py-6 pr-4 font-medium">C — Barn 3</th>
+<td class="py-6 pr-4 whitespace-nowrap">7,800 sq ft</td>
+<td class="py-6 text-slate-600 font-light">Flexible larger storage units</td>
+</tr>
+<tr class="border-b border-neutral-100">
+<th scope="row" class="py-6 pr-4 font-medium">D — Barn 4</th>
+<td class="py-6 pr-4 whitespace-nowrap">8,000 sq ft</td>
+<td class="py-6 text-slate-600 font-light">Flexible larger storage units</td>
+</tr>
+</tbody>
+<tfoot>
+<tr class="text-[#0A1D37] font-bold">
+<th scope="row" class="pt-6">Total existing footprint</th>
+<td class="pt-6" colspan="2">32,800 sq ft</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</section>
+<section id="concept" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white">
+<div class="max-w-7xl mx-auto">
+<p class="eyebrow">04 — The Storage Concept</p>
+<h2 class="section-title max-w-3xl">Secure countryside storage with space, access and flexibility.</h2>
+<p class="text-white/65 text-lg font-light leading-relaxed max-w-3xl mb-12">Two complementary products combine contemporary indoor self-storage with larger, easy-access units for local businesses and commercial customers.</p>
+<div class="grid lg:grid-cols-2 gap-10">
+<article class="reveal bg-white/5 border border-white/10">
+<figure class="bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+<img src="../images/sussexFarmHouse/placeholder.svg" alt="Sussex House Farm — image placeholder" class="w-full aspect-[8/5] object-cover" loading="lazy">
+<figcaption class="image-caption">Image to follow: arena conversion with a central corridor, numbered storage doors, polished concrete and clean lighting.</figcaption>
+</figure>
+<div class="p-8 md:p-10">
+<p class="eyebrow">Approximately 25–150 sq ft units</p>
+<h3 class="text-3xl font-light mb-8">Premium indoor self-storage</h3>
+<ul class="space-y-4 text-white/70 font-light">
+<li class="flex gap-3">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>Primarily within the equestrian arena</li>
+<li class="flex gap-3">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>Secure internal corridors</li>
+<li class="flex gap-3">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>CCTV and controlled access</li>
+<li class="flex gap-3">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>Potential mezzanine level</li>
+<li class="flex gap-3">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>For households, moving, downsizing and archive customers</li>
+</ul>
+</div>
+</article>
+<article class="reveal bg-white/5 border border-white/10">
+<figure class="bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+<img src="../images/sussexFarmHouse/placeholder.svg" alt="Sussex House Farm — image placeholder" class="w-full aspect-[8/5] object-cover" loading="lazy">
+<figcaption class="image-caption">Image to follow: larger barn storage units with vans loading directly outside.</figcaption>
+</figure>
+<div class="p-8 md:p-10">
+<p class="eyebrow">Approximately 80–300+ sq ft units</p>
+<h3 class="text-3xl font-light mb-8">Easy-access / business storage</h3>
+<ul class="space-y-4 text-white/70 font-light">
+<li class="flex gap-3">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>Larger units in the surrounding barns</li>
+<li class="flex gap-3">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>Easier vehicle access</li>
+<li class="flex gap-3">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>For tradespeople and local SMEs</li>
+<li class="flex gap-3">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>E-commerce stock</li>
+<li class="flex gap-3">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>Equipment and commercial storage</li>
+</ul>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section id="demand" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+<p class="eyebrow">05 — Proven Local Storage Demand</p>
+<h2 class="section-title max-w-4xl">An established local market — with room for a differentiated offer.</h2>
+<div class="grid lg:grid-cols-2 gap-16">
+<div class="copy reveal">
+<p>Storage King Edenbridge demonstrates that a substantial commercial storage market already exists locally. It specifically markets its Edenbridge facility towards surrounding locations including <strong>Cowden, Hartfield, Forest Row and Dormansland.</strong>
+</p>
+<p>There is also a local market for lower-cost container and easy-access storage, demonstrating demand from trades, businesses and households for larger units.</p>
+<p>The proposed Sussex House Farm concept can sit between premium urban self-storage and basic container storage.</p>
+</div>
+<div class="bg-white p-8 border border-neutral-100 reveal">
+<p class="eyebrow">Edenbridge facility — supplied benchmarks</p>
+<dl class="grid grid-cols-2 gap-8">
+<div>
+<dt class="text-xs text-slate-500 mb-2">Historic facility size</dt>
+<dd class="text-3xl font-light">~60,000 <span class="text-sm">sq ft</span>
+</dd>
+</div>
+<div>
+<dt class="text-xs text-slate-500 mb-2">Historic occupancy</dt>
+<dd class="text-3xl font-light">~85%</dd>
+</div>
+<div>
+<dt class="text-xs text-slate-500 mb-2">Historic rental level</dt>
+<dd class="text-3xl font-light">~£32<span class="text-sm">/sq ft</span>
+</dd>
+</div>
+<div>
+<dt class="text-xs text-slate-500 mb-2">More recent reported rent</dt>
+<dd class="text-3xl font-light">~£36<span class="text-sm">/sq ft</span>
+</dd>
+</div>
+</dl>
+<p class="text-xs text-slate-500 leading-relaxed mt-8">Benchmarks supplied for this overview; reporting dates and source evidence should be confirmed before reliance. These are comparator figures, not achieved rents or occupancy at Sussex House Farm.</p>
+</div>
+</div>
+<div class="mt-14 bg-white border border-neutral-100 p-8 md:p-12">
+<p class="eyebrow text-center">The proposed market position</p>
+<div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center">
+<p class="text-xl font-light">Premium indoor storage</p>
+<span class="text-[#B08D57] text-3xl" aria-hidden="true">↔</span>
+<p class="bg-[#0A1D37] text-white px-8 py-6 text-xl font-light">Sussex House Farm</p>
+<span class="text-[#B08D57] text-3xl" aria-hidden="true">↔</span>
+<p class="text-xl font-light">Basic container storage</p>
+</div>
+<p class="mt-10 text-center text-xs uppercase tracking-widest text-slate-500 leading-loose">Households &nbsp; | &nbsp; Businesses &nbsp; | &nbsp; Trades &nbsp; | &nbsp; E-commerce &nbsp; | &nbsp; Moving Home</p>
+</div>
+</section>
+<section id="phasing" class="bg-white py-24 px-6 md:px-20 border-y border-neutral-100">
+<div class="max-w-7xl mx-auto">
+<p class="eyebrow">06 — Phased Development &amp; Income Potential</p>
+<h2 class="section-title">Start intelligently.<br>Expand with demand.</h2>
+<p class="copy max-w-3xl">The entire estate does not need to be converted immediately. A phased rollout allows the operator to establish the brand and build occupancy before committing further capital.</p>
+<div class="grid md:grid-cols-3 gap-5 my-12">
+<div class="bg-[#FAF9F6] border-t-2 border-[#B08D57] p-8">
+<p class="eyebrow">Phase 1</p>
+<p class="text-3xl font-light mb-3">15–18k sq ft</p>
+<p class="text-sm text-slate-500">Target lettable space</p>
+</div>
+<div class="bg-[#FAF9F6] border-t-2 border-[#B08D57] p-8">
+<p class="eyebrow">Phase 2</p>
+<p class="text-3xl font-light mb-3">25k+ sq ft</p>
+<p class="text-sm text-slate-500">Indicative expanded lettable space</p>
+</div>
+<div class="bg-[#FAF9F6] border-t-2 border-[#B08D57] p-8">
+<p class="eyebrow">Potential full scheme</p>
+<p class="text-3xl font-light mb-3">32–36k+ sq ft</p>
+<p class="text-sm text-slate-500">Potential lettable space</p>
+</div>
+</div>
+<div class="grid lg:grid-cols-3 gap-10">
+<article>
+<h3 class="text-2xl font-light mb-5">01 / Establish</h3>
+<p class="copy">Phase 1 targets approximately <strong>15,000–18,000 sq ft</strong> of lettable storage, potentially using the main indoor arena and one additional barn.</p>
+<ul class="mt-5 space-y-3 text-slate-600 font-light list-disc pl-5">
+<li>Establish the brand.</li>
+<li>Test local demand.</li>
+<li>Identify the strongest unit sizes.</li>
+<li>Build occupancy before further capital expenditure.</li>
+</ul>
+</article>
+<article>
+<h3 class="text-2xl font-light mb-5">02 / Expand</h3>
+<p class="copy">Convert additional barns once Phase 1 achieves strong occupancy, with an indicative intermediate stage of <strong>25,000+ sq ft</strong> lettable space.</p>
+</article>
+<article>
+<h3 class="text-2xl font-light mb-5">03 / Optimise</h3>
+<p class="copy">Longer-term potential of <strong>32,000–34,000 sq ft net lettable area</strong> under a sensible mezzanine scheme, with potential to approach <strong>36,000+ sq ft</strong> through greater mezzanine utilisation.</p>
+</article>
+</div>
+<div class="mt-14 bg-[#0A1D37] text-white p-8 md:p-12">
+<p class="eyebrow">Illustrative potential revenue</p>
+<p class="text-4xl md:text-6xl font-extralight tracking-tight mb-6">£530,000–£635,000 <span class="text-xl">p.a.</span>
+</p>
+<p class="text-white/75 font-light text-lg leading-relaxed max-w-4xl">The initial appraisal suggested this region of potential stabilised annual storage revenue at approximately <strong class="text-white font-medium">80% occupancy</strong> and blended achieved rents of around <strong class="text-white font-medium">£20–£24 per occupied sq ft</strong>.</p>
+<p class="text-white/55 text-sm leading-relaxed mt-6">Illustrative potential revenue only — not a forecast or guaranteed return. The range broadly corresponds to approximately 33,000 sq ft net lettable area at the stated occupancy and rents. Revenue is before operating costs, capital expenditure, finance costs and tax.</p>
+</div>
+</div>
+</section>
+<section id="potential" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+<p class="eyebrow">07 — A Rare Repositioning Opportunity</p>
+<h2 class="section-title max-w-4xl">Transforming existing rural buildings into a modern storage destination.</h2>
+<div class="grid lg:grid-cols-2 gap-16 items-start">
+<div class="reveal">
+<ul class="space-y-5 text-lg font-light text-slate-600 leading-relaxed">
+<li class="flex gap-4">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>
+<span>Significant existing building volume, with minimal requirement for completely new buildings.</span>
+</li>
+<li class="flex gap-4">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>
+<span>A large clear-span arena suitable for high-value indoor storage.</span>
+</li>
+<li class="flex gap-4">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>
+<span>Ability to offer both premium and value / easy-access products.</span>
+</li>
+<li class="flex gap-4">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>
+<span>Strong surrounding residential and SME catchment.</span>
+</li>
+<li class="flex gap-4">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>
+<span>Established storage demand demonstrated by nearby operators.</span>
+</li>
+<li class="flex gap-4">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>
+<span>A potential phased rollout that reduces initial development and occupancy risk.</span>
+</li>
+<li class="flex gap-4">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>
+<span>A rural setting that creates differentiation from industrial-estate self-storage facilities.</span>
+</li>
+<li class="flex gap-4">
+<span class="text-[#B08D57]" aria-hidden="true">—</span>
+<span>Further value may remain within buildings benefiting from residential conversion consent, rather than committing every building to storage.</span>
+</li>
+</ul>
+</div>
+<div class="reveal">
+<figure class="bg-white border border-neutral-100 shadow-xl rounded-sm overflow-hidden">
+<img src="../images/sussexFarmHouse/placeholder.svg" alt="Sussex House Farm — image placeholder" class="w-full aspect-[8/5] object-cover" loading="lazy">
+<figcaption class="image-caption">Image to follow: dusk aerial CGI of a smart, discreet storage campus, with vehicles, subtle external lighting and the main storage building illuminated.</figcaption>
+</figure>
+<p class="mt-8 border-l-2 border-[#B08D57] pl-6 text-sm text-slate-500 leading-relaxed">Development remains subject to detailed planning, structural, fire, access and commercial feasibility assessments.</p>
+</div>
+</div>
+</section>
+<section id="contact" class="bg-[#0A1D37] py-24 px-6 md:px-20 text-white">
+<div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+<div class="reveal">
+<p class="eyebrow">08 — Contact &amp; Enquiries</p>
+<h2 class="section-title">Discuss the Sussex House Farm opportunity.</h2>
+<div class="space-y-5 text-white/60 font-light leading-relaxed text-lg">
+<p>For further information about the estate, the proposed storage concept or a potential phased conversion, please enquire directly.</p>
+<p>
+<strong class="font-semibold text-white">Opportunity:</strong> Rural estate repositioning for self-storage and business storage.</p>
+<p>
+<strong class="font-semibold text-white">Location:</strong> Sussex House Farm, Cowden / East Sussex.</p>
+</div>
+<a href="mailto:steve@curwengroup.co.uk?subject=Sussex%20House%20Farm%20-%20Storage%20Opportunity" class="mt-10 inline-flex items-center gap-3 px-8 py-4 bg-[#B08D57] text-white text-[10px] tracking-[.25em] uppercase font-bold hover:bg-white hover:text-[#0A1D37]">Request Further Information <i data-lucide="arrow-right" class="w-4 h-4">
+</i>
+</a>
+</div>
+<div class="reveal bg-white/5 border border-white/10 rounded-sm p-8 md:p-10">
+<p class="eyebrow">Enquiry Details</p>
+<div class="space-y-6">
+<div class="border-b border-white/10 pb-5">
+<p class="text-[9px] uppercase tracking-widest text-white/40 font-bold mb-2">Contact Name</p>
+<p class="font-light">Steve Curwen</p>
+</div>
+<div class="border-b border-white/10 pb-5">
+<p class="text-[9px] uppercase tracking-widest text-white/40 font-bold mb-2">Email</p>
+<a class="font-light break-all hover:text-[#B08D57]" href="mailto:steve@curwengroup.co.uk?subject=Sussex%20House%20Farm%20-%20Storage%20Opportunity">steve@curwengroup.co.uk</a>
+</div>
+<div>
+<p class="text-[9px] uppercase tracking-widest text-white/40 font-bold mb-2">Enquiries</p>
+<p class="font-light leading-relaxed">Request further information or discuss the estate’s self-storage, business-storage and phased development potential.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-neutral-950 px-6 md:px-20 py-12 text-white/50">
+<div class="max-w-7xl mx-auto text-xs font-light leading-relaxed">
+<p class="eyebrow">Information &amp; assumptions</p>
+<p>Prepared from the supplied opportunity overview. All areas, populations, distances, comparator benchmarks, consent references and conversion assumptions are indicative and subject to verification. Gross floor area and net lettable area are different measures. Proposed uses and mezzanine capacity remain subject to detailed planning, structural, fire, access and commercial feasibility assessments. Financial illustrations are potential revenue, not a forecast or guaranteed return. All property imagery is currently a placeholder; future concept imagery will be illustrative.</p>
+</div>
+</footer>
+</main>
+<a id="back-top" href="#hero" aria-label="Back to top" class="fixed bottom-6 right-6 z-50 p-4 bg-white shadow-xl border border-neutral-100 hover:bg-[#B08D57] hover:text-white">
+<i data-lucide="arrow-up" class="w-5 h-5">
+</i>
+</a>
+</div>
+<script>
+const menu = document.getElementById('mobile-menu');
+const toggle = document.getElementById('menu-toggle');
+function closeMenu() { menu.classList.add('hidden'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Open menu'); document.body.style.overflow = ''; }
+function toggleMenu() { const open = toggle.getAttribute('aria-expanded') !== 'true'; menu.classList.toggle('hidden', !open); toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); document.body.style.overflow = open ? 'hidden' : ''; }
+document.addEventListener('keydown', event => { if (event.key === 'Escape') { closeMenu(); toggle.focus(); } });
+window.matchMedia('(min-width:1024px)').addEventListener('change', event => { if(event.matches) closeMenu(); });
+if (window.lucide) lucide.createIcons();
+// Content remains visible if JavaScript or an external icon resource is unavailable.
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+ const observer = new IntersectionObserver(entries => entries.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); } }), {threshold:0.05});
+ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+} else { document.querySelectorAll('.reveal').forEach(el => el.classList.add('active')); }
+</script>
+<noscript>
+<style>.reveal { opacity:1; transform:none; }</style>
+</noscript>
+</body>
+</html>
