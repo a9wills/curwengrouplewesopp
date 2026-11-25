@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St Saviourgate, York - Nursery Opportunity Brochure</title>
+    <link rel="icon" type="image/png" href="/favicon/curwenfavicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .reveal {
+            opacity: 0;
+            transform: translateY(3rem);
+            transition: all 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        ::selection { background-color: #B08D57; color: white; }
+        details summary::-webkit-details-marker { display: none; }
+        .hero-gradient { background: linear-gradient(180deg, rgba(10,29,55,0.18) 0%, rgba(10,29,55,0.18) 34%, rgba(10,29,55,0.96) 100%); }
+        .image-card img,
+        .image-card .image-placeholder { transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1); }
+        .image-card:hover img,
+        .image-card:hover .image-placeholder { transform: scale(1.035); }
+        .image-placeholder {
+            min-height: 18rem;
+            background:
+                linear-gradient(135deg, rgba(176,141,87,0.22), rgba(10,29,55,0.88)),
+                radial-gradient(circle at 24% 18%, rgba(255,255,255,0.14), transparent 30%);
+        }
+    
+        .draft-placeholder { min-height: 19rem; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:2.5rem; background:linear-gradient(135deg,#0a1d37,#233b57); color:white; border:1px dashed #b08d57; }
+        .draft-placeholder span { color:#c9ab7a; font-size:10px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; margin-bottom:1rem; }
+        .draft-placeholder p { max-width:26rem; font-size:14px; line-height:1.7; opacity:.7; }
+        section { scroll-margin-top:6rem; }
+        @media print { .draft-placeholder {min-height:55mm;} }
+    </style>
+</head>
+<body class="bg-[#FAF9F6] text-slate-900">
+
+    <!-- Main Content -->
+    <div id="main-content" class="min-h-screen">
+
+        <!-- Navigation -->
+        <nav class="fixed top-0 left-0 right-0 z-[100] bg-white/80 backdrop-blur-md border-b border-neutral-100 px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="https://cdn.anthology.to/static/retailers/alt/curwen_group.png" class="h-8 md:h-10 w-auto" alt="Curwen Group" />
+                <div class="hidden md:block h-6 w-[1px] bg-neutral-200"></div>
+                <span class="hidden md:block text-[10px] tracking-[0.3em] uppercase font-bold text-slate-900">St Saviourgate, York</span>
+            </div>
+
+            <div class="hidden xl:flex items-center space-x-6">
+                <button onclick="scrollToSection('hero')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Home</button>
+                <button onclick="scrollToSection('summary')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Summary</button>
+                <button onclick="scrollToSection('facts')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Property Facts</button>
+                <button onclick="scrollToSection('terms')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Terms</button>
+                <button onclick="scrollToSection('location')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Access</button>
+                <button onclick="scrollToSection('site')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Site</button>
+                <button onclick="scrollToSection('layout')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Rooms</button>
+                <button onclick="scrollToSection('outdoor')" class="text-[9px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-[#B08D57] transition-colors">Outdoor</button>
+                <button onclick="scrollToSection('contact')" class="ml-2 px-5 py-2.5 bg-[#0A1D37] text-white text-[9px] uppercase tracking-[0.2em] font-bold hover:bg-[#B08D57] transition-all rounded-sm flex items-center space-x-2">
+                    <i data-lucide="mail" class="w-3 h-3"></i>
+                    <span>Contact Us</span>
+                </button>
+            </div>
+
+            <button class="xl:hidden" onclick="toggleMenu()" aria-label="Open menu">
+                <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden fixed inset-0 z-[90] bg-[#0A1D37] text-white p-12 flex flex-col justify-center space-y-7">
+            <button onclick="scrollToSection('hero')" class="text-2xl font-light tracking-widest text-left">Home</button>
+            <button onclick="scrollToSection('summary')" class="text-2xl font-light tracking-widest text-left">Summary</button>
+            <button onclick="scrollToSection('facts')" class="text-2xl font-light tracking-widest text-left">Property Facts</button>
+            <button onclick="scrollToSection('terms')" class="text-2xl font-light tracking-widest text-left">Terms</button>
+            <button onclick="scrollToSection('location')" class="text-2xl font-light tracking-widest text-left">Access</button>
+            <button onclick="scrollToSection('site')" class="text-2xl font-light tracking-widest text-left">Site</button>
+            <button onclick="scrollToSection('layout')" class="text-2xl font-light tracking-widest text-left">Rooms</button>
+            <button onclick="scrollToSection('outdoor')" class="text-2xl font-light tracking-widest text-left">Outdoor</button>
+            <button onclick="handleContact()" class="text-2xl font-bold tracking-widest text-left text-[#B08D57]">Contact Us</button>
+        </div>
+
+        <main class="pt-20">
+
+<section id="hero" class="relative w-full bg-[#0A1D37] text-white overflow-hidden"><img src="../images/stsaviourgate/york-minster-aerial.jpeg" alt="Aerial photograph of 18 and 20 St Saviourgate and their walled garden, with York Minster beyond" class="w-full h-[55vh] md:h-[78vh] object-cover"/><div class="absolute inset-x-0 top-0 h-[55vh] md:h-[78vh] hero-gradient"></div><div class="relative max-w-7xl mx-auto px-6 md:px-20 pb-16 -mt-32 md:-mt-44"><p class="relative text-[#B08D57] text-[10px] font-bold uppercase tracking-[0.3em] mb-5">Curwen Group · Nursery Opportunity · First Draft</p><h1 class="relative text-4xl md:text-7xl font-extralight uppercase tracking-tight leading-none mb-6">18 &amp; 20<br/>St Saviourgate</h1><p class="relative text-sm uppercase tracking-[0.25em] mb-8">York, YO1 8NS</p><p class="text-lg font-light text-white/70 max-w-3xl leading-relaxed mb-10">A Georgian setting for a new early years destination. Two connected townhouses and a substantial south-facing walled garden within York’s historic city walls.</p><div class="grid grid-cols-2 md:grid-cols-4 gap-4"><div class="border border-white/20 p-5"><strong class="text-xl md:text-2xl font-light">7,114 sq ft</strong><p class="text-[9px] uppercase tracking-widest text-white/50 mt-2">Approximate net area</p></div><div class="border border-white/20 p-5"><strong class="text-xl md:text-2xl font-light">0.26 acres</strong><p class="text-[9px] uppercase tracking-widest text-white/50 mt-2">Approximate total site</p></div><div class="border border-white/20 p-5"><strong class="text-xl md:text-2xl font-light">Grade II*</strong><p class="text-[9px] uppercase tracking-widest text-white/50 mt-2">Georgian townhouses</p></div><div class="border border-white/20 p-5"><strong class="text-xl md:text-2xl font-light">South facing</strong><p class="text-[9px] uppercase tracking-widest text-white/50 mt-2">Existing walled garden</p></div></div><p class="text-xs text-white/45 mt-6">Proposed nursery conversion, subject to feasibility, necessary consents and registration. Existing property photographs shown.</p></div></section>
+<section id="summary" class="py-20 md:py-24 px-6 md:px-20 "><div class="max-w-7xl mx-auto"><p class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">01 - Executive Summary</p><div class="grid md:grid-cols-2 gap-8 items-start"><div><h2 class="text-3xl md:text-5xl font-light leading-tight mb-8">A distinctive nursery opportunity in the heart of York.</h2><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">Dating from circa 1740, 18 and 20 St Saviourgate combine period architecture with an unusually generous walled garden for a city-centre property. Originally two private homes, the buildings were combined into a single office in 1974.</p><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">The proposed vision is a characterful day nursery, with welcoming arrival spaces, carefully planned age-group rooms and a garden-led approach to outdoor learning. The arrangement across basement, ground and three upper floors requires an operator-led layout and access strategy before capacity can be established.</p><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">The property is currently occupied by an office tenant. Nursery occupation, delivery timing and commercial terms remain to be established.</p></div><div><div class="overflow-x-auto bg-white text-slate-900 border border-neutral-100 p-6 md:p-10"><table class="w-full text-sm"><tbody><tr class="border-b border-neutral-100"><th class="text-left py-4 pr-5 text-[10px] uppercase tracking-widest text-slate-400">Address</th><td class="py-4 font-medium">18 &amp; 20 St Saviourgate, York YO1 8NS</td></tr><tr class="border-b border-neutral-100"><th class="text-left py-4 pr-5 text-[10px] uppercase tracking-widest text-slate-400">Buildings</th><td class="py-4 font-medium">Two connected Georgian townhouses</td></tr><tr class="border-b border-neutral-100"><th class="text-left py-4 pr-5 text-[10px] uppercase tracking-widest text-slate-400">Current use</th><td class="py-4 font-medium">Offices; Class E as stated in the source brochure</td></tr><tr class="border-b border-neutral-100"><th class="text-left py-4 pr-5 text-[10px] uppercase tracking-widest text-slate-400">Tenure</th><td class="py-4 font-medium">Freehold offered for sale by informal tender</td></tr><tr class="border-b border-neutral-100"><th class="text-left py-4 pr-5 text-[10px] uppercase tracking-widest text-slate-400">Occupancy</th><td class="py-4 font-medium">Let to Harland &amp; Co Solicitors Limited</td></tr><tr class="border-b border-neutral-100"><th class="text-left py-4 pr-5 text-[10px] uppercase tracking-widest text-slate-400">Outdoor setting</th><td class="py-4 font-medium">South-facing walled garden; area not supplied</td></tr><tr class="border-b border-neutral-100"><th class="text-left py-4 pr-5 text-[10px] uppercase tracking-widest text-slate-400">Parking</th><td class="py-4 font-medium">No allocated parking; on-street permits available on St Saviourgate, per owner information</td></tr></tbody></table></div></div></div></div></section>
+<section id="facts" class="py-20 md:py-24 px-6 md:px-20 "><div class="max-w-7xl mx-auto"><p class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">02 - Property & Accommodation</p><h2 class="text-3xl md:text-5xl font-light leading-tight mb-8">A substantial building with scope for a considered conversion.</h2><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">The selling brochure quotes approximately 7,114 sq ft net (660.9 sq m) across both properties. This is an existing office measurement, rather than usable childcare space. A measured survey and proposed nursery layout are needed to establish the operational area.</p><div class="overflow-x-auto"><table class="w-full text-sm text-left bg-white"><thead class="bg-[#0A1D37] text-white"><tr><th class="p-4">Floor</th><th class="p-4">No. 18 · sq ft</th><th class="p-4">No. 20 · sq ft</th><th class="p-4">Combined · sq ft</th></tr></thead><tbody><tr class="border-b border-neutral-200"><td class="p-4">Basement</td><td class="p-4">446</td><td class="p-4">15</td><td class="p-4">461</td></tr><tr class="border-b border-neutral-200"><td class="p-4">Ground</td><td class="p-4">1,159</td><td class="p-4">492</td><td class="p-4">1,651</td></tr><tr class="border-b border-neutral-200"><td class="p-4">First</td><td class="p-4">1,264</td><td class="p-4">507</td><td class="p-4">1,771</td></tr><tr class="border-b border-neutral-200"><td class="p-4">Second</td><td class="p-4">1,222</td><td class="p-4">505</td><td class="p-4">1,727</td></tr><tr class="border-b border-neutral-200"><td class="p-4">Third</td><td class="p-4">1,053</td><td class="p-4">451</td><td class="p-4">1,504</td></tr><tr class="border-b border-neutral-200"><td class="p-4">Total</td><td class="p-4">5,144</td><td class="p-4">1,970</td><td class="p-4">7,114</td></tr></tbody></table></div><p class="text-xs text-slate-500 mt-5 leading-relaxed">Square-foot figures transcribed from the Savills schedule. Its square-metre entries contain inconsistencies with the stated totals; all areas remain approximate and subject to survey. The 0.26-acre figure is the whole site, not the garden area.</p></div></section>
+<section id="terms" class="py-20 md:py-24 px-6 md:px-20 "><div class="max-w-7xl mx-auto"><p class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">03 - Availability & Terms</p><div class="grid md:grid-cols-2 gap-8 items-start"><div><h2 class="text-3xl md:text-5xl font-light leading-tight mb-8">Freehold opportunity. Nursery terms to be developed.</h2><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">The property is offered for sale by informal tender, with offers invited. The selling particulars report an existing annual office rent of £60,000 from Harland &amp; Co Solicitors Limited. This is the current office tenancy income and is not a proposed nursery rent.</p><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">A copy of the existing lease and technical information can be requested from the selling agent. The vendor reserves the right to charge VAT. Viewings are strictly by appointment.</p></div><div><div class="overflow-x-auto bg-white text-slate-900 border border-neutral-100 p-6 md:p-10"><table class="w-full text-sm"><tbody><tr class="border-b border-neutral-100"><th class="text-left py-4 pr-5 text-[10px] uppercase tracking-widest text-slate-400">Sale basis</th><td class="py-4 font-medium">Freehold; informal tender</td></tr><tr class="border-b border-neutral-100"><th class="text-left py-4 pr-5 text-[10px] uppercase tracking-widest text-slate-400">Price</th><td class="py-4 font-medium">Offers invited; no asking price quoted</td></tr><tr class="border-b border-neutral-100"><th class="text-left py-4 pr-5 text-[10px] uppercase tracking-widest text-slate-400">Existing rent</th><td class="py-4 font-medium">£60,000 per annum - office tenancy</td></tr><tr class="border-b border-neutral-100"><th class="text-left py-4 pr-5 text-[10px] uppercase tracking-widest text-slate-400">Possession</th><td class="py-4 font-medium">Tenant in situ; nursery occupation timing to be agreed</td></tr><tr class="border-b border-neutral-100"><th class="text-left py-4 pr-5 text-[10px] uppercase tracking-widest text-slate-400">Nursery lease / operator</th><td class="py-4 font-medium">Not agreed or supplied</td></tr><tr class="border-b border-neutral-100"><th class="text-left py-4 pr-5 text-[10px] uppercase tracking-widest text-slate-400">Nursery capacity</th><td class="py-4 font-medium">To be established through feasibility and registration</td></tr></tbody></table></div></div></div></div></section>
+<section id="location" class="py-20 md:py-24 px-6 md:px-20 "><div class="max-w-7xl mx-auto"><p class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">04 - Location & Access</p><div class="grid md:grid-cols-2 gap-8 items-start"><div><h2 class="text-3xl md:text-5xl font-light leading-tight mb-8">Inside the city walls. Connected to the city beyond.</h2><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">St Saviourgate is a Georgian street in central York, approximately 0.25 miles south-east of York Minster and 0.8 miles east of York Railway Station, according to the selling brochure. Nearby uses include homes, offices, the Central Methodist Church and DIG archaeological museum.</p><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">There is no allocated parking. Permits can be obtained for on-street parking on St Saviourgate, as advised by the owner. Permit eligibility and arrangements should be confirmed when preparing the nursery access plan; a permit does not reserve a space.</p><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">The nursery design should establish a practical parent handover, buggy storage, deliveries and staff travel arrangement, taking account of the street setting and neighbouring residential properties.</p></div><div><figure class="image-card overflow-hidden rounded-sm border border-neutral-200/20"><img src="../images/stsaviourgate/york-location-map.png" alt="York location map" class="w-full h-auto block"/><figcaption class="text-[10px] uppercase tracking-widest opacity-60 py-4 px-4">York location map | Source: Savills brochure</figcaption></figure></div></div></div></section>
+<section id="site" class="py-20 md:py-24 px-6 md:px-20 "><div class="max-w-7xl mx-auto"><p class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">05 - Site & Setting</p><h2 class="text-3xl md:text-5xl font-light leading-tight mb-8">Two townhouses. One garden-led vision.</h2><div class="grid md:grid-cols-2 gap-8 items-start"><div><figure class="image-card overflow-hidden rounded-sm border border-neutral-200/20"><img src="../images/stsaviourgate/site-boundary-map.jpeg" alt="Site boundary plan - for identification only" class="w-full h-auto block"/><figcaption class="text-[10px] uppercase tracking-widest opacity-60 py-4 px-4">Site boundary plan - for identification only | Source: Savills brochure</figcaption></figure></div><div><figure class="image-card overflow-hidden rounded-sm border border-neutral-200/20"><img src="../images/stsaviourgate/front-aerial.jpeg" alt="Existing frontage and rear garden aerial" class="w-full h-auto block"/><figcaption class="text-[10px] uppercase tracking-widest opacity-60 py-4 px-4">Existing frontage and rear garden aerial | Source: Savills brochure</figcaption></figure></div></div><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">The source brochure describes a site of approximately 0.26 acres (0.105 hectares), including the buildings and garden. Boundary markings are indicative. The Grade II* listing and historic fabric should inform the conversion design from the outset.</p></div></section>
+<section id="layout" class="py-20 md:py-24 px-6 md:px-20 bg-[#0A1D37] text-white"><div class="max-w-7xl mx-auto"><p class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">06 - Proposed Nursery Interiors</p><h2 class="text-3xl md:text-5xl font-light leading-tight mb-8">A calm, characterful early years environment.</h2><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">The following spaces describe a proposed design brief. No nursery layout, internal photographs or room capacities were supplied. CGI should be developed around a measured survey, retaining the character of the listed buildings and showing a realistic arrangement.</p><div class="grid md:grid-cols-2 gap-6"><div class="draft-placeholder rounded-sm"><span>CGI / image to follow</span><h3 class="text-2xl font-light mb-4">Reception & parent handover</h3><p>Create a welcoming, controlled entrance with space for parent handover and buggy storage. Show retained Georgian character where supported by the survey.</p></div><div class="draft-placeholder rounded-sm"><span>CGI / image to follow</span><h3 class="text-2xl font-light mb-4">Baby room & sleep space</h3><p>A calm nurturing room with a proposed sleep area and age-appropriate facilities; location and configuration to be established.</p></div><div class="draft-placeholder rounded-sm"><span>CGI / image to follow</span><h3 class="text-2xl font-light mb-4">Toddler & preschool rooms</h3><p>Flexible play, reading and creative activity zones, with circulation and access designed around the eventual floor plan.</p></div><div class="draft-placeholder rounded-sm"><span>CGI / image to follow</span><h3 class="text-2xl font-light mb-4">Proposed nursery floor plan</h3><p>A measured plan is needed to show rooms, age groups, toilets, staff facilities, escape routes and the connection to outdoor play.</p></div></div></div></section>
+<section id="outdoor" class="py-20 md:py-24 px-6 md:px-20 "><div class="max-w-7xl mx-auto"><p class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">07 - Outdoor Learning</p><div class="grid md:grid-cols-2 gap-8 items-start"><div><figure class="image-card overflow-hidden rounded-sm border border-neutral-200/20"><img src="../images/stsaviourgate/garden-aerial.jpeg" alt="Existing south-facing walled garden" class="w-full h-auto block"/><figcaption class="text-[10px] uppercase tracking-widest opacity-60 py-4 px-4">Existing south-facing walled garden | Source: Savills brochure</figcaption></figure></div><div><h2 class="text-3xl md:text-5xl font-light leading-tight mb-8">A walled garden with outdoor learning potential.</h2><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">The existing garden is one of the property’s strongest features. A nursery scheme could explore nature play, growing, creative activities and quieter sheltered areas within this established city-centre setting.</p><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">The usable play area, access from the childcare rooms, levels, trees and boundary security need to be assessed. The garden has not been measured separately, and the existing photographs show its current condition.</p><div class="draft-placeholder rounded-sm"><span>CGI / image to follow</span><h3 class="text-2xl font-light mb-4">Proposed outdoor learning garden</h3><p>Create a garden CGI showing age-appropriate play and planted areas, based on a surveyed layout and a realistic proposal.</p></div></div></div></div></section>
+<section id="gallery" class="py-20 md:py-24 px-6 md:px-20 "><div class="max-w-7xl mx-auto"><p class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">08 - Existing Property Gallery</p><h2 class="text-3xl md:text-5xl font-light leading-tight mb-8">The property as it stands today.</h2><div class="grid md:grid-cols-2 gap-8"><figure class="image-card overflow-hidden rounded-sm border border-neutral-200/20"><img src="../images/stsaviourgate/rear-garden-aerial.jpeg" alt="Townhouses and walled garden with York Minster beyond" class="w-full h-auto block"/><figcaption class="text-[10px] uppercase tracking-widest opacity-60 py-4 px-4">Townhouses and walled garden with York Minster beyond | Source: Savills brochure</figcaption></figure><figure class="image-card overflow-hidden rounded-sm border border-neutral-200/20"><img src="../images/stsaviourgate/side-garden-aerial.jpeg" alt="Oblique aerial showing street frontage and garden" class="w-full h-auto block"/><figcaption class="text-[10px] uppercase tracking-widest opacity-60 py-4 px-4">Oblique aerial showing street frontage and garden | Source: Savills brochure</figcaption></figure></div></div></section>
+<section id="next" class="py-20 md:py-24 px-6 md:px-20 "><div class="max-w-7xl mx-auto"><p class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">09 - Next Stage</p><h2 class="text-3xl md:text-5xl font-light leading-tight mb-8">From opportunity to a workable nursery proposal.</h2><div class="grid md:grid-cols-2 gap-8 items-start"><div><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">Confirm the existing tenancy and route to occupation, commission a measured survey and develop a nursery feasibility layout. Establish the appropriate consent route for the proposed works and use, alongside the requirements for registration, access and safe operation.</p><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">Capacity, fit-out budget, programme and nursery commercial terms can then be developed against the agreed layout. No operator commitment, registered places, opening date or forecast return is assumed in this draft.</p></div><div><div class="draft-placeholder rounded-sm"><span>CGI / image to follow</span><h3 class="text-2xl font-light mb-4">Proposed nursery frontage</h3><p>A street-level CGI is needed to show the proposed entrance, discreet signage and arrival experience. No street-level photograph was included in the source brochure.</p></div></div></div></div></section>
+<section id="contact" class="py-20 md:py-24 px-6 md:px-20 bg-[#0A1D37] text-white"><div class="max-w-7xl mx-auto"><p class="text-[#B08D57] text-[10px] tracking-[0.4em] uppercase font-bold mb-6">10 - Enquiries</p><div class="grid md:grid-cols-2 gap-8 items-start"><div><h2 class="text-3xl md:text-5xl font-light leading-tight mb-8">Explore the St Saviourgate nursery opportunity.</h2><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">For further information or to discuss the proposed nursery conversion, contact Curwen Group.</p><a class="inline-block px-8 py-4 bg-[#B08D57] text-white uppercase text-xs tracking-widest" href="mailto:dan@curwengroup.co.uk?subject=St%20Saviourgate%20York%20Nursery%20Opportunity">dan@curwengroup.co.uk</a></div><div><h3 class="text-xl font-light mb-5">First draft · November 2026</h3><p class="text-base md:text-lg font-light leading-relaxed mb-6 opacity-80">Property facts, photographs and maps are drawn from the Savills sales brochure dated November 2026. Parking information was supplied separately by the owner. Nursery descriptions are proposals for discussion.</p><p class="text-xs leading-relaxed text-white/50">Areas and distances are approximate. This draft does not form an offer or contract. Nursery suitability, occupation, consents, registration and commercial terms remain to be confirmed. Existing aerial photographs and map boundaries are for identification only. Maps reproduced from the supplied brochure: © Crown copyright, licence 100022432 Savills (UK) Ltd. Image and map reuse permissions should be confirmed before public issue.</p></div></div></div></section></main>
+        <button onclick="scrollToSection('hero')" class="fixed bottom-8 right-8 z-[100] p-4 bg-white shadow-2xl border border-neutral-100 hover:bg-[#B08D57] hover:text-white transition-all group" aria-label="Back to top">
+            <i data-lucide="arrow-right" class="-rotate-90 group-hover:translate-y-[-2px] transition-transform w-5 h-5"></i>
+        </button>
+    </div>
+
+    <script>
+        const CONTACT_EMAIL = 'dan@curwengroup.co.uk';
+        const EMAIL_SUBJECT = 'St Saviourgate York - Nursery Opportunity';
+
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) element.scrollIntoView({ behavior: 'smooth' });
+            if (isMenuOpen) toggleMenu();
+        }
+
+        function handleContact() {
+            window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
+        }
+
+        function initScrollReveal() {
+            const observerOptions = { threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('active');
+                });
+            }, observerOptions);
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        function initLucide() { if (window.lucide) lucide.createIcons(); }
+        window.onload = () => { initLucide(); initScrollReveal(); };
+    </script>
+</body>
+</html>

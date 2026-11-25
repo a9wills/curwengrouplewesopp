@@ -1,0 +1,15 @@
+import {chromium} from 'playwright';
+import {pathToFileURL} from 'node:url';
+const browser=await chromium.launch();
+const page=await browser.newPage({viewport:{width:1440,height:1000}});
+page.on('pageerror',e=>console.log('ERROR',e.message));
+await page.goto(pathToFileURL(process.cwd()+'/properties/StSaviourgate.html').href,{waitUntil:'networkidle'});
+await page.locator('#password-input').fill('york_yo1');
+await page.locator('#login-form button').click();
+await page.evaluate(()=>document.querySelectorAll('.reveal').forEach(x=>x.classList.add('active')));
+console.log('desktop',await page.evaluate(()=>({broken:[...document.images].filter(x=>!x.complete||!x.naturalWidth).map(x=>x.src),overflow:document.documentElement.scrollWidth>innerWidth,unlocked:!document.querySelector('#main-content').classList.contains('hidden'),missingLinks:[...document.querySelectorAll('[onclick^="scrollToSection"]')].map(e=>e.getAttribute('onclick').match(/'([^']+)'/)[1]).filter(id=>!document.getElementById(id))})));
+await page.screenshot({path:'tmp/pdfs/york/desktop.png',fullPage:true});
+await page.setViewportSize({width:390,height:844});
+console.log('mobile overflow',await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth));
+await page.screenshot({path:'tmp/pdfs/york/mobile.png',fullPage:true});
+await browser.close();
